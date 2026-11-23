@@ -1,6 +1,6 @@
 # Feature-Spezifikation Campus Ilmenau (iOS → Android)
 
-Stand: 2026-11-23 · Quelle: iOS-Projekt `/Users/kaigothe/Projekte/campus-ilmenau/Campus Ilmenau`
+Stand: 2026-11-23 · Quelle: iOS-Projekt `Campus Ilmenau` (iOS-Projekt, Nachbarordner dieses Repos)
 
 Diese Datei beschreibt, **was** die iOS-App tut und was Android davon übernimmt. Details zu Schnittstellen stehen in [`docs/migration/api/`](../docs/migration/api/README.md), lokale Daten in [`docs/migration/spec/lokale-daten.md`](../docs/migration/spec/lokale-daten.md), Deeplinks in [`docs/migration/spec/deeplinks.md`](../docs/migration/spec/deeplinks.md).
 

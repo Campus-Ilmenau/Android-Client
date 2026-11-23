@@ -2,7 +2,7 @@
 
 Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als Android-App (Kotlin, Jetpack Compose).
 
-- **iOS-Quelle:** `/Users/kaigothe/Projekte/campus-ilmenau/Campus Ilmenau`
+- **iOS-Quelle:** `Campus Ilmenau` (iOS-Projekt, Nachbarordner dieses Repos)
 - **Android-Ziel:** dieses Projekt, `de.kaigothe.campusilmenau`
 - **Stand der Planung:** 2026-11-23
 

@@ -2,7 +2,7 @@
 
 ## iOS-App
 
-SwiftUI-App für Studierende der TU Ilmenau. Projektpfad: `/Users/kaigothe/Projekte/campus-ilmenau/Campus Ilmenau`.
+SwiftUI-App für Studierende der TU Ilmenau. Projektpfad: `Campus Ilmenau` (Nachbarordner dieses Repos).
 
 ### Umfang
 
