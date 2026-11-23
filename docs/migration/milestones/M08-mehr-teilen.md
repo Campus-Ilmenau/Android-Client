@@ -10,6 +10,9 @@ Bereich „Mehr“ mit Einstellungen sowie Teilen von Gerichten, Events und Medi
 
 ### Mehr
 - [ ] `MehrView`-Pendant mit Bereichen (`MehrBereich`) und Untermenü, Erreichbarkeit per Deeplink (`mehr(bereich)`).
+- [ ] Bereiche laut iOS (`MehrBereich`): **Bibliothekskonto, Darstellung, Mensa, Sprache, Über die App**. Kacheln: blau (Konto, Darstellung), grün (Mensa), neutral (Sprache, Über).
+- [ ] Bereich „Sprache“: App-Sprache über `LocaleManager`/`AppCompatDelegate.setApplicationLocales` und `locales_config.xml`. Verfügbare Sprachen aus `Localizable.xcstrings` ableiten.
+- [ ] Bereich „Mensa“: Preisgruppe, Mensa auf Heute, Einstieg in den Mensa-Filter („Filter für Ernährung und Allergene“).
 - [ ] Darstellung (`AppDarstellung`): System/Hell/Dunkel über DataStore, wirkt sofort im Theme.
 - [ ] Alternative App-Icons (`AlternativeAppIcons`) über `activity-alias`; Hinweis auf kurzen Neustart. Themed Icon als „Tinted“-Ersatz.
 - [ ] Links (`AppLinks`): Impressum, Datenschutz, Bibliothek usw.

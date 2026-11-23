@@ -18,7 +18,8 @@ Die Startseite zeigt je nach Uhrzeit Mensa, Abendessen oder Veranstaltungen, daz
   - ab 19:30: laufendes Club-Event (Kopf Nachtblau mit Sonne), „Mensa ändern“ entfällt
 - [ ] „Heute Abend“-Karte (`HeuteAbendKarte`, `HeuteAbendModel`) mit Events des Abends.
 - [ ] „Als Nächstes“-Bereich (`HeuteAlsNaechstesView`).
-- [ ] Hinweise vom Server (max. 2, Priorität/Zeitraum, ✕ blendet dauerhaft aus; ohne Hinweise entfällt der Abschnitt). Datenquelle klären (laut CLAUDE.md zuerst nachfragen, falls API fehlt).
+- [ ] Hinweise (max. 2, Priorität/Zeitraum `[von, bis)`, höhere Priorität zuerst, ✕ blendet dauerhaft aus; ohne Hinweise entfällt der Abschnitt). **Es gibt noch keinen Server-Endpunkt**: wie iOS eine austauschbare `HinweiseQuelle` mit leerer Standard-Implementierung. Bei neuen Daten laut `CLAUDE.md` zuerst nachfragen.
+- [ ] Quellen mit Zeitlimit laden (Fehler/Zeitablauf → `null`), die Seite hängt nie. Wert des Limits in `HeuteModel` nachsehen.
 - [ ] Mensa-Wechsel-Sheet (Radio-Liste der 4 Mensen, „Fertig“), Auswahl in DataStore (`HeuteMensaSpeicher`).
 - [ ] Mensa-Filter gilt auch für die Essenskarten auf Heute.
 - [ ] Personen-Button öffnet Mehr (M8).

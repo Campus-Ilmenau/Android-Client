@@ -48,7 +48,8 @@ SwiftUI, Foundation, AppIntents, WidgetKit, Observation, UIKit, SwiftData, CoreN
 
 - SwiftData: `ThoskaBalanceRecord`, `ThoskaCardName`
 - UserDefaults / `@AppStorage` (teils App Group): Preisgruppe, Heute-Mensa, Darstellung, Siri-Tipps, Mensa-Filter
-- Keychain: im Code nicht gefunden → in M0 klären, wie PAIA-Zugang gespeichert wird
+- Keychain: wird nicht benutzt. Der PAIA-Zugang (Token, Benutzernummer) liegt **nur im Speicher** und ist nach einem Neustart weg (in M0 geklärt, siehe [api/paia.md](api/paia.md)).
+- Dateien in Application Support: `Merkliste.json` (Katalogtitel), `MerklisteEvents.json` (Event-IDs). Details in [spec/lokale-daten.md](spec/lokale-daten.md).
 
 ### Berechtigungen (Info.plist)
 

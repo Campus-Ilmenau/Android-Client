@@ -15,6 +15,9 @@ Der Mensa-Tab ist vollständig: Speiseplan für 4 Mensen bis 3 Wochen im Voraus,
 - [ ] Preisgruppen (Studierende, Mitarbeitende, Gäste) mit Speicherung.
 - [ ] Öffnungszeiten-Logik (`MensaOpeningHours`) mit injizierbarer Uhr.
 - [ ] Präsentationslogik (`MensaMealPresentation`, `MensaFormatting`): „vegetarisch“ auch bei veganen Gerichten.
+- [ ] Favoriten (`MensaFavoriteStore`): lokal, Gericht zählt über den **normalisierten Namen** (getrimmt, lowercase), weil die API-ID pro Tag wechselt.
+- [ ] Echte Beispielantworten der Dev-API sichern (siehe [api/README.md](../api/README.md)), Datumsformat der Gerichte prüfen.
+- [ ] Deeplinks `mensa`, `mensa/gericht/<id>?tag=`, `mensa/zeiten` anbinden (Gericht-IDs gelten nur einen Tag).
 
 ### UI
 - [ ] `MensaScreen` mit Pager zwischen den Mensen und Tagesleiste (Datumsauswahl, bis 3 Wochen).

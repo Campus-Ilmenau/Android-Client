@@ -63,8 +63,8 @@ Innerhalb von `feature/<name>/` gilt: `XxxScreen.kt`, `XxxViewModel.kt`, `XxxUiS
 | Bilder | Coil 3 |
 | Hintergrund | WorkManager |
 | Widgets | Glance (`glance-appwidget`, `glance-material3`) |
-| Kamera / Scan | CameraX, ML Kit (Text Recognition, Barcode Scanning) |
-| Barcode erzeugen | ZXing core |
+| Kamera / Scan | CameraX, ML Kit **Barcode Scanning** (der Scanner liest einen Barcode, keinen Text) |
+| Barcode erzeugen | keine Bibliothek: eigener Code-39-Renderer (wie iOS `Strichcode`) |
 | Biometrie | `androidx.biometric` |
 | Sicherheit | Android Keystore (`security-crypto` oder Tink) |
 | Splash | `androidx.core:core-splashscreen` |

@@ -28,8 +28,10 @@ Das Guthaben der Thoska (MIFARE DESFire) wird per NFC ausgelesen, mit Verlauf un
 - [ ] `ThoskaScreen` mit animierter Karte (Flip per Wischgeste), Guthaben in Plus Jakarta Sans.
 - [ ] Verlauf (`ThoskaHistoryView`) mit Chart (Entscheidung Canvas vs. Vico).
 - [ ] Benennen der Karte.
-- [ ] Gerät ohne NFC: Erklärung statt Scan-Button.
-- [ ] Previews, Deeplink „Thoska auslesen“.
+- [ ] **Gerät ohne NFC-Hardware: Thoska-Tab entfällt** (wie iOS `NFCVerfuegbarkeit`), der Deeplink `thoska/auslesen` wird dort ignoriert. NFC vorhanden, aber ausgeschaltet: Hinweis mit Weg in die Einstellungen.
+- [ ] Verlauf-Auswertung portieren (`ThoskaHistorySummary`): Zeiträume 14 Tage und 3 Monate, Aufladung bei Guthaben > Vorgänger + 0,005, Ausgaben = Summe der Rückgänge ohne Aufladungen, Balken je Auslesung (14 Tage) bzw. je Kalenderwoche mit letztem Stand (3 Monate). Beträge als `Long` in Tausendstel speichern.
+- [ ] Kartenname: leerer Name oder Name gleich Karten-ID gilt als „ohne Namen“, Fallback „Karte …C3D4“ (letzte 4 Zeichen, groß), leerer Eingabe setzt zurück.
+- [ ] Previews, Deeplink „Thoska auslesen“ (startet das Auslesen sofort).
 
 ## Abnahme
 

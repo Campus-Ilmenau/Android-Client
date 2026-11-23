@@ -8,20 +8,23 @@ Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als An
 
 ## Inhalt
 
-| Datei | Zweck |
+| Datei / Ordner | Zweck |
 |---|---|
+| [`.migration/feature_specification.md`](../../.migration/feature_specification.md) | **Feature-Spezifikation** aus M0: was die iOS-App tut, Fachregeln, Abweichungen |
 | [01-ausgangslage.md](01-ausgangslage.md) | Analyse der iOS-App: Umfang, Features, Backend, Zustand des Android-Projekts |
-| [02-entscheidungen.md](02-entscheidungen.md) | Getroffene Entscheidungen (Hilt, minSdk 26, Wear OS später usw.) |
+| [02-entscheidungen.md](02-entscheidungen.md) | Getroffene und offene Entscheidungen |
 | [03-architektur.md](03-architektur.md) | Zielarchitektur, Paketstruktur, Bibliotheken, Mapping iOS → Android |
 | [04-nicht-portierbar.md](04-nicht-portierbar.md) | iOS-Funktionen ohne 1:1-Gegenstück und die Ersatzlösung |
 | [05-risiken.md](05-risiken.md) | Risiken und Gegenmaßnahmen |
+| [api/](api/README.md) | API-Verträge: Mensa, Events, Library, PAIA |
+| [spec/](spec/lokale-daten.md) | Lokale Daten und Einstellungen, [Deeplinks](spec/deeplinks.md), [Test-Inventar](spec/tests-inventar.md) |
 | [milestones/](milestones/) | Ein Dokument pro Meilenstein mit Aufgaben, Abnahmekriterien und Quellen |
 
 ## Meilensteine im Überblick
 
 | ID | Meilenstein | Status |
 |---|---|---|
-| [M0](milestones/M00-audit-spezifikation.md) | Audit und Spezifikation | offen |
+| [M0](milestones/M00-audit-spezifikation.md) | Audit und Spezifikation | **abgeschlossen** (2026-11-23), echte API-Beispielantworten offen |
 | [M1](milestones/M01-fundament.md) | Fundament (Gradle, Hilt, Theme, Netzwerk) | offen |
 | [M2](milestones/M02-design-system.md) | Design-System-Bausteine und App-Shell | offen |
 | [M3](milestones/M03-mensa.md) | Mensa | offen |
@@ -59,7 +62,8 @@ Zusätzlich nach jedem Feature-Slice (oder alle 2 Screens): `./gradlew compileDe
 
 - Eine Ansicht pro Schritt: erst `Uebergabe.md` und die `.dc.html` des Designs lesen, dann umsetzen, dann mit dem Mockup vergleichen.
 - Konzepte portieren, nicht Zeile für Zeile übersetzen.
-- Fachlogik und Tests aus iOS dienen als Spezifikation (Testfälle werden mitportiert).
+- Fachlogik und Tests aus iOS dienen als Spezifikation (Testfälle werden mitportiert, siehe [spec/tests-inventar.md](spec/tests-inventar.md)).
 - Keine Geheimnisse im Quelltext: Schlüssel gehören in `local.properties` und werden über `BuildConfig` gelesen.
 - Jeder Screen bekommt `@Preview` (Light und Dark).
 - Jeder Meilenstein wird hier mit Status und Datum nachgeführt.
+- Commits im Stil von Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:` …), geeignet für semantic-release.

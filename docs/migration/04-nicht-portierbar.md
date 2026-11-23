@@ -8,12 +8,15 @@
 | Alternative App-Icons (Hell/Dunkel) | `activity-alias` je Variante | App startet beim Wechsel kurz neu. Themed Icon (Android 13+) deckt „Tinted“ ab. |
 | Smart-Stack-Relevanz | kein Gegenstück | Entfällt. |
 | Apple Watch (Mensa, Heute Abend, Merkliste, Komplikationen) | Wear OS (später, eigenes Modul) | Nicht im Basisplan. |
-| Face ID | `BiometricPrompt` (Fingerabdruck, Gesicht, Geräte-PIN) | Verfügbare Methode hängt vom Gerät ab. Fallback auf Geräte-PIN. |
+| Face ID (iOS erlaubt nie den Gerätecode) | `BiometricPrompt` (Fingerabdruck, Gesicht, ggf. Geräte-PIN) | Verfügbare Methode hängt vom Gerät ab. Ob die Geräte-PIN zugelassen wird, ist offen (Entscheidung 11 in [02-entscheidungen.md](02-entscheidungen.md)). |
 | EventKit mit Kalenderauswahl in der App | Insert-Intent, Auswahl übernimmt die Kalender-App | Keine eigene Kalender-Auswahl, keine Berechtigung nötig. |
 | App Group (geteilter Speicher App/Widget) | gemeinsamer DataStore | Einfacher, da dieselbe App. |
 | Lock-Screen-Widgets / Steuerelemente | Glance-Widgets, ggf. Quick-Settings-Tile | Lockscreen-Widgets nur auf neueren Android-Versionen/Herstellern. |
 | NFC-Session-Dialog des Systems | Eigener Hinweis in der UI (Reader Mode hat keinen System-Dialog) | UI muss „Halte die Thoska an dein Gerät“ selbst zeigen. |
-| Geräte ohne NFC | Hinweis in der UI | Thoska-Tab zeigt Erklärung statt Scan-Button. |
+| Geräte ohne NFC | Thoska-Tab entfällt (wie iOS) | NFC vorhanden, aber aus: Hinweis mit Weg in die Einstellungen. Deeplink `thoska/auslesen` wird ohne NFC ignoriert. |
+| Redaktionelle Hinweise auf Heute | austauschbare leere Quelle | Es gibt serverseitig noch keinen Endpunkt, auch in iOS nicht. Abschnitt entfällt, bis es Daten gibt. |
+| Nutzergruppe-Chip auf dem Ausweis | entfällt vorerst | iOS-Tabelle der UB-URIs ist leer (TODO). |
+| Merkliste-Abgleich mit der Uhr (Grabsteine, `changedAt`-Konfliktregel) | entfällt bis Wear OS | `foundAt`/`changedAt` werden schon mitgeführt. |
 
 ## Ablauf bei weiteren Lücken
 
