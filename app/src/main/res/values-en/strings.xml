@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Campus Ilmenau</string>
+
+    <!-- Placeholder until the app shell (M2) -->
+    <string name="platzhalter_text">The screens are coming. Use this one to check the theme and font.</string>
+</resources>
