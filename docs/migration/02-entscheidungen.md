@@ -31,8 +31,19 @@ Stand: 2026-11-23
 - Tippziele mindestens 48 × 48 dp (Android-Richtlinie, statt 44 pt), Abstände in 4-dp-Schritten.
 - Abstände: Bildschirmrand 16, Kartenabstand 10, Abschnittsabstand 22. Ecken: Karten 16, Buttons 12, Segment 10, Chips Kapsel, Sheets 14 oben.
 
+## In M1 entschieden
+
+| # | Thema | Entscheidung | Begründung |
+|---|---|---|---|
+| 16 | Navigation | **Navigation 3** (stabil 1.2.x), Einbau in M2. | Stabil, Back Stack liegt in der eigenen Hand (passt zum Router-Modell der iOS-App mit Zielen von außen), Szenen für List-Detail in M9. |
+| 17 | Netzwerk | **Retrofit 3 + OkHttp 5** mit `kotlinx.serialization`. | Verbreitet, gut testbar (MockWebServer), `HttpException` mit Fehlerhülle lässt sich sauber in `ApiError` übersetzen. |
+| 18 | Kotlin/KSP | Kotlin 2.4.21, KSP 2.3.14. | Mit AGP 9.5.2 (eingebautes Kotlin), Hilt 2.60.1 und Room 2.8.5 gebaut und getestet. |
+| 19 | Compose BOM | **2026.02.01** (vorerst nicht 2026.11.01). | BOM 2026.11.01 verlangt `compileSdk` 37.1, installiert ist nur 37.0. Aktualisierung nach Installation der Plattform 37.1. |
+| 20 | Room | Datenbank entsteht mit der ersten Entity (M6/M7). | Keine leere Schema-Version 1. Plugin, Compiler und Schema-Verzeichnis sind eingerichtet. |
+| 21 | Abhängigkeiten | Erst mit dem Meilenstein, der sie braucht (Coil, Navigation 3, Splashscreen, WorkManager, Icons). | Keine ungenutzten Bibliotheken im Build. |
+| 22 | App-Icon | Ziege auf 0,47 verkleinert (iOS: 0,6), kein Dark-Icon. | Kreismaske der Launcher schneidet sonst Kopf und Hüfe ab. Themed Icon (Android 13+) ersetzt die Dark-Variante. |
+
 ## Offen / später entscheiden
 
-- Navigation: Navigation 3 oder Navigation Compose (Entscheidung in M1 nach Prüfung der aktuellen Stabilität).
-- Netzwerk: Retrofit oder Ktor (Entscheidung in M1).
 - Chart-Bibliothek für den Thoska-Verlauf (Compose-Canvas oder Vico, Entscheidung in M6).
+- Biometrie für den Ausweis (Entscheidung 11, vor M7e).
