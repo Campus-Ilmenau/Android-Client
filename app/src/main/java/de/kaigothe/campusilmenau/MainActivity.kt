@@ -1,5 +1,6 @@
 package de.kaigothe.campusilmenau
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,16 +14,25 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import de.kaigothe.campusilmenau.domain.model.Darstellung
-import de.kaigothe.campusilmenau.ui.PlatzhalterScreen
+import de.kaigothe.campusilmenau.ui.navigation.AppShell
+import de.kaigothe.campusilmenau.ui.navigation.DeepLink
+import de.kaigothe.campusilmenau.ui.navigation.DeepLinkRouter
 import de.kaigothe.campusilmenau.ui.theme.CampusIlmenauTheme
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    @Inject
+    lateinit var deepLinkRouter: DeepLinkRouter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Nach einem Konfigurationswechsel kommt derselbe Intent erneut: Er darf kein zweites Mal öffnen.
+        if (savedInstanceState == null) handleDeepLink(intent)
+
         setContent {
             val darstellung by viewModel.darstellung.collectAsStateWithLifecycle()
             val darkTheme = when (darstellung) {
@@ -41,8 +51,20 @@ class MainActivity : ComponentActivity() {
             }
 
             CampusIlmenauTheme(darkTheme = darkTheme) {
-                PlatzhalterScreen()
+                AppShell()
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleDeepLink(intent)
+    }
+
+    /** Ein Link `campusilmenau://…` (Widget, Shortcut, Browser) geht an den Router. Fremde Links werden ignoriert. */
+    private fun handleDeepLink(intent: Intent?) {
+        val link = intent?.data?.toString()?.let(DeepLink::parse) ?: return
+        deepLinkRouter.dispatch(link)
     }
 }
