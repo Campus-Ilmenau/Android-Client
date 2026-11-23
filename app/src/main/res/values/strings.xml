@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Campus Ilmenau</string>
+
+    <!-- Platzhalter bis zur App-Shell (M2) -->
+    <string name="platzhalter_text">Die Ansichten folgen. Hier prüfst du Theme und Schrift.</string>
 </resources>
