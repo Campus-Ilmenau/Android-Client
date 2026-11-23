@@ -2,6 +2,21 @@
 <resources>
     <string name="app_name">Campus Ilmenau</string>
 
-    <!-- Platzhalter bis zur App-Shell (M2) -->
-    <string name="platzhalter_text">Die Ansichten folgen. Hier prüfst du Theme und Schrift.</string>
+    <!-- Allgemein -->
+    <string name="abbrechen">Abbrechen</string>
+    <string name="fertig">Fertig</string>
+
+    <!-- Tabs -->
+    <string name="tab_heute">Heute</string>
+    <string name="tab_mensa">Mensa</string>
+    <string name="tab_thoska">Thoska</string>
+    <string name="tab_bibliothek">Bibliothek</string>
+    <string name="tab_events">Events</string>
+
+    <!-- Mehr -->
+    <string name="mehr_oeffnen">Mehr und Einstellungen</string>
+    <string name="mehr_titel">Mehr</string>
+
+    <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
+    <string name="platzhalter_text">Diese Ansicht folgt.</string>
 </resources>

@@ -2,6 +2,21 @@
 <resources>
     <string name="app_name">Campus Ilmenau</string>
 
-    <!-- Placeholder until the app shell (M2) -->
-    <string name="platzhalter_text">The screens are coming. Use this one to check the theme and font.</string>
+    <!-- General -->
+    <string name="abbrechen">Cancel</string>
+    <string name="fertig">Done</string>
+
+    <!-- Tabs -->
+    <string name="tab_heute">Today</string>
+    <string name="tab_mensa">Canteen</string>
+    <string name="tab_thoska">Thoska</string>
+    <string name="tab_bibliothek">Library</string>
+    <string name="tab_events">Events</string>
+
+    <!-- More -->
+    <string name="mehr_oeffnen">More and settings</string>
+    <string name="mehr_titel">More</string>
+
+    <!-- Placeholder until the screens of the individual milestones -->
+    <string name="platzhalter_text">This screen is coming.</string>
 </resources>
