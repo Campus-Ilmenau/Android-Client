@@ -4,4 +4,14 @@
     <style name="Theme.CampusIlmenau" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/window_background</item>
     </style>
+
+    <!--
+        Theme beim Start: der System-Splash zeigt die Ziege auf der Wand (erster Frame der Start-Animation).
+        Danach gilt Theme.CampusIlmenau.
+    -->
+    <style name="Theme.CampusIlmenau.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/launch_wall</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/launch_goat</item>
+        <item name="postSplashScreenTheme">@style/Theme.CampusIlmenau</item>
+    </style>
 </resources>

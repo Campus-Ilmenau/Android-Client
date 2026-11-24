@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Splash-Symbol, Hell: die weiße Ziege auf der Wand (Farbe launch_wall). Das ist der erste Frame der Start-Animation
+    „Durch die Ziege“ (Design/Logo 2026/Launch). Raster 1024, Skalierung 0,47; der Mittelpunkt des Kreises, der die
+    Ziege umschließt (Maske 420 | 500), liegt in der Mitte. Dasselbe Maß steht in ui/launch/LaunchTimeline.kt.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+    <group
+        android:scaleX="0.47"
+        android:scaleY="0.47"
+        android:translateX="314.6"
+        android:translateY="277">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M172.422,741.600 L179.898,778.452 L204.616,900.304 L224.000,996.000 L163.525,996.000 L97.442,791.714 L59.937,996 L0.122,996 L0,741.355 L2.519,741.027 C48.026,721.783 79.981,676.638 80.030,624.000 L80.274,624 L80.274,487.078 C80.274,416.895 136.994,360 206.960,360 C216.302,360 225.407,361.014 234.173,362.939 C201.281,372.246 177.175,402.568 177.175,438.538 C177.175,456.917 183.468,473.821 194.011,487.201 L541.627,486.938 C610.628,485.816 666.219,429.359 666.219,359.878 C666.219,331.736 657.099,305.731 641.663,284.674 L511.181,360.241 L378.054,282.599 L653.718,53.186 C690.091,20.134 738.348,0 791.292,0 C900.915,0 990.439,86.318 996,194.891 C990.825,129.472 936.261,78 869.712,78 C824.175,78 784.250,102.099 761.921,138.277 C835.037,264.281 871.595,354.283 871.595,408.283 C871.595,458.092 860.683,505.344 841.126,547.765 L841.123,995.875 L781.183,996 L753.771,662.597 C733.321,679.915 710.753,694.798 686.514,706.796 L541.678,999.875 L480.000,1000.000 L587.826,737.524 C572.973,739.679 557.801,740.847 542.379,740.958 Z" />
+    </group>
+</vector>

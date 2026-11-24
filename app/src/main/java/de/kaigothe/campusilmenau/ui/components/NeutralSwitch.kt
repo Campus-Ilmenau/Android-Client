@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import de.kaigothe.campusilmenau.ui.theme.CampusTheme
 
@@ -57,7 +58,7 @@ fun NeutralSwitchVisual(checked: Boolean, modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .offset(x = thumbOffset)
+                .offset { IntOffset(x = thumbOffset.roundToPx(), y = 0) }
                 .size(ThumbSize)
                 .shadow(elevation = 2.dp, shape = CircleShape, clip = false)
                 .background(thumb, CircleShape),

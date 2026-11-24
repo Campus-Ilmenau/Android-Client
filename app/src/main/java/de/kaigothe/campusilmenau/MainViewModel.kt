@@ -7,15 +7,29 @@ import de.kaigothe.campusilmenau.data.preferences.AppSettings
 import de.kaigothe.campusilmenau.domain.model.Darstellung
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-/** Zustand der Activity: heute nur die gewählte Darstellung. Die Shell (M2) erweitert ihn. */
+/** Zustand der Activity: Solange die Einstellungen laden, hält der Splash den Bildschirm. */
+sealed interface MainUiState {
+    data object Loading : MainUiState
+
+    data class Ready(val darstellung: Darstellung) : MainUiState
+}
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
     settings: AppSettings,
 ) : ViewModel() {
 
-    val darstellung: StateFlow<Darstellung> = settings.darstellung
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), Darstellung.System)
+    /**
+     * Sofort gestartet (`Eagerly`), weil der Splash den Zustand schon liest, bevor die erste Ansicht steht.
+     * Schlägt das Lesen fehl, gilt die Standard-Darstellung, der Start hängt nie.
+     */
+    val uiState: StateFlow<MainUiState> = settings.darstellung
+        .catch { emit(Darstellung.System) }
+        .map<Darstellung, MainUiState> { MainUiState.Ready(it) }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, MainUiState.Loading)
 }

@@ -2,4 +2,6 @@
 <resources>
     <!-- Dark Mode ist Nachtblau, nicht Schwarz. -->
     <color name="window_background">#FF0E1A2E</color>
+
+    <color name="launch_wall">#FF0E1A2E</color>
 </resources>

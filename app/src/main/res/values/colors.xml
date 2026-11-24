@@ -2,4 +2,7 @@
 <resources>
     <!-- Fensterhintergrund vor dem ersten Compose-Frame: Farbe „background“ (Design-Token, Light). -->
     <color name="window_background">#FFF4F7FB</color>
+
+    <!-- Wand der Start-Animation und des Splash (Vollfarbe, Light). Design/Logo 2026/Launch. -->
+    <color name="launch_wall">#FFFF861E</color>
 </resources>

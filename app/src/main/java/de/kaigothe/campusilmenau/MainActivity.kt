@@ -11,9 +11,14 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import de.kaigothe.campusilmenau.domain.model.Darstellung
+import de.kaigothe.campusilmenau.ui.launch.LaunchOverlay
 import de.kaigothe.campusilmenau.ui.navigation.AppShell
 import de.kaigothe.campusilmenau.ui.navigation.DeepLink
 import de.kaigothe.campusilmenau.ui.navigation.DeepLinkRouter
@@ -29,12 +34,20 @@ class MainActivity : ComponentActivity() {
     lateinit var deepLinkRouter: DeepLinkRouter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Der Splash des Systems zeigt den ersten Frame der Start-Animation. Er bleibt, bis die Einstellungen
+        // gelesen sind (sonst blitzt bei „Dunkel“ kurz das helle Theme auf) und wird dann ohne eigene
+        // Ausblendung entfernt: Die Compose-Animation zeichnet denselben Frame und läuft weiter.
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { viewModel.uiState.value is MainUiState.Loading }
+        splashScreen.setOnExitAnimationListener { it.remove() }
+
         super.onCreate(savedInstanceState)
         // Nach einem Konfigurationswechsel kommt derselbe Intent erneut: Er darf kein zweites Mal öffnen.
         if (savedInstanceState == null) handleDeepLink(intent)
 
         setContent {
-            val darstellung by viewModel.darstellung.collectAsStateWithLifecycle()
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+            val darstellung = (uiState as? MainUiState.Ready)?.darstellung ?: Darstellung.System
             val darkTheme = when (darstellung) {
                 Darstellung.System -> isSystemInDarkTheme()
                 Darstellung.Hell -> false
@@ -50,8 +63,13 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
+            // Die Animation läuft nur beim Kaltstart. Nach Drehen oder Wiederherstellen bleibt sie aus.
+            var launchFinished by rememberSaveable { mutableStateOf(false) }
+
             CampusIlmenauTheme(darkTheme = darkTheme) {
-                AppShell()
+                LaunchOverlay(playing = !launchFinished, onFinished = { launchFinished = true }) {
+                    AppShell(launchFinished = launchFinished)
+                }
             }
         }
     }

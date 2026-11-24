@@ -4,7 +4,6 @@
 
     <!-- General -->
     <string name="abbrechen">Cancel</string>
-    <string name="fertig">Done</string>
 
     <!-- Tabs -->
     <string name="tab_heute">Today</string>
