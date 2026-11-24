@@ -19,6 +19,14 @@ data object BibliothekRoute : NavKey
 @Serializable
 data object EventsRoute : NavKey
 
+/** Ein Gericht. Die IDs der API gelten nur für einen Tag, darum gehört der Tag (`yyyy-MM-dd`, Berlin) zur Route. */
+@Serializable
+data class MensaGerichtRoute(val id: String, val day: String?) : NavKey
+
+/** Öffnungszeiten der Mensen. */
+@Serializable
+data object MensaZeitenRoute : NavKey
+
 /** „Mehr und Einstellungen“, erreichbar über den Personen-Button auf „Heute“. */
 @Serializable
 data class MehrRoute(val bereich: String? = null) : NavKey
