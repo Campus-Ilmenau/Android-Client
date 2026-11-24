@@ -30,8 +30,9 @@ class ApiCaller @Inject constructor(private val json: Json) {
 
     private fun toHttpError(e: HttpException): ApiError.Http {
         val body = runCatching { e.response()?.errorBody()?.string() }.getOrNull()
+        // Auch die Fehlerhülle kommt je nach Quelle in snake_case oder camelCase: vor dem Lesen vereinheitlichen.
         val detail = body?.takeIf { it.isNotBlank() }?.let {
-            runCatching { json.decodeFromString<ApiErrorEnvelope>(it).error }.getOrNull()
+            runCatching { json.decodeFromString<ApiErrorEnvelope>(CamelCaseKeys.normalize(it, json)).error }.getOrNull()
         }
         return ApiError.Http(
             status = e.code(),

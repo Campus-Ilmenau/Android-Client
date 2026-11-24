@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import de.kaigothe.campusilmenau.BuildConfig
 import de.kaigothe.campusilmenau.core.network.ApiJson
+import de.kaigothe.campusilmenau.core.network.CamelCaseKeysInterceptor
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -35,13 +36,15 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(json: Json): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 chain.proceed(chain.request().newBuilder().header("Accept", "application/json").build())
             }
+            // Schlüssel der Antworten in camelCase vereinheitlichen (die API mischt snake_case und camelCase).
+            .addInterceptor(CamelCaseKeysInterceptor(json))
         if (BuildConfig.DEBUG) {
             // Nur Kopfzeilen und Status, nie Inhalte. Zugangsdaten gehören nicht in Logs.
             builder.addInterceptor(
