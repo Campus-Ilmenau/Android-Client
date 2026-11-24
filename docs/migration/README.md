@@ -27,7 +27,7 @@ Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als An
 | [M0](milestones/M00-audit-spezifikation.md) | Audit und Spezifikation | **abgeschlossen** (2026-11-23), echte API-Beispielantworten offen |
 | [M1](milestones/M01-fundament.md) | Fundament (Gradle, Hilt, Theme, Netzwerk) | **abgeschlossen** (2026-11-23), Gate 1 grün, 33 Unit-Tests |
 | [M2](milestones/M02-design-system.md) | Design-System-Bausteine und App-Shell | **abgeschlossen** (2026-11-24), 72 Unit-Tests |
-| [M3](milestones/M03-mensa.md) | Mensa | offen |
+| [M3](milestones/M03-mensa.md) | Mensa | **abgeschlossen** (2026-11-24), Gate 2 grün, 187 Unit-Tests |
 | [M4](milestones/M04-heute.md) | Heute | offen |
 | [M5](milestones/M05-events.md) | Events | offen |
 | [M6](milestones/M06-thoska-nfc.md) | Thoska (NFC) | offen |

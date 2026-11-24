@@ -12,7 +12,7 @@ Dokumentiert, was die iOS-App heute von den Schnittstellen erwartet. Quelle: iOS
 ## Gemeinsam (Campus-Ilmenau-API)
 
 - **Basis-URL:** Release `https://api.campus-ilmenau.de`, Debug `https://dev-api.campus-ilmenau.de/develop`. Nur die Basis wechselt, die Pfade (`/v1/...`) bleiben gleich. Android: `BuildConfig.API_BASE_URL`.
-- **Format:** JSON, Schlüssel in `snake_case`. Android: `kotlinx.serialization` mit `JsonNamingStrategy.SnakeCase`.
+- **Format:** JSON. Die **Daten** (`data[]`) tragen `camelCase`-Schlüssel (`openingHours`, `opensAt`), die **Hülle** (`has_more`, `total_count`) und die **Fehlerantwort** (`request_id`) `snake_case`. Android: Ein `CamelCaseKeysInterceptor` (`core/network/CamelCaseKeys.kt`) wandelt jede Antwort auf `camelCase` um, damit die DTOs eine Schreibweise haben; `ApiJson` braucht keine Namensstrategie. Nur Objekte und Arrays werden angefasst (leere und HTML-Antworten bleiben unverändert). Befund aus M3 mit den echten Antworten der Dev-API.
 - **Datumsformate:** ISO 8601 mit Millisekunden, ISO 8601 ohne Millisekunden, reines Datum `yyyy-MM-dd` (wird als 12:00 UTC gelesen). Ein Parser für alle drei.
 - **Fehlerantwort:**
   ```json
