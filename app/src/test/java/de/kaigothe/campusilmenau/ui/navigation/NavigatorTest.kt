@@ -118,6 +118,37 @@ class NavigatorTest {
     }
 
     @Test
+    fun `ein Gericht liegt auf der Wurzel des Mensa-Tabs und ersetzt fruehere Ziele`() {
+        val navigator = navigator()
+
+        navigator.open(DeepLink.Gericht("abc", "2026-11-24"))
+        assertEquals(AppTab.Mensa, navigator.state.selectedTab)
+        assertEquals(
+            listOf<NavKey>(MensaRoute, MensaGerichtRoute("abc", "2026-11-24")),
+            navigator.stack(AppTab.Mensa),
+        )
+
+        navigator.open(DeepLink.MensaZeiten)
+        assertEquals(listOf<NavKey>(MensaRoute, MensaZeitenRoute), navigator.stack(AppTab.Mensa))
+
+        // Zurück führt auf den Speiseplan, nicht aus dem Tab.
+        assertTrue(navigator.goBack())
+        assertEquals(AppTab.Mensa, navigator.state.selectedTab)
+        assertEquals(listOf<NavKey>(MensaRoute), navigator.stack(AppTab.Mensa))
+    }
+
+    @Test
+    fun `der Link Mensa waehlt den Tab und laesst dessen Stack unveraendert`() {
+        val navigator = navigator()
+        navigator.open(DeepLink.Gericht("abc", null))
+
+        navigator.open(DeepLink.Mensa("nanoteria"))
+
+        assertEquals(AppTab.Mensa, navigator.state.selectedTab)
+        assertEquals(MensaGerichtRoute("abc", null), navigator.stack(AppTab.Mensa).last())
+    }
+
+    @Test
     fun `der Link Thoska auslesen wird ohne NFC ignoriert`() {
         val navigator = navigator(noNfcTabs)
         navigator.selectTab(AppTab.Mensa)

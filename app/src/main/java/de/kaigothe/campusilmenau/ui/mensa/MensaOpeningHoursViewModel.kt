@@ -8,7 +8,6 @@ import de.kaigothe.campusilmenau.core.time.BerlinTime
 import de.kaigothe.campusilmenau.data.repository.MensaRepository
 import de.kaigothe.campusilmenau.domain.model.mensa.Canteen
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaVenue
-import de.kaigothe.campusilmenau.ui.components.LoadingGate
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,8 +41,6 @@ class MensaOpeningHoursViewModel @Inject constructor(
     private val _state = MutableStateFlow<MensaOpeningHoursState>(MensaOpeningHoursState.Loading)
     val state: StateFlow<MensaOpeningHoursState> = _state.asStateFlow()
 
-    val loadingGate = LoadingGate(viewModelScope, initiallyLoading = true)
-
     /** Die Berliner Zeit für „Jetzt geöffnet“, jede halbe Minute erneuert, solange die Ansicht sichtbar ist. */
     val now: StateFlow<LocalDateTime> = flow {
         while (true) {
@@ -64,7 +61,6 @@ class MensaOpeningHoursViewModel @Inject constructor(
 
     private fun load(forceRefresh: Boolean) {
         _state.value = MensaOpeningHoursState.Loading
-        loadingGate.setLoading(true)
         viewModelScope.launch {
             _state.value = try {
                 val canteens = repository.canteens(forceRefresh)
@@ -76,7 +72,6 @@ class MensaOpeningHoursViewModel @Inject constructor(
             } catch (e: ApiError) {
                 MensaOpeningHoursState.Failed(e)
             }
-            loadingGate.setLoading(false)
         }
     }
 }

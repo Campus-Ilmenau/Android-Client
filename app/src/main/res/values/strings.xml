@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Campus Ilmenau</string>
 
     <!-- Allgemein -->
@@ -15,6 +15,110 @@
     <!-- Mehr -->
     <string name="mehr_oeffnen">Mehr und Einstellungen</string>
     <string name="mehr_titel">Mehr</string>
+
+    <string name="fertig">Fertig</string>
+    <string name="zurueck">Zurück</string>
+    <string name="erneut_versuchen">Erneut versuchen</string>
+    <string name="laedt_lange">Das dauert länger als sonst.</string>
+    <string name="aufgeklappt">aufgeklappt</string>
+    <string name="zugeklappt">zugeklappt</string>
+    <string name="tag_heute">Heute</string>
+    <string name="tag_morgen">Morgen</string>
+
+    <!-- Mensa: Kopf, Leisten, Filter -->
+    <string name="mensa_zeiten_oeffnen">Öffnungszeiten</string>
+    <string name="mensa_waehlen">Mensa wählen</string>
+    <string name="mensa_passend" tools:ignore="PluralsCandidate">%1$d passend</string>
+    <string name="mensa_keins_passend">keins passend</string>
+    <string name="mensa_tab_passend" tools:ignore="PluralsCandidate">%1$s, %2$d passend</string>
+    <string name="mensa_tab_keins_passend">%1$s, keins passend</string>
+    <string name="mensa_tag_heute_sprechen">Heute, %1$s</string>
+    <string name="diaet_alle">Alle</string>
+    <string name="diaet_vegetarisch">Vegetarisch</string>
+    <string name="diaet_vegan">Vegan</string>
+    <string name="filter_titel">Filter</string>
+    <string name="filter_aktiv" tools:ignore="PluralsCandidate">Filter, %1$d aktiv</string>
+    <string name="filter_aendern">Ändern</string>
+    <string name="filter_zuruecksetzen_kurz">Zurücksetzen</string>
+    <string name="filter_nur_bio">Nur Bio</string>
+    <string name="filter_ohne_kurz">ohne %1$s</string>
+    <string name="filter_ohne_allergen">Ohne %1$s</string>
+    <string name="filter_abschnitt_ernaehrung">Ernährung</string>
+    <string name="filter_abschnitt_allergene">Allergene ausschließen</string>
+    <string name="filter_hinweis_vegetarisch">„Vegetarisch“ zeigt auch vegane Gerichte.</string>
+    <string name="filter_hinweis_allergene">Alle Allergene, die der Speiseplan kennt. Der Filter gilt für alle Mensen und Tage und bleibt gespeichert.</string>
+
+    <!-- Mensa: Seite einer Mensa -->
+    <string name="mittag">Mittag</string>
+    <string name="abendessen">Abendessen</string>
+    <string name="mensa_untertitel_mittag">%1$s · Mittag</string>
+    <string name="mensa_untertitel_abend">%1$s · Abendessen</string>
+    <string name="mensa_laedt">Speiseplan wird geladen …</string>
+    <string name="mensa_fehler_titel">Speiseplan konnte nicht geladen werden</string>
+    <string name="mensa_fehler_netz">Prüfe deine Internetverbindung.</string>
+    <string name="mensa_fehler_dienst">Der Dienst ist gerade nicht erreichbar. Versuche es später noch einmal.</string>
+    <string name="mensa_filter_leer_titel">Nichts passt zu deinem Filter</string>
+    <string name="mensa_filter_leer_heute">Heute gibt es hier nichts, was zu %1$s passt.</string>
+    <string name="mensa_filter_leer_tag">An diesem Tag gibt es hier nichts, was zu %1$s passt.</string>
+    <string name="filter_zuruecksetzen">Filter zurücksetzen</string>
+    <string name="mensa_leer_heute">Heute nichts in dieser Mensa – morgen wieder.</string>
+    <string name="mensa_leer_tag">An diesem Tag nichts in dieser Mensa.</string>
+    <string name="mensa_preishinweis">Preise für %1$s. Die anderen Preise in den Details.</string>
+    <string name="preisgruppe_studierende">Studierende</string>
+    <string name="preisgruppe_bedienstete">Bedienstete</string>
+    <string name="preisgruppe_gaeste">Gäste</string>
+
+    <!-- Mensa: Status -->
+    <string name="status_geschlossen">Geschlossen</string>
+    <string name="status_bis">Bis %1$s Uhr</string>
+    <string name="status_zeitraum">%1$s–%2$s Uhr</string>
+    <string name="status_ab">Ab %1$s Uhr</string>
+    <string name="status_gleich_zu">Gleich zu</string>
+    <string name="status_geoeffnet_zeitraum">Geöffnet · %1$s–%2$s Uhr</string>
+    <string name="status_geoeffnet">Geöffnet</string>
+
+    <!-- Mensa: Gericht -->
+    <string name="gericht">Gericht</string>
+    <string name="gericht_enthaelt">Enthält %1$s</string>
+    <string name="chip_vegan">Vegan</string>
+    <string name="chip_vegetarisch">Vegetarisch</string>
+    <string name="chip_bio">Bio</string>
+    <string name="chip_regional">Regional</string>
+    <string name="gericht_zurueck">Zurück zum Speiseplan</string>
+    <string name="favorit_merken">Als Favorit merken</string>
+    <string name="favorit_entfernen">Favorit entfernen</string>
+    <string name="favorit_gemerkt">Als Favorit gemerkt ✓</string>
+    <string name="gericht_abschnitt_preis">Preis</string>
+    <string name="gericht_abschnitt_allergene">Allergene</string>
+    <string name="gericht_abschnitt_zusatzstoffe">Zusatzstoffe</string>
+    <string name="gericht_abschnitt_bestandteile">Bestandteile</string>
+    <string name="gericht_abschnitt_umwelt">Umwelt</string>
+    <string name="gericht_co2">≈ %1$s g CO₂ pro Portion</string>
+    <string name="gericht_keine_angaben">Keine weiteren Angaben</string>
+    <string name="gericht_komponente_allergene">Allergene: %1$s</string>
+    <string name="gericht_komponente_zusatzstoffe">Zusatzstoffe: %1$s</string>
+    <string name="gericht_kicker">%1$s · %2$s · %3$s</string>
+    <string name="gericht_fuss_ort">%1$s · %2$s</string>
+    <string name="gericht_fuss_hinweis">Angaben laut Speiseplan des Studierendenwerks. Ohne Gewähr.</string>
+    <string name="gericht_laedt">Gericht wird geladen …</string>
+    <string name="gericht_nicht_gefunden_titel">Gericht nicht gefunden</string>
+    <string name="gericht_nicht_gefunden_text">Dieses Gericht steht nicht (mehr) im Speiseplan. Die Gerichte gelten nur für einen Tag.</string>
+    <string name="gericht_zum_speiseplan">Zum Speiseplan</string>
+
+    <!-- Mensa: Öffnungszeiten -->
+    <string name="zeiten_titel">Öffnungszeiten</string>
+    <string name="zeiten_heute_wochentag">Heute, %1$s</string>
+    <string name="zeiten_heute">%1$s Uhr</string>
+    <string name="zeiten_heute_geschlossen">heute geschlossen</string>
+    <string name="zeiten_mit_abendessen">%1$s · Mittag und Abendessen</string>
+    <string name="zeiten_geschlossen">geschlossen</string>
+    <string name="zeiten_abendessen_bis">bis %1$s Uhr</string>
+    <string name="zeiten_abendessen_bis_freitag">bis %1$s Uhr, Freitag bis %2$s Uhr</string>
+    <string name="zeiten_laedt">Öffnungszeiten werden geladen …</string>
+    <string name="zeiten_fehler">Öffnungszeiten konnten nicht geladen werden.</string>
+    <string name="zeiten_hinweis">In der vorlesungsfreien Zeit gelten verkürzte Zeiten.</string>
+    <string name="zeiten_wochenzeiten_anzeigen">Wochenzeiten anzeigen</string>
+    <string name="zeiten_wochenzeiten_ausblenden">Wochenzeiten ausblenden</string>
 
     <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
     <string name="platzhalter_text">Diese Ansicht folgt.</string>

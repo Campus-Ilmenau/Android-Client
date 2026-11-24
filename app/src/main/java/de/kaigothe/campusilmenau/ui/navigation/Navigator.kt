@@ -41,11 +41,28 @@ class Navigator(val state: NavigationState) {
         stack.add(MehrRoute(bereich))
     }
 
-    /** Öffnet das Ziel eines Links: wählt den Tab oder öffnet „Mehr“. Ohne NFC bleibt Thoska verschlossen. */
+    /**
+     * Öffnet das Ziel eines Links: wählt den Tab oder öffnet „Mehr“. Ohne NFC bleibt Thoska verschlossen.
+     * Ziele unterhalb eines Tabs (ein Gericht, die Öffnungszeiten) liegen auf der Wurzel des Tabs, ein früherer
+     * Zustand dieses Tabs wird ersetzt.
+     */
     fun open(link: DeepLink) {
-        when (val tab = link.tab) {
-            null -> openMehr((link as DeepLink.Mehr).bereich)
-            else -> selectTab(tab)
+        val tab = link.tab
+        if (tab == null) {
+            openMehr((link as DeepLink.Mehr).bereich)
+            return
+        }
+        if (tab !in state.tabs) return
+        selectTab(tab)
+        val detail: NavKey? = when (link) {
+            is DeepLink.Gericht -> MensaGerichtRoute(link.id, link.day)
+            DeepLink.MensaZeiten -> MensaZeitenRoute
+            else -> null
+        }
+        if (detail != null) {
+            val stack = state.backStacks.getValue(tab)
+            while (stack.size > 1) stack.removeAt(stack.lastIndex)
+            stack.add(detail)
         }
     }
 

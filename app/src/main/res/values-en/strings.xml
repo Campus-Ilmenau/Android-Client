@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Campus Ilmenau</string>
 
     <!-- General -->
@@ -15,6 +15,110 @@
     <!-- More -->
     <string name="mehr_oeffnen">More and settings</string>
     <string name="mehr_titel">More</string>
+
+    <string name="fertig">Done</string>
+    <string name="zurueck">Back</string>
+    <string name="erneut_versuchen">Try again</string>
+    <string name="laedt_lange">This is taking longer than usual.</string>
+    <string name="aufgeklappt">expanded</string>
+    <string name="zugeklappt">collapsed</string>
+    <string name="tag_heute">Today</string>
+    <string name="tag_morgen">Tomorrow</string>
+
+    <!-- Canteen: header, strips, filter -->
+    <string name="mensa_zeiten_oeffnen">Opening hours</string>
+    <string name="mensa_waehlen">Choose canteen</string>
+    <string name="mensa_passend" tools:ignore="PluralsCandidate">%1$d matching</string>
+    <string name="mensa_keins_passend">none matching</string>
+    <string name="mensa_tab_passend" tools:ignore="PluralsCandidate">%1$s, %2$d matching</string>
+    <string name="mensa_tab_keins_passend">%1$s, none matching</string>
+    <string name="mensa_tag_heute_sprechen">Today, %1$s</string>
+    <string name="diaet_alle">All</string>
+    <string name="diaet_vegetarisch">Vegetarian</string>
+    <string name="diaet_vegan">Vegan</string>
+    <string name="filter_titel">Filter</string>
+    <string name="filter_aktiv" tools:ignore="PluralsCandidate">Filter, %1$d active</string>
+    <string name="filter_aendern">Change</string>
+    <string name="filter_zuruecksetzen_kurz">Reset</string>
+    <string name="filter_nur_bio">Organic only</string>
+    <string name="filter_ohne_kurz">without %1$s</string>
+    <string name="filter_ohne_allergen">Without %1$s</string>
+    <string name="filter_abschnitt_ernaehrung">Diet</string>
+    <string name="filter_abschnitt_allergene">Exclude allergens</string>
+    <string name="filter_hinweis_vegetarisch">“Vegetarian” also shows vegan dishes.</string>
+    <string name="filter_hinweis_allergene">All allergens the menu knows. The filter applies to all canteens and days and is saved.</string>
+
+    <!-- Canteen: page of a canteen -->
+    <string name="mittag">Lunch</string>
+    <string name="abendessen">Dinner</string>
+    <string name="mensa_untertitel_mittag">%1$s · Lunch</string>
+    <string name="mensa_untertitel_abend">%1$s · Dinner</string>
+    <string name="mensa_laedt">Loading the menu …</string>
+    <string name="mensa_fehler_titel">The menu could not be loaded</string>
+    <string name="mensa_fehler_netz">Check your internet connection.</string>
+    <string name="mensa_fehler_dienst">The service is not available right now. Try again later.</string>
+    <string name="mensa_filter_leer_titel">Nothing matches your filter</string>
+    <string name="mensa_filter_leer_heute">There is nothing here today that matches %1$s.</string>
+    <string name="mensa_filter_leer_tag">There is nothing here on this day that matches %1$s.</string>
+    <string name="filter_zuruecksetzen">Reset filter</string>
+    <string name="mensa_leer_heute">Nothing in this canteen today – back tomorrow.</string>
+    <string name="mensa_leer_tag">Nothing in this canteen on this day.</string>
+    <string name="mensa_preishinweis">Prices for %1$s. The other prices are in the details.</string>
+    <string name="preisgruppe_studierende">Students</string>
+    <string name="preisgruppe_bedienstete">Staff</string>
+    <string name="preisgruppe_gaeste">Guests</string>
+
+    <!-- Canteen: status -->
+    <string name="status_geschlossen">Closed</string>
+    <string name="status_bis">Until %1$s</string>
+    <string name="status_zeitraum">%1$s–%2$s</string>
+    <string name="status_ab">From %1$s</string>
+    <string name="status_gleich_zu">Closing soon</string>
+    <string name="status_geoeffnet_zeitraum">Open · %1$s–%2$s</string>
+    <string name="status_geoeffnet">Open</string>
+
+    <!-- Canteen: dish -->
+    <string name="gericht">Dish</string>
+    <string name="gericht_enthaelt">Contains %1$s</string>
+    <string name="chip_vegan">Vegan</string>
+    <string name="chip_vegetarisch">Vegetarian</string>
+    <string name="chip_bio">Organic</string>
+    <string name="chip_regional">Regional</string>
+    <string name="gericht_zurueck">Back to the menu</string>
+    <string name="favorit_merken">Save as favorite</string>
+    <string name="favorit_entfernen">Remove favorite</string>
+    <string name="favorit_gemerkt">Saved as favorite ✓</string>
+    <string name="gericht_abschnitt_preis">Price</string>
+    <string name="gericht_abschnitt_allergene">Allergens</string>
+    <string name="gericht_abschnitt_zusatzstoffe">Additives</string>
+    <string name="gericht_abschnitt_bestandteile">Components</string>
+    <string name="gericht_abschnitt_umwelt">Environment</string>
+    <string name="gericht_co2">≈ %1$s g CO₂ per portion</string>
+    <string name="gericht_keine_angaben">No further information</string>
+    <string name="gericht_komponente_allergene">Allergens: %1$s</string>
+    <string name="gericht_komponente_zusatzstoffe">Additives: %1$s</string>
+    <string name="gericht_kicker">%1$s · %2$s · %3$s</string>
+    <string name="gericht_fuss_ort">%1$s · %2$s</string>
+    <string name="gericht_fuss_hinweis">Information from the menu of the Studierendenwerk. Without guarantee.</string>
+    <string name="gericht_laedt">Loading the dish …</string>
+    <string name="gericht_nicht_gefunden_titel">Dish not found</string>
+    <string name="gericht_nicht_gefunden_text">This dish is not (or no longer) on the menu. Dishes are only valid for one day.</string>
+    <string name="gericht_zum_speiseplan">To the menu</string>
+
+    <!-- Canteen: opening hours -->
+    <string name="zeiten_titel">Opening hours</string>
+    <string name="zeiten_heute_wochentag">Today, %1$s</string>
+    <string name="zeiten_heute">%1$s</string>
+    <string name="zeiten_heute_geschlossen">closed today</string>
+    <string name="zeiten_mit_abendessen">%1$s · lunch and dinner</string>
+    <string name="zeiten_geschlossen">closed</string>
+    <string name="zeiten_abendessen_bis">until %1$s</string>
+    <string name="zeiten_abendessen_bis_freitag">until %1$s, Friday until %2$s</string>
+    <string name="zeiten_laedt">Loading opening hours …</string>
+    <string name="zeiten_fehler">Opening hours could not be loaded.</string>
+    <string name="zeiten_hinweis">Shorter hours apply outside of the lecture period.</string>
+    <string name="zeiten_wochenzeiten_anzeigen">Show weekly hours</string>
+    <string name="zeiten_wochenzeiten_ausblenden">Hide weekly hours</string>
 
     <!-- Placeholder until the screens of the individual milestones -->
     <string name="platzhalter_text">This screen is coming.</string>

@@ -27,6 +27,9 @@ import de.kaigothe.campusilmenau.R
 import de.kaigothe.campusilmenau.ui.components.ToastHost
 import de.kaigothe.campusilmenau.ui.components.ToastState
 import de.kaigothe.campusilmenau.ui.components.rememberToastState
+import de.kaigothe.campusilmenau.ui.mensa.MensaMealDetailScreen
+import de.kaigothe.campusilmenau.ui.mensa.MensaOpeningHoursScreen
+import de.kaigothe.campusilmenau.ui.mensa.MensaScreen
 import de.kaigothe.campusilmenau.ui.placeholder.FeaturePlaceholder
 import de.kaigothe.campusilmenau.ui.placeholder.MehrButton
 
@@ -56,6 +59,7 @@ fun AppShell(
     LaunchedEffect(request?.id, launchFinished) {
         val pending = request
         if (pending != null && launchFinished) {
+            viewModel.prepare(pending.link)
             navigator.open(pending.link)
             viewModel.consume(pending.id)
         }
@@ -67,7 +71,20 @@ fun AppShell(
                 MehrButton(onClick = { navigator.openMehr(bereich = null) })
             })
         }
-        entry<MensaRoute> { FeaturePlaceholder(title = R.string.tab_mensa) }
+        entry<MensaRoute> {
+            MensaScreen(
+                onOpenMeal = { meal, day -> navigator.navigate(MensaGerichtRoute(meal.id, day.toString())) },
+                onOpenHours = { navigator.navigate(MensaZeitenRoute) },
+            )
+        }
+        entry<MensaGerichtRoute> { route ->
+            MensaMealDetailScreen(
+                route = route,
+                onBack = { navigator.goBack() },
+                onOpenHours = { navigator.navigate(MensaZeitenRoute) },
+            )
+        }
+        entry<MensaZeitenRoute> { MensaOpeningHoursScreen(onBack = { navigator.goBack() }) }
         entry<ThoskaRoute> { FeaturePlaceholder(title = R.string.tab_thoska) }
         entry<BibliothekRoute> { FeaturePlaceholder(title = R.string.tab_bibliothek) }
         entry<EventsRoute> { FeaturePlaceholder(title = R.string.tab_events) }

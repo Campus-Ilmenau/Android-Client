@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -28,6 +29,9 @@ import kotlinx.coroutines.launch
 /**
  * Sheet von unten, immer in voller Höhe (kein halbes Einrasten): Griff, „Abbrechen“ links oben, Inhalt auf `surface`.
  * Ecken 14 oben. Der Inhalt bekommt die Navigationsleiste als Abstand, damit nichts darunter verschwindet.
+ *
+ * [startAction] ersetzt „Abbrechen“ links, [endAction] steht rechts (zum Beispiel „Zurücksetzen“ und „Fertig“ bei einem
+ * Sheet, dessen Änderungen sofort gelten). Beide bekommen die Funktion zum Schließen mit Animation.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +39,8 @@ fun CampusSheet(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
     title: String? = null,
+    startAction: (@Composable (dismiss: () -> Unit) -> Unit)? = null,
+    endAction: (@Composable (dismiss: () -> Unit) -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -58,8 +64,12 @@ fun CampusSheet(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                TextButton(onClick = dismiss) {
-                    Text(text = stringResource(R.string.abbrechen), color = CampusTheme.colors.accent)
+                if (startAction != null) {
+                    startAction(dismiss)
+                } else {
+                    TextButton(onClick = dismiss) {
+                        Text(text = stringResource(R.string.abbrechen), color = CampusTheme.colors.accent)
+                    }
                 }
                 if (title != null) {
                     Text(
@@ -67,6 +77,10 @@ fun CampusSheet(
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                         color = MaterialTheme.colorScheme.onSurface,
                     )
+                }
+                if (endAction != null) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    endAction(dismiss)
                 }
             }
             content()
