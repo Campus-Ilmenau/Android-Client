@@ -1,39 +1,36 @@
 # M4 – Heute
 
-**Status:** offen · **Abhängig von:** M3 (Mensa), Events-Modelle aus M5 für „Heute Abend“ (zunächst mit Fake-Daten) · **Gate:** `compileDebugKotlin`
+**Status:** **abgeschlossen** (2026-11-25), Events und Hinweise mit leeren Quellen · **Abhängig von:** M3 (Mensa), Events aus M5 · **Gate:** `compileDebugKotlin` – bestanden; zusätzlich Unit-Tests, Lint und Emulator
 
 ## Ziel
 
 Die Startseite zeigt je nach Uhrzeit Mensa, Abendessen oder Veranstaltungen, dazu Hinweise. **Keine Live-Daten** wie Thoska-Guthaben oder Anzahl Ausleihen.
 
-## Aufgaben
+## Umgesetzt
 
-- [ ] `Tagesphase` und `HeuteUhr` als reine Logik mit injizierbarer Uhr.
-- [ ] Begrüßung: bis 11 „Guten Morgen“, bis 14 „Mahlzeit!“, bis 18 „Hallo!“, danach „Guten Abend“.
-- [ ] Jetzt-Karte je Tageszeit:
-  - bis 10:30: gewählte Mensa, Status, 2 Gerichte
-  - 10:30–14:00: Status, 3 Gerichte mit Chips und Preis
-  - 14:00–16:30: Abendessen in der Mensa Ehrenberg ab 16:30
-  - 16:30–19:30: Abendessen geöffnet
-  - ab 19:30: laufendes Club-Event (Kopf Nachtblau mit Sonne), „Mensa ändern“ entfällt
-- [ ] „Heute Abend“-Karte (`HeuteAbendKarte`, `HeuteAbendModel`) mit Events des Abends.
-- [ ] „Als Nächstes“-Bereich (`HeuteAlsNaechstesView`).
-- [ ] Hinweise (max. 2, Priorität/Zeitraum `[von, bis)`, höhere Priorität zuerst, ✕ blendet dauerhaft aus; ohne Hinweise entfällt der Abschnitt). **Es gibt noch keinen Server-Endpunkt**: wie iOS eine austauschbare `HinweiseQuelle` mit leerer Standard-Implementierung. Bei neuen Daten laut `CLAUDE.md` zuerst nachfragen.
-- [ ] Quellen mit Zeitlimit laden (Fehler/Zeitablauf → `null`), die Seite hängt nie. Wert des Limits in `HeuteModel` nachsehen.
-- [ ] Mensa-Wechsel-Sheet (Radio-Liste der 4 Mensen, „Fertig“), Auswahl in DataStore (`HeuteMensaSpeicher`).
-- [ ] Mensa-Filter gilt auch für die Essenskarten auf Heute.
-- [ ] Personen-Button öffnet Mehr (M8).
-- [ ] Previews: Morgen, Nachmittag, Abend, Nacht (Light/Dark).
+- [x] `Tagesphase` und `Begruessung` (Grenzen 10:30 / 14:00 / 16:30 / 19:30 und 11 / 14 / 18 Uhr) als reine Logik, alles in Europe/Berlin über `BerlinTime`, `HeuteClock` für Uhrzeiten (immer 24 Stunden).
+- [x] `HeuteContent`: die gesamte Anzeige-Logik als reine Berechnung (Jetzt-Karte je Phase, Abendessen adaptiv mit „Haus“-Regel Mensa/Cafeteria Ehrenberg, Nacht-Event-Karte mit Rückfall auf den Mittag von morgen, „Als Nächstes“ höchstens 3, „Heute Abend“ höchstens 3, Hinweise höchstens 2 nach Priorität im Zeitraum `[von, bis)`, `nextChange`, Mensa-Wahl mit Öffnungszeiten, Fehlerkarte). Mensa-Filter und Preisgruppe gelten auch hier.
+- [x] `UiText` (Ressource plus Argumente) als Ergebnistyp: Die Logik bleibt ohne Android-Kontext testbar, Tests vergleichen Ressource und Zahlen statt Sätze.
+- [x] `HeuteViewModel`: jeder Teil lädt parallel und für sich mit 8 s Zeitlimit (Fehler und Zeitablauf lassen nur den Abschnitt weg, die Seite hängt nie), `watch()` weckt zu jeder Minute und zu jedem früheren Wechsel, lädt neu bei Phasen- oder Tageswechsel oder nach 10 Minuten, neuer Tag setzt die Daten von gestern zurück.
+- [x] Einstellungen: Mensa auf der Startseite (`heuteMensa`) und ausgeblendete Hinweise (`heuteHinweiseAusgeblendet`), Schlüssel wie iOS.
+- [x] UI: Kopf mit Datum, Uhrzeit und Begrüßung, Personen-Button öffnet Mehr, Hinweise mit ✕, Jetzt-Karte (Kopf Blau mit grünem Band oder Nachtblau mit Abendsonne), „Als Nächstes“, „Heute Abend“ (ab 15:00 vor „Als Nächstes“), Mensa-Wechsel-Sheet, Pull-to-Refresh, Platzhalter beim ersten Laden, Previews Morgen / Mittag / Nachmittag / Nacht in Light und Dark.
+- [x] Ziele laufen über `HeuteZiel.toDeepLink()` und damit über dieselben Links wie Widgets und Shortcuts.
 
-### Tests (aus iOS portieren)
-- [ ] `HeuteModelTests`
-- [ ] `HeuteAbendTests`
-- [ ] `LoadingGateTests`
+### Tests
 
-## Abnahme
+`HeuteContentTest` (Phasen- und Begrüßungsgrenzen, Karten, Abendessen, Nacht, Hinweise, Termine, nächster Wechsel, Mensa-Wahl) und `HeuteViewModelTest` (Teilfehler, Zeitlimit, Nachladen, Tageswechsel, abgebrochener Ladevorgang, gespeicherte Mensa, ausgeblendete Hinweise). `LoadingGateTests` kamen schon mit M3.
 
-- Phasenwechsel stimmen an den Grenzzeiten (10:30, 14:00, 16:30, 19:30, Begrüßung 11/14/18).
-- Verhalten entspricht den Mockups `Heute*.dc.html`.
+## Entscheidungen und Befunde
+
+- **Events kommen mit M5.** Bis dahin liefert `EmptyHeuteEventsSource` nichts, „Heute Abend“ und die Event-Termine entfallen, die Nachtkarte zeigt den Mittag von morgen. M5 ersetzt nur die Bindung in `RepositoryModule`.
+- **Hinweise:** Es gibt keinen Server-Endpunkt. Wie in iOS liefert `EmptyNoticesSource` nichts und der Abschnitt entfällt. Bei neuen Daten zuerst nachfragen (siehe `CLAUDE.md`).
+- **Uhrzeitformat:** fest 24 Stunden. iOS folgt der Region (12 Stunden in manchen Regionen); das ist eine bewusste Vereinfachung.
+- **Abgebrochener Ladevorgang:** Navigation 3 hält die Start-Seite hinter anderen Tabs nur im Zustand CREATED, ein laufender Ladevorgang wird dann abgebrochen. Der Stand gilt darum erst nach Abschluss als geladen (Fehler im ersten Wurf, mit Emulator gefunden und per Test abgesichert).
+- Das `HeuteUhr`-Startargument für Debug-Builds gibt es noch nicht; die Previews decken die Phasen ab.
+
+## Offen für spätere Meilensteine
+
+- Zwei-Spalten-Layout und Popover für Tablets (M9), Widget-Anbindung (M10), Mehr-Auswahl der Mensa (M8), Event-Detail beim Tippen (M5, bis dahin öffnet es den Events-Tab).
 
 ## Quellen (iOS)
 

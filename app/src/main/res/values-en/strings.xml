@@ -163,6 +163,22 @@
     <string name="heute_mensa_und">%1$s · %2$s</string>
     <string name="heute_mit_abendessen">%1$s · dinner from %2$s</string>
 
+    <!-- Today: page -->
+    <string name="heute_datum_zeile">%1$s · %2$s</string>
+    <string name="heute_datum_zeile_sprechen">%1$s, %2$s</string>
+    <string name="heute_hinweise">Notices</string>
+    <string name="heute_als_naechstes">Up next</string>
+    <string name="heute_abend_titel">Tonight</string>
+    <string name="heute_alle">All</string>
+    <string name="heute_alle_abend_beschreibung">All events tonight</string>
+    <string name="heute_mensa_aendern">Change canteen</string>
+    <string name="heute_mensa_sheet_titel">Canteen on the home screen</string>
+    <string name="heute_mensa_sheet_text">Applies to the current card and “Up next”. Can also be changed under More.</string>
+    <string name="heute_wird_geladen">Loading</string>
+    <string name="heute_hinweis_ausblenden">Dismiss notice</string>
+    <string name="heute_event_laeuft_seit">Running since %1$s</string>
+    <string name="heute_event_heute_um">Today · %1$s</string>
+
     <!-- Placeholder until the screens of the individual milestones -->
     <string name="platzhalter_text">This screen is coming.</string>
 </resources>

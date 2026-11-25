@@ -69,6 +69,22 @@ class AppSettings @Inject constructor(private val dataStore: DataStore<Preferenc
         }
     }
 
+    /** Die Mensa auf der Startseite, unabhängig von der Auswahl im Mensa-Tab. Start ist die Mensa Ehrenberg. */
+    val heuteMensa: Flow<MensaVenue> =
+        dataStore.data.map { MensaVenue.fromKey(it[Keys.HEUTE_MENSA]) ?: MensaVenue.MensaEhrenberg }.distinctUntilChanged()
+
+    suspend fun setHeuteMensa(venue: MensaVenue) {
+        dataStore.edit { it[Keys.HEUTE_MENSA] = venue.key }
+    }
+
+    /** Die Hinweise, die der Nutzer auf „Heute“ weggetippt hat (dauerhaft). */
+    val dismissedNotices: Flow<Set<String>> =
+        dataStore.data.map { it[Keys.NOTICES_DISMISSED].orEmpty() }.distinctUntilChanged()
+
+    suspend fun dismissNotice(id: String) {
+        dataStore.edit { it[Keys.NOTICES_DISMISSED] = it[Keys.NOTICES_DISMISSED].orEmpty() + id }
+    }
+
     private fun decodeFilter(text: String?): MensaFilter =
         text?.let { runCatching { FilterJson.decodeFromString(MensaFilter.serializer(), it) }.getOrNull() }
             ?: MensaFilter()
@@ -80,6 +96,8 @@ class AppSettings @Inject constructor(private val dataStore: DataStore<Preferenc
         val MENSA_VENUE = stringPreferencesKey("mensaSelectedVenue")
         val MENSA_FILTER = stringPreferencesKey("MensaFilter")
         val MENSA_FAVORITES = stringSetPreferencesKey("mensaFavoriteMeals")
+        val HEUTE_MENSA = stringPreferencesKey("heuteMensa")
+        val NOTICES_DISMISSED = stringSetPreferencesKey("heuteHinweiseAusgeblendet")
     }
 
     private companion object {

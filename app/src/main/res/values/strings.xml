@@ -166,6 +166,22 @@
     <string name="heute_mensa_und">%1$s · %2$s</string>
     <string name="heute_mit_abendessen">%1$s · Abendessen ab %2$s</string>
 
+    <!-- Heute: Seite -->
+    <string name="heute_datum_zeile">%1$s · %2$s</string>
+    <string name="heute_datum_zeile_sprechen">%1$s, %2$s Uhr</string>
+    <string name="heute_hinweise">Hinweise</string>
+    <string name="heute_als_naechstes">Als Nächstes</string>
+    <string name="heute_abend_titel">Heute Abend</string>
+    <string name="heute_alle">Alle</string>
+    <string name="heute_alle_abend_beschreibung">Alle Veranstaltungen heute Abend</string>
+    <string name="heute_mensa_aendern">Mensa ändern</string>
+    <string name="heute_mensa_sheet_titel">Mensa auf der Startseite</string>
+    <string name="heute_mensa_sheet_text">Gilt für die Jetzt-Karte und „Als Nächstes“. Auch unter Mehr änderbar.</string>
+    <string name="heute_wird_geladen">Wird geladen</string>
+    <string name="heute_hinweis_ausblenden">Hinweis ausblenden</string>
+    <string name="heute_event_laeuft_seit">Läuft seit %1$s</string>
+    <string name="heute_event_heute_um">Heute · %1$s</string>
+
     <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
     <string name="platzhalter_text">Diese Ansicht folgt.</string>
 </resources>

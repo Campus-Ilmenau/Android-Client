@@ -28,7 +28,7 @@ Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als An
 | [M1](milestones/M01-fundament.md) | Fundament (Gradle, Hilt, Theme, Netzwerk) | **abgeschlossen** (2026-11-23), Gate 1 grün, 33 Unit-Tests |
 | [M2](milestones/M02-design-system.md) | Design-System-Bausteine und App-Shell | **abgeschlossen** (2026-11-24), 72 Unit-Tests |
 | [M3](milestones/M03-mensa.md) | Mensa | **abgeschlossen** (2026-11-24), Gate 2 grün, 187 Unit-Tests |
-| [M4](milestones/M04-heute.md) | Heute | offen |
+| [M4](milestones/M04-heute.md) | Heute | **abgeschlossen** (2026-11-25), Events und Hinweise mit leeren Quellen |
 | [M5](milestones/M05-events.md) | Events | offen |
 | [M6](milestones/M06-thoska-nfc.md) | Thoska (NFC) | offen |
 | [M7](milestones/M07-bibliothek.md) | Bibliothek | offen |

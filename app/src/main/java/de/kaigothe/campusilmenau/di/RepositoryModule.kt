@@ -6,7 +6,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import de.kaigothe.campusilmenau.data.remote.mensa.MensaApi
+import de.kaigothe.campusilmenau.data.remote.events.EventsApi
+import de.kaigothe.campusilmenau.data.repository.EventsRepository
+import de.kaigothe.campusilmenau.data.repository.NetworkEventsRepository
+import de.kaigothe.campusilmenau.data.repository.RepositoryHeuteEventsSource
+import de.kaigothe.campusilmenau.data.repository.EmptyNoticesSource
+import de.kaigothe.campusilmenau.data.repository.HeuteEventsSource
 import de.kaigothe.campusilmenau.data.repository.MensaRepository
+import de.kaigothe.campusilmenau.data.repository.NoticesSource
 import de.kaigothe.campusilmenau.data.repository.NetworkMensaRepository
 import retrofit2.Retrofit
 import retrofit2.create
@@ -19,9 +26,22 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindMensaRepository(impl: NetworkMensaRepository): MensaRepository
 
+    @Binds
+    abstract fun bindHeuteEventsSource(impl: RepositoryHeuteEventsSource): HeuteEventsSource
+
+    @Binds
+    abstract fun bindNoticesSource(impl: EmptyNoticesSource): NoticesSource
+
+    @Binds
+    abstract fun bindEventsRepository(impl: NetworkEventsRepository): EventsRepository
+
     companion object {
         @Provides
         @Singleton
         fun provideMensaApi(retrofit: Retrofit): MensaApi = retrofit.create()
+
+        @Provides
+        @Singleton
+        fun provideEventsApi(retrofit: Retrofit): EventsApi = retrofit.create()
     }
 }

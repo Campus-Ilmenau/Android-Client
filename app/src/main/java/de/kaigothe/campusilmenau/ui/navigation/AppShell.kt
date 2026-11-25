@@ -27,6 +27,7 @@ import de.kaigothe.campusilmenau.R
 import de.kaigothe.campusilmenau.ui.components.ToastHost
 import de.kaigothe.campusilmenau.ui.components.ToastState
 import de.kaigothe.campusilmenau.ui.components.rememberToastState
+import de.kaigothe.campusilmenau.ui.heute.HeuteScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaMealDetailScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaOpeningHoursScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaScreen
@@ -65,11 +66,18 @@ fun AppShell(
         }
     }
 
+    // Ziele von Karten und Terminen laufen über dieselben Links wie Widgets und Shortcuts.
+    fun open(link: DeepLink) {
+        viewModel.prepare(link)
+        navigator.open(link)
+    }
+
     val entries = entryProvider<NavKey> {
         entry<HeuteRoute> {
-            FeaturePlaceholder(title = R.string.tab_heute, actions = {
-                MehrButton(onClick = { navigator.openMehr(bereich = null) })
-            })
+            HeuteScreen(
+                onOpenMehr = { navigator.openMehr(bereich = null) },
+                onZiel = { ziel -> open(ziel.toDeepLink()) },
+            )
         }
         entry<MensaRoute> {
             MensaScreen(
