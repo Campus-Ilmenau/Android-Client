@@ -23,7 +23,7 @@ data class ThoskaReading(
 /** Eine Karte mit Namen, wie Auswahl und Umbenennen sie brauchen. */
 data class ThoskaCardOption(
     val id: String,
-    /** Der vergebene Name oder „Karte …C3D4“, fertig zur Anzeige. */
+    /** Der vergebene Name, bei Karten ohne Namen leer (die Ansicht zeigt dann `ThoskaCardNaming.fallbackName`). */
     val displayName: String,
     /** Nur der vom Nutzer vergebene Name, sonst `null`. */
     val customName: String?,

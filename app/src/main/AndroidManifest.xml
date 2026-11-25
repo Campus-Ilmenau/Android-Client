@@ -4,6 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Thoska auslesen. Ohne NFC-Hardware bleibt die App installierbar, nur der Thoska-Tab entfällt. -->
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+
     <application
         android:name=".CampusApp"
         android:allowBackup="true"

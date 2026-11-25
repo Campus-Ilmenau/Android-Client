@@ -1,43 +1,42 @@
 # M6 – Thoska (NFC)
 
-**Status:** offen · **Abhängig von:** M2 · **Gate:** `compileDebugKotlin`, Test mit echter Karte auf einem Gerät
+**Status:** **umgesetzt, Test mit echter Karte offen** (2026-11-25) · **Abhängig von:** M2 · **Gate:** `compileDebugKotlin` bestanden; Unit-Tests und Lint grün; **Abnahme mit echter Thoska auf einem NFC-Gerät steht noch aus** (der Emulator hat kein NFC)
 
 ## Ziel
 
 Das Guthaben der Thoska (MIFARE DESFire) wird per NFC ausgelesen, mit Verlauf und Kartennamen.
 
-## Aufgaben
+## Umgesetzt
 
-### NFC
-- [ ] Manifest: `android.permission.NFC`, `uses-feature android.hardware.nfc` mit `required="false"`.
-- [ ] Reader über `NfcAdapter.enableReaderMode` mit `IsoDep` (Technologien `NfcA`/`IsoDep`), Lebenszyklus an den Screen binden.
-- [ ] DESFire-Kommandos als Pseudo-APDU (CLA `0x90`) unverändert übernehmen:
-  - Select Application `0x5A`, App-ID `5F 84 15`
-  - Get Value `0x6C`, Datei `0x01`
-  - Get File Settings `0xF5`
-- [ ] Parsing: Guthaben = Little-Endian Int32 ÷ 1000, letzte Buchung aus File-Settings (Byte 12/13, ÷ 1000), Karten-ID als Hex der UID.
-- [ ] Fehlerfälle: kein NFC, NFC aus (Link zu den Einstellungen), falscher Kartentyp, Abbruch, Verbindungsverlust.
-- [ ] UI-Hinweis „Halte deine Thoska an dein Gerät“ (kein System-Dialog wie auf iOS).
+### NFC (`data/nfc`)
+- [x] Manifest: `android.permission.NFC`, `uses-feature android.hardware.nfc` mit `required="false"`. Ohne NFC-Hardware bleibt die App installierbar, der Thoska-Tab entfällt (`DeviceCapabilities`, schon aus M2).
+- [x] `NfcThoskaReader`: `NfcAdapter.enableReaderMode` (`NfcA`/`NfcB`, ohne NDEF-Prüfung) mit `IsoDep`, 3 s Zeitlimit. Der Lesemodus gilt, solange gewartet wird, und endet auch bei Abbruch der Coroutine. Die Ansicht beendet das Warten in `ON_STOP`.
+- [x] `DesfireThoska`: die drei Pseudo-APDUs unverändert von iOS (`90 5A … 5F 84 15`, `90 6C … 01`, `90 F5 … 01`), Guthaben = Little-Endian-Int32 in Tausendstel, letzte Buchung aus Byte 12/13, Karten-ID = UID in kleinem Hex. `CardTransport` trennt die Karte von Android, damit sich alles ohne Gerät testen lässt.
+- [x] Fehlerfälle als `ThoskaError`: kein NFC, NFC aus (Button zu den NFC-Einstellungen), Kartentyp nicht unterstützt, Verbindung abgebrochen (Karte zu früh weg), Fehlerstatus der Karte.
+- [x] Statt des System-Dialogs wie auf iOS zeigt die Taste „Halte deine Thoska an dein Gerät …“ mit Ladekreis.
 
 ### Daten
-- [ ] Room: `ThoskaBalanceRecord`, `ThoskaCardName` (Pendant zu SwiftData).
-- [ ] Kartennamen-Logik (`ThoskaCardNaming`), Formatierung (`ThoskaFormatting`).
-- [ ] Verlauf-Model (`ThoskaHistoryModel`).
+- [x] Room (`CampusDatabase`, erste Tabellen): `thoska_balance` (Beträge als `Long` in Tausendstel), `thoska_card_name`. Schema in `app/schemas`.
+- [x] Die Datenbank ist von der Cloud-Sicherung ausgenommen (`data_extraction_rules.xml`, `backup_rules.xml`), damit „bleibt nur auf deinem Gerät“ stimmt; die direkte Übertragung auf ein neues Gerät bleibt möglich.
+- [x] `ThoskaCardNaming` (leer oder gleich Karten-ID = ohne Namen, Ersatzname „Karte …C3D4“, leere Eingabe setzt zurück), `ThoskaFormatting`, `ThoskaHistorySummary` (14 Tage / 3 Monate, Aufladung bei Guthaben > Vorgänger + 5 Tausendstel auch gegenüber einem Vorgänger vor dem Zeitraum, Ausgaben ohne Aufladungen, Balken je Auslesung bzw. je Berliner Kalenderwoche mit letztem Stand).
 
 ### UI
-- [ ] `ThoskaScreen` mit animierter Karte (Flip per Wischgeste), Guthaben in Plus Jakarta Sans.
-- [ ] Verlauf (`ThoskaHistoryView`) mit Chart (Entscheidung Canvas vs. Vico).
-- [ ] Benennen der Karte.
-- [ ] **Gerät ohne NFC-Hardware: Thoska-Tab entfällt** (wie iOS `NFCVerfuegbarkeit`), der Deeplink `thoska/auslesen` wird dort ignoriert. NFC vorhanden, aber ausgeschaltet: Hinweis mit Weg in die Einstellungen.
-- [ ] Verlauf-Auswertung portieren (`ThoskaHistorySummary`): Zeiträume 14 Tage und 3 Monate, Aufladung bei Guthaben > Vorgänger + 0,005, Ausgaben = Summe der Rückgänge ohne Aufladungen, Balken je Auslesung (14 Tage) bzw. je Kalenderwoche mit letztem Stand (3 Monate). Beträge als `Long` in Tausendstel speichern.
-- [ ] Kartenname: leerer Name oder Name gleich Karten-ID gilt als „ohne Namen“, Fallback „Karte …C3D4“ (letzte 4 Zeichen, groß), leerer Eingabe setzt zurück.
-- [ ] Previews, Deeplink „Thoska auslesen“ (startet das Auslesen sofort).
+- [x] `ThoskaScreen`: Karte mit Verlauf Blau → Nachtblau und grünem Band (Betrag schrumpft, statt aufs Band zu laufen), „Zuletzt ausgelesen“, „Letzte Buchung“, Karte benennen, „Guthaben aktualisiert“, Fuß mit Hinweis und Taste.
+- [x] `ThoskaHistoryScreen`: Kartenwahl und Umbenennen im Menü, Zeitraum, Ausgaben, Balkendiagramm (Canvas, grün bei Aufladung, mindestens 6 Plätze, Beschreibung für TalkBack), Liste.
+- [x] Deeplink `thoska/auslesen` startet das Auslesen, sobald die Ansicht sichtbar ist (bei Kaltstart wartet der Wunsch); auf Geräten ohne NFC wird er ignoriert.
 
-## Abnahme
+### Tests
+`DesfireThoskaTest` (Befehlsbytes, Parsing, Fehlerstatus, Ablauf mit Fake-Karte), `ThoskaDomainTest` (Verlauf, Namen, Formatierung), `ThoskaViewModelTest`, `ThoskaHistoryViewModelTest`.
 
-- Auslesen auf echtem Gerät mit echter Thoska liefert dasselbe Guthaben wie die iOS-App.
-- Verlauf wird gespeichert, Kartenname bleibt erhalten.
-- App bricht auf Geräten ohne NFC nicht ab.
+## Abweichungen von iOS (bewusst)
+
+- **Letzte Auslesung bleibt sichtbar:** iOS zeigt nach dem Start „Noch nicht ausgelesen“, Android zeigt die zuletzt gespeicherte Auslesung (aus dem Verlauf), die Bestätigung „Guthaben aktualisiert“ erst nach einem Auslesen.
+- **Statusbytes:** iOS wertet die Statusbytes der Karte nicht aus. `DesfireThoska.checkStatus` bricht nur bei klaren Fehlern ab (`91 xx` mit `xx` ≠ `00`, ISO-Fehler `67`–`6F`), alles andere gilt wie bei iOS als Erfolg.
+- **Vorzeichen:** Die Wertdatei der Karte ist vorzeichenbehaftet, Android liest den Int32 mit Vorzeichen (iOS liest ihn ohne).
+
+## Noch zu tun (vor „abgeschlossen“)
+
+- **Abnahme mit echter Thoska:** Guthaben und letzte Buchung mit der iOS-App vergleichen, Verhalten bei zu früh weggenommener Karte, Karte ohne ISO-DEP, NFC aus. Auf dem Emulator ist der Tab nicht sichtbar, die Oberfläche ist nur über Previews (Light, Dark, leer, NFC aus, Fehler, Auslesen) geprüft.
 
 ## Quellen (iOS)
 

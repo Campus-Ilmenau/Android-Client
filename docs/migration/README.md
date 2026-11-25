@@ -30,7 +30,7 @@ Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als An
 | [M3](milestones/M03-mensa.md) | Mensa | **abgeschlossen** (2026-11-24), Gate 2 grün, 187 Unit-Tests |
 | [M4](milestones/M04-heute.md) | Heute | **abgeschlossen** (2026-11-25), Events und Hinweise mit leeren Quellen |
 | [M5](milestones/M05-events.md) | Events | **abgeschlossen** (2026-11-25), vorgezogen vor M6 |
-| [M6](milestones/M06-thoska-nfc.md) | Thoska (NFC) | offen |
+| [M6](milestones/M06-thoska-nfc.md) | Thoska (NFC) | **umgesetzt**, Abnahme mit echter Karte offen |
 | [M7](milestones/M07-bibliothek.md) | Bibliothek | offen |
 | [M8](milestones/M08-mehr-teilen.md) | Mehr, Teilen, Einstellungen | offen |
 | [M9](milestones/M09-adaptive-layouts.md) | Adaptive Layouts (Tablet, Faltgeräte) | offen |

@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-   Sample data extraction rules file; uncomment and customize as necessary.
-   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
-   for details.
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Was die App sichern darf. Die Thoska-Auslesungen und Kartennamen bleiben auf diesem Gerät (so steht es in der App):
+   Sie gehen nicht in die Cloud-Sicherung. Beim direkten Umzug auf ein neues Gerät (device-transfer) bleiben sie erhalten.
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
-        -->
+        <exclude
+            domain="database"
+            path="campus.db" />
+        <exclude
+            domain="database"
+            path="campus.db-wal" />
+        <exclude
+            domain="database"
+            path="campus.db-shm" />
     </cloud-backup>
-    <!--
-    <device-transfer>
-        <include .../>
-        <exclude .../>
-    </device-transfer>
-    -->
 </data-extraction-rules>

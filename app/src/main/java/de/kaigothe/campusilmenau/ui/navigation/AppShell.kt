@@ -33,6 +33,8 @@ import de.kaigothe.campusilmenau.ui.events.EventDetailScreen
 import de.kaigothe.campusilmenau.ui.events.EventsPastScreen
 import de.kaigothe.campusilmenau.ui.events.EventsScreen
 import de.kaigothe.campusilmenau.ui.heute.HeuteScreen
+import de.kaigothe.campusilmenau.ui.thoska.ThoskaHistoryScreen
+import de.kaigothe.campusilmenau.ui.thoska.ThoskaScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaMealDetailScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaOpeningHoursScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaScreen
@@ -98,7 +100,8 @@ fun AppShell(
             )
         }
         entry<MensaZeitenRoute> { MensaOpeningHoursScreen(onBack = { navigator.goBack() }) }
-        entry<ThoskaRoute> { FeaturePlaceholder(title = R.string.tab_thoska) }
+        entry<ThoskaRoute> { ThoskaScreen(onOpenHistory = { navigator.navigate(ThoskaVerlaufRoute) }) }
+        entry<ThoskaVerlaufRoute> { ThoskaHistoryScreen(onBack = { navigator.goBack() }) }
         entry<BibliothekRoute> { FeaturePlaceholder(title = R.string.tab_bibliothek) }
         entry<EventsRoute> {
             EventsScreen(

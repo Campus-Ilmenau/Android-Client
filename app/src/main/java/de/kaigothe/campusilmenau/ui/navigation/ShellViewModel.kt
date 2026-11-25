@@ -7,6 +7,7 @@ import de.kaigothe.campusilmenau.core.device.DeviceCapabilities
 import de.kaigothe.campusilmenau.data.preferences.AppSettings
 import de.kaigothe.campusilmenau.data.repository.EventsRequest
 import de.kaigothe.campusilmenau.data.repository.EventsRequests
+import de.kaigothe.campusilmenau.data.repository.ThoskaRequests
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaVenue
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ class ShellViewModel @Inject constructor(
     private val router: DeepLinkRouter,
     private val settings: AppSettings,
     private val eventsRequests: EventsRequests,
+    private val thoskaRequests: ThoskaRequests,
 ) : ViewModel() {
 
     /** Die Tabs dieses Geräts: ohne NFC-Hardware kein Thoska. */
@@ -39,6 +41,8 @@ class ShellViewModel @Inject constructor(
 
             DeepLink.Events -> eventsRequests.post(EventsRequest.ShowAll)
             DeepLink.EventsHeuteAbend -> eventsRequests.post(EventsRequest.ShowEvening)
+            // Ohne NFC-Hardware gibt es den Tab nicht: Dann ignoriert schon der Navigator den Link, ein Wunsch bliebe liegen.
+            DeepLink.ThoskaAuslesen -> if (AppTab.Thoska in tabs) thoskaRequests.requestScan()
             else -> Unit
         }
     }

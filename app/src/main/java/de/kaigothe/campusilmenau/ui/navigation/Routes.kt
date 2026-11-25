@@ -23,6 +23,10 @@ data object EventsRoute : NavKey
 @Serializable
 data class MensaGerichtRoute(val id: String, val day: String?) : NavKey
 
+/** Verlauf der Thoska-Auslesungen. */
+@Serializable
+data object ThoskaVerlaufRoute : NavKey
+
 /** Detail einer Veranstaltung. Die Ansicht lädt sie selbst. */
 @Serializable
 data class EventDetailRoute(val id: String) : NavKey
