@@ -268,6 +268,57 @@
     <string name="events_abgesagte_hinweis">Otherwise they appear as “Cancelled”.</string>
     <string name="events_filter_hinweis">Choose the day, tonight and the organizer above the list.</string>
 
+    <!-- Thoska -->
+    <string name="thoska_titel">Thoska</string>
+    <string name="thoska_verlauf">History</string>
+    <string name="thoska_guthaben">Balance</string>
+    <string name="thoska_guthaben_name">Balance · %1$s</string>
+    <string name="thoska_guthaben_leer">–.– €</string>
+    <string name="thoska_zuletzt">Last read</string>
+    <string name="thoska_letzte_buchung">Last transaction</string>
+    <string name="thoska_noch_nicht">Not read yet</string>
+    <string name="thoska_karte_benennen">Name card</string>
+    <string name="thoska_karte_umbenennen">Rename card</string>
+    <string name="thoska_aktualisiert">Balance updated</string>
+    <string name="thoska_hinweis">Hold your Thoska to the back of your device. The balance is only stored on your device.</string>
+    <string name="thoska_auslesen">Read Thoska</string>
+    <string name="thoska_scan_aktiv">Hold your Thoska to your device …</string>
+    <string name="thoska_fehler_kein_nfc">This device does not support NFC.</string>
+    <string name="thoska_fehler_nfc_aus">NFC is switched off. Turn it on in the settings.</string>
+    <string name="thoska_nfc_einstellungen">Open NFC settings</string>
+    <string name="thoska_fehler_kartentyp">This card type is not supported.</string>
+    <string name="thoska_fehler_verbindung">The connection to the card was interrupted. Hold the card steady against the device.</string>
+    <string name="thoska_fehler_allgemein">The card could not be read.</string>
+    <string name="thoska_dialog_titel">Name card</string>
+    <string name="thoska_dialog_name">Name</string>
+    <string name="thoska_dialog_sichern">Save</string>
+    <string name="thoska_dialog_text">The name stays on your device only.</string>
+    <string name="thoska_karte_fallback">Card …%1$s</string>
+    <string name="thoska_karte_beschreibung">Card: %1$s</string>
+    <string name="thoska_karte_hinweis_wechseln">Switch or name card</string>
+    <string name="thoska_karte_hinweis_benennen">Name card</string>
+    <string name="thoska_zeitraum_2w">2 weeks</string>
+    <string name="thoska_zeitraum_3m">3 months</string>
+    <string name="thoska_ausgegeben">Spent in this period</string>
+    <string name="thoska_legende_guthaben">Balance</string>
+    <string name="thoska_legende_aufgeladen">Topped up</string>
+    <string name="thoska_ausgelesen">Readings</string>
+    <string name="thoska_verlauf_leer">No readings in this period yet</string>
+    <string name="thoska_notiz_aufgeladen">Topped up %1$s</string>
+    <string name="thoska_notiz_buchung">Last transaction %1$s</string>
+    <string name="thoska_gerade_eben">Just now</string>
+    <string name="thoska_zeit_heute">Today, %1$s</string>
+    <string name="thoska_zeit_gestern">Yesterday, %1$s</string>
+    <string name="thoska_zeit_datum">%1$s, %2$s</string>
+    <string name="thoska_euro_sprechen">%1$s euros</string>
+    <string name="thoska_karte_sprechen">Thoska balance %1$s</string>
+    <string name="thoska_karte_sprechen_name">Thoska balance %1$s, card %2$s</string>
+    <string name="thoska_karte_sprechen_leer">Thoska balance not read yet</string>
+    <string name="thoska_chart_titel">Balance history</string>
+    <string name="thoska_chart_beschreibung">%1$d readings. Balance from %2$s to %3$s. Spent %4$s. %5$s</string>
+    <string name="thoska_chart_keine_aufladung">No top-up.</string>
+    <string name="thoska_chart_aufladungen">Topped up %1$d times.</string>
+
     <!-- Placeholder until the screens of the individual milestones -->
     <string name="platzhalter_text">This screen is coming.</string>
 </resources>

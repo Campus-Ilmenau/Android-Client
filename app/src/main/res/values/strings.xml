@@ -271,6 +271,57 @@
     <string name="events_abgesagte_hinweis">Sonst erscheinen sie mit „Fällt aus“.</string>
     <string name="events_filter_hinweis">Tag, Heute Abend und Veranstalter wählst du über der Liste.</string>
 
+    <!-- Thoska -->
+    <string name="thoska_titel">Thoska</string>
+    <string name="thoska_verlauf">Verlauf</string>
+    <string name="thoska_guthaben">Guthaben</string>
+    <string name="thoska_guthaben_name">Guthaben · %1$s</string>
+    <string name="thoska_guthaben_leer">–,– €</string>
+    <string name="thoska_zuletzt">Zuletzt ausgelesen</string>
+    <string name="thoska_letzte_buchung">Letzte Buchung</string>
+    <string name="thoska_noch_nicht">Noch nicht ausgelesen</string>
+    <string name="thoska_karte_benennen">Karte benennen</string>
+    <string name="thoska_karte_umbenennen">Karte umbenennen</string>
+    <string name="thoska_aktualisiert">Guthaben aktualisiert</string>
+    <string name="thoska_hinweis">Halte deine Thoska an die Rückseite deines Geräts. Das Guthaben wird nur auf deinem Gerät gespeichert.</string>
+    <string name="thoska_auslesen">Thoska auslesen</string>
+    <string name="thoska_scan_aktiv">Halte deine Thoska an dein Gerät …</string>
+    <string name="thoska_fehler_kein_nfc">Dieses Gerät unterstützt kein NFC.</string>
+    <string name="thoska_fehler_nfc_aus">NFC ist ausgeschaltet. Schalte es in den Einstellungen ein.</string>
+    <string name="thoska_nfc_einstellungen">NFC-Einstellungen öffnen</string>
+    <string name="thoska_fehler_kartentyp">Dieser Kartentyp wird nicht unterstützt.</string>
+    <string name="thoska_fehler_verbindung">Die Verbindung zur Karte ist abgebrochen. Halte die Karte ruhig an das Gerät.</string>
+    <string name="thoska_fehler_allgemein">Die Karte konnte nicht gelesen werden.</string>
+    <string name="thoska_dialog_titel">Karte benennen</string>
+    <string name="thoska_dialog_name">Name</string>
+    <string name="thoska_dialog_sichern">Sichern</string>
+    <string name="thoska_dialog_text">Der Name bleibt nur auf deinem Gerät.</string>
+    <string name="thoska_karte_fallback">Karte …%1$s</string>
+    <string name="thoska_karte_beschreibung">Karte: %1$s</string>
+    <string name="thoska_karte_hinweis_wechseln">Karte wechseln oder benennen</string>
+    <string name="thoska_karte_hinweis_benennen">Karte benennen</string>
+    <string name="thoska_zeitraum_2w">2 Wochen</string>
+    <string name="thoska_zeitraum_3m">3 Monate</string>
+    <string name="thoska_ausgegeben">Ausgegeben im Zeitraum</string>
+    <string name="thoska_legende_guthaben">Guthaben</string>
+    <string name="thoska_legende_aufgeladen">Aufgeladen</string>
+    <string name="thoska_ausgelesen">Ausgelesen</string>
+    <string name="thoska_verlauf_leer">Noch keine Auslesungen in diesem Zeitraum</string>
+    <string name="thoska_notiz_aufgeladen">Aufgeladen %1$s</string>
+    <string name="thoska_notiz_buchung">Letzte Buchung %1$s</string>
+    <string name="thoska_gerade_eben">Gerade eben</string>
+    <string name="thoska_zeit_heute">Heute, %1$s</string>
+    <string name="thoska_zeit_gestern">Gestern, %1$s</string>
+    <string name="thoska_zeit_datum">%1$s, %2$s</string>
+    <string name="thoska_euro_sprechen">%1$s Euro</string>
+    <string name="thoska_karte_sprechen">Thoska-Guthaben %1$s</string>
+    <string name="thoska_karte_sprechen_name">Thoska-Guthaben %1$s, Karte %2$s</string>
+    <string name="thoska_karte_sprechen_leer">Thoska-Guthaben noch nicht ausgelesen</string>
+    <string name="thoska_chart_titel">Guthaben-Verlauf</string>
+    <string name="thoska_chart_beschreibung">%1$d Auslesungen. Guthaben von %2$s auf %3$s. Ausgegeben %4$s. %5$s</string>
+    <string name="thoska_chart_keine_aufladung">Keine Aufladung.</string>
+    <string name="thoska_chart_aufladungen">%1$d-mal aufgeladen.</string>
+
     <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
     <string name="platzhalter_text">Diese Ansicht folgt.</string>
 </resources>
