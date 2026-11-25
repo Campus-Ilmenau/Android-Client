@@ -120,6 +120,52 @@
     <string name="zeiten_wochenzeiten_anzeigen">Wochenzeiten anzeigen</string>
     <string name="zeiten_wochenzeiten_ausblenden">Wochenzeiten ausblenden</string>
 
+    <!-- Ein fertiger Text, der nicht übersetzt wird (siehe UiText.plain) -->
+    <string name="plain" translatable="false">%1$s</string>
+
+    <!-- Heute: Begrüßung und Karten -->
+    <string name="begruessung_morgen">Guten Morgen</string>
+    <string name="begruessung_mahlzeit">Mahlzeit!</string>
+    <string name="begruessung_hallo">Hallo!</string>
+    <string name="begruessung_abend">Guten Abend</string>
+    <string name="heute_ueberschrift_heute">Heute</string>
+    <string name="heute_ueberschrift_jetzt">Jetzt</string>
+    <string name="heute_ueberschrift_gleich">Gleich</string>
+    <string name="heute_vorschau_mittag">Vorschau auf das Mittagsangebot</string>
+    <string name="heute_mittagsangebot">Mittagsangebot</string>
+    <string name="heute_kicker_offen_bis">Jetzt geöffnet · bis %1$s</string>
+    <string name="heute_kicker_ab">Heute · ab %1$s</string>
+    <string name="heute_geschlossen">Heute geschlossen</string>
+    <string name="heute_mensa_geschlossen">Mensa heute geschlossen</string>
+    <string name="heute_keine_angebote">Heute keine Angebote</string>
+    <string name="heute_link_speiseplan">Ganzer Speiseplan</string>
+    <string name="heute_abend_jetzt_offen">Jetzt geöffnet · Abendessen</string>
+    <string name="heute_abend_in">Abendessen in der %1$s</string>
+    <string name="heute_abend_tipp_jetzt">Tipp · jetzt geöffnet</string>
+    <string name="heute_kicker_heute_ab">Heute ab %1$s</string>
+    <string name="heute_hat_geschlossen">%1$s hat geschlossen</string>
+    <string name="heute_tipp_ab">Tipp · ab %1$s in der %2$s</string>
+    <string name="heute_link_abendangebot">Zum Abendangebot</string>
+    <string name="heute_ort_cafeteria">Cafeteria</string>
+    <string name="heute_ort_mensa">Mensa</string>
+    <string name="heute_oeffnet">Öffnet</string>
+    <string name="heute_schliesst">Schließt</string>
+    <string name="heute_morgen_ab">morgen ab %1$s</string>
+    <string name="heute_morgen">morgen</string>
+    <string name="heute_mittag_gericht">Mittag: %1$s</string>
+    <string name="heute_morgen_kicker_ab">Morgen · ab %1$s</string>
+    <string name="heute_morgen_kicker">Morgen</string>
+    <string name="heute_mittag_morgen">Mittagsangebot morgen</string>
+    <string name="heute_laeuft_seit">Läuft gerade · seit %1$s</string>
+    <string name="heute_danach">Danach: %1$s</string>
+    <string name="heute_alle_events">Alle Veranstaltungen</string>
+    <string name="heute_speiseplan_nicht_verfuegbar">Speiseplan gerade nicht verfügbar</string>
+    <string name="heute_zum_mensa_tab">Zum Mensa-Tab</string>
+    <string name="heute_oeffnung_zeitraum">%1$s–%2$s Uhr</string>
+    <string name="heute_abend_ort">%1$s · %2$s</string>
+    <string name="heute_mensa_und">%1$s · %2$s</string>
+    <string name="heute_mit_abendessen">%1$s · Abendessen ab %2$s</string>
+
     <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
     <string name="platzhalter_text">Diese Ansicht folgt.</string>
 </resources>

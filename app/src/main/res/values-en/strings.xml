@@ -120,6 +120,49 @@
     <string name="zeiten_wochenzeiten_anzeigen">Show weekly hours</string>
     <string name="zeiten_wochenzeiten_ausblenden">Hide weekly hours</string>
 
+    <!-- Today: greeting and cards -->
+    <string name="begruessung_morgen">Good morning</string>
+    <string name="begruessung_mahlzeit">Enjoy your meal!</string>
+    <string name="begruessung_hallo">Hello!</string>
+    <string name="begruessung_abend">Good evening</string>
+    <string name="heute_ueberschrift_heute">Today</string>
+    <string name="heute_ueberschrift_jetzt">Now</string>
+    <string name="heute_ueberschrift_gleich">Soon</string>
+    <string name="heute_vorschau_mittag">Preview of the lunch menu</string>
+    <string name="heute_mittagsangebot">Lunch menu</string>
+    <string name="heute_kicker_offen_bis">Open now · until %1$s</string>
+    <string name="heute_kicker_ab">Today · from %1$s</string>
+    <string name="heute_geschlossen">Closed today</string>
+    <string name="heute_mensa_geschlossen">Canteen closed today</string>
+    <string name="heute_keine_angebote">No dishes today</string>
+    <string name="heute_link_speiseplan">Full menu</string>
+    <string name="heute_abend_jetzt_offen">Open now · Dinner</string>
+    <string name="heute_abend_in">Dinner in the %1$s</string>
+    <string name="heute_abend_tipp_jetzt">Tip · open now</string>
+    <string name="heute_kicker_heute_ab">Today from %1$s</string>
+    <string name="heute_hat_geschlossen">%1$s is closed</string>
+    <string name="heute_tipp_ab">Tip · from %1$s in the %2$s</string>
+    <string name="heute_link_abendangebot">To the dinner menu</string>
+    <string name="heute_ort_cafeteria">Cafeteria</string>
+    <string name="heute_ort_mensa">Canteen</string>
+    <string name="heute_oeffnet">Opens</string>
+    <string name="heute_schliesst">Closes</string>
+    <string name="heute_morgen_ab">tomorrow from %1$s</string>
+    <string name="heute_morgen">tomorrow</string>
+    <string name="heute_mittag_gericht">Lunch: %1$s</string>
+    <string name="heute_morgen_kicker_ab">Tomorrow · from %1$s</string>
+    <string name="heute_morgen_kicker">Tomorrow</string>
+    <string name="heute_mittag_morgen">Lunch menu tomorrow</string>
+    <string name="heute_laeuft_seit">Running now · since %1$s</string>
+    <string name="heute_danach">Afterwards: %1$s</string>
+    <string name="heute_alle_events">All events</string>
+    <string name="heute_speiseplan_nicht_verfuegbar">Menu not available right now</string>
+    <string name="heute_zum_mensa_tab">To the canteen tab</string>
+    <string name="heute_oeffnung_zeitraum">%1$s–%2$s</string>
+    <string name="heute_abend_ort">%1$s · %2$s</string>
+    <string name="heute_mensa_und">%1$s · %2$s</string>
+    <string name="heute_mit_abendessen">%1$s · dinner from %2$s</string>
+
     <!-- Placeholder until the screens of the individual milestones -->
     <string name="platzhalter_text">This screen is coming.</string>
 </resources>
