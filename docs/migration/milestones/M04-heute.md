@@ -22,7 +22,7 @@ Die Startseite zeigt je nach Uhrzeit Mensa, Abendessen oder Veranstaltungen, daz
 
 ## Entscheidungen und Befunde
 
-- **Events kommen mit M5.** Bis dahin liefert `EmptyHeuteEventsSource` nichts, „Heute Abend“ und die Event-Termine entfallen, die Nachtkarte zeigt den Mittag von morgen. M5 ersetzt nur die Bindung in `RepositoryModule`.
+- **Events:** M4 lief zuerst mit einer leeren Quelle. Mit M5 (vorgezogen) liefert `RepositoryHeuteEventsSource` die echten Veranstaltungen, nur die Bindung in `RepositoryModule` wurde getauscht.
 - **Hinweise:** Es gibt keinen Server-Endpunkt. Wie in iOS liefert `EmptyNoticesSource` nichts und der Abschnitt entfällt. Bei neuen Daten zuerst nachfragen (siehe `CLAUDE.md`).
 - **Uhrzeitformat:** fest 24 Stunden. iOS folgt der Region (12 Stunden in manchen Regionen); das ist eine bewusste Vereinfachung.
 - **Abgebrochener Ladevorgang:** Navigation 3 hält die Start-Seite hinter anderen Tabs nur im Zustand CREATED, ein laufender Ladevorgang wird dann abgebrochen. Der Stand gilt darum erst nach Abschluss als geladen (Fehler im ersten Wurf, mit Emulator gefunden und per Test abgesichert).

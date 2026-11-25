@@ -57,12 +57,15 @@ class Navigator(val state: NavigationState) {
         val detail: NavKey? = when (link) {
             is DeepLink.Gericht -> MensaGerichtRoute(link.id, link.day)
             DeepLink.MensaZeiten -> MensaZeitenRoute
+            is DeepLink.Event -> EventDetailRoute(link.id)
             else -> null
         }
-        if (detail != null) {
+        // Die Liste der Veranstaltungen beginnt bei einem Link ohne Unterziel wieder vorn (ohne ein offenes Detail).
+        val resetsStack = detail != null || link == DeepLink.Events || link == DeepLink.EventsHeuteAbend
+        if (resetsStack) {
             val stack = state.backStacks.getValue(tab)
             while (stack.size > 1) stack.removeAt(stack.lastIndex)
-            stack.add(detail)
+            detail?.let(stack::add)
         }
     }
 

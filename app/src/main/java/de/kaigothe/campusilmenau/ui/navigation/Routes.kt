@@ -23,6 +23,14 @@ data object EventsRoute : NavKey
 @Serializable
 data class MensaGerichtRoute(val id: String, val day: String?) : NavKey
 
+/** Detail einer Veranstaltung. Die Ansicht lädt sie selbst. */
+@Serializable
+data class EventDetailRoute(val id: String) : NavKey
+
+/** „Vergangene“: der letzte Monat. Nur die Einstellungen aus dem Filter-Sheet gelten hier (Art und Abgesagte). */
+@Serializable
+data class EventsVergangeneRoute(val kind: String, val hideCancelled: Boolean) : NavKey
+
 /** Öffnungszeiten der Mensen. */
 @Serializable
 data object MensaZeitenRoute : NavKey

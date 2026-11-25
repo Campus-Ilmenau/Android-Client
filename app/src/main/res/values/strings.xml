@@ -182,6 +182,95 @@
     <string name="heute_event_laeuft_seit">Läuft seit %1$s</string>
     <string name="heute_event_heute_um">Heute · %1$s</string>
 
+    <!-- Events: Liste -->
+    <string name="events_titel">Veranstaltungen</string>
+    <string name="events_vergangene">Vergangene</string>
+    <string name="events_vergangene_button">Vergangene Veranstaltungen</string>
+    <string name="events_kommende">Kommende</string>
+    <string name="events_unterzeile_standard">Was in Ilmenau ansteht</string>
+    <string name="events_unterzeile_alles_von">Alles von %1$s</string>
+    <string name="events_unterzeile_abend">%1$s ab 17 Uhr</string>
+    <string name="events_unterzeile_vergangene">Der letzte Monat, neueste zuerst</string>
+    <string name="events_unterzeile_zusatz">%1$s · %2$s</string>
+    <string name="events_ab_heute">Ab heute</string>
+    <string name="events_tag_leiste">Tag</string>
+    <string name="events_alles_ab_heute">Alles ab heute</string>
+    <string name="events_mit_veranstaltungen">%1$s, mit Veranstaltungen</string>
+    <string name="events_gemerkt">Gemerkt</string>
+    <string name="events_veranstalter_kommende">%1$s, %2$d kommende</string>
+    <string name="events_filter_aktiv">Filter, %1$d aktiv</string>
+    <plurals name="events_anzahl">
+        <item quantity="one">%1$d Veranstaltung</item>
+        <item quantity="other">%1$d Veranstaltungen</item>
+    </plurals>
+    <string name="events_fehler_titel">Veranstaltungen konnten nicht geladen werden</string>
+    <string name="events_fehler_text">Prüfe deine Verbindung und versuch es noch einmal.</string>
+    <string name="events_weitere">Weitere laden beim Scrollen automatisch.</string>
+    <string name="events_laedt">Veranstaltungen werden geladen</string>
+    <string name="events_leer_gemerkt_titel">Noch nichts gemerkt</string>
+    <string name="events_leer_gemerkt_text">Tippe auf den Stern bei einer Veranstaltung. Gemerktes bleibt auf diesem Gerät.</string>
+    <string name="events_leer_alle_anzeigen">Alle anzeigen</string>
+    <string name="events_leer_abend_heute">Heute Abend ist nichts eingetragen</string>
+    <string name="events_leer_abend_tag">An diesem Abend ist nichts eingetragen</string>
+    <string name="events_leer_abend_text">Ab 17 Uhr findest du hier Partys, Kneipenabende und mehr.</string>
+    <string name="events_leer_abend_aktion">Alles ab heute zeigen</string>
+    <string name="events_leer_titel">Keine Veranstaltungen für diese Auswahl</string>
+    <string name="events_leer_text">Wähle einen anderen Tag oder einen anderen Veranstalter.</string>
+    <string name="events_leer_vergangene_text">Im letzten Monat gab es dazu nichts.</string>
+    <string name="events_filter_zuruecksetzen">Filter zurücksetzen</string>
+
+    <!-- Events: Karte und Zeiten -->
+    <string name="events_chip_faellt_aus">Fällt aus</string>
+    <string name="events_chip_unbestaetigt">Noch nicht bestätigt</string>
+    <string name="events_chip_frist">Frist</string>
+    <string name="events_sprech_faellt_aus">fällt aus</string>
+    <string name="events_sprech_unbestaetigt">noch nicht bestätigt</string>
+    <string name="events_sprech_gemerkt">gemerkt</string>
+    <string name="events_merken">Merken</string>
+    <string name="events_nicht_mehr_merken">Nicht mehr merken</string>
+    <string name="events_ganztaegig">Ganztägig</string>
+    <string name="events_ganztaegig_laeuft">Ganztägig · läuft gerade</string>
+    <string name="events_zeit_von_bis">%1$s–%2$s Uhr</string>
+    <string name="events_zeit_von_bis_detail">%1$s – %2$s Uhr</string>
+    <string name="events_zeit_ab">Ab %1$s Uhr</string>
+    <string name="events_zeit_laeuft_seit">Läuft seit %1$s · bis %2$s</string>
+    <string name="events_zeit_ab_bis_tag">Ab %1$s Uhr · bis %2$s</string>
+    <string name="events_zeit_ab_und_bis_uhr">%1$s · bis %2$s Uhr</string>
+    <string name="events_tage_bis">%1$s – %2$s</string>
+    <string name="events_abschnitt_heute">Heute · %1$s</string>
+    <string name="events_abschnitt_morgen">Morgen · %1$s</string>
+    <string name="events_abschnitt_gestern">Gestern · %1$s</string>
+    <string name="events_abschnitt_datum">%1$s, %2$s</string>
+
+    <!-- Events: Detail -->
+    <string name="events_detail_zurueck">Zurück zu den Veranstaltungen</string>
+    <string name="events_toast_gemerkt">Gemerkt</string>
+    <string name="events_toast_nicht_mehr_gemerkt">Nicht mehr gemerkt</string>
+    <string name="events_nicht_gefunden_titel">Veranstaltung nicht gefunden</string>
+    <string name="events_nicht_gefunden_text">Sie wurde vielleicht entfernt.</string>
+    <string name="events_detail_fehler_titel">Konnte nicht geladen werden</string>
+    <string name="events_hinweis_abgesagt">Der Veranstalter hat diese Veranstaltung abgesagt.</string>
+    <string name="events_hinweis_unbestaetigt">Der Termin ist noch nicht bestätigt. Schau kurz vorher noch einmal rein.</string>
+    <string name="events_in_karten">In Karten öffnen</string>
+    <string name="events_alle_kommenden">Alle kommenden von %1$s</string>
+    <string name="events_alle_n_kommenden">Alle %1$d kommenden von %2$s</string>
+    <string name="events_tickets">Tickets</string>
+    <string name="events_zum_kalender">Zum Kalender hinzufügen</string>
+    <string name="events_infoseite">Infoseite des Veranstalters</string>
+    <string name="events_extern_hinweis">↗ öffnet eine Seite außerhalb der App.</string>
+    <string name="events_angaben_hinweis">Angaben vom Veranstalter. Kurzfristige Änderungen sind möglich.</string>
+    <string name="events_mehr_anzeigen">Mehr anzeigen</string>
+    <string name="events_weniger_anzeigen">Weniger anzeigen</string>
+
+    <!-- Events: Filter -->
+    <string name="events_filter_art">Art</string>
+    <string name="events_art_alle">Alle</string>
+    <string name="events_art_veranstaltungen">Veranstaltungen</string>
+    <string name="events_art_fristen">Fristen</string>
+    <string name="events_abgesagte_ausblenden">Abgesagte ausblenden</string>
+    <string name="events_abgesagte_hinweis">Sonst erscheinen sie mit „Fällt aus“.</string>
+    <string name="events_filter_hinweis">Tag, Heute Abend und Veranstalter wählst du über der Liste.</string>
+
     <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
     <string name="platzhalter_text">Diese Ansicht folgt.</string>
 </resources>

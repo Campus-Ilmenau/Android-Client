@@ -85,6 +85,18 @@ class AppSettings @Inject constructor(private val dataStore: DataStore<Preferenc
         dataStore.edit { it[Keys.NOTICES_DISMISSED] = it[Keys.NOTICES_DISMISSED].orEmpty() + id }
     }
 
+    /** Gemerkte Veranstaltungen (IDs), nur auf diesem Gerät. Den Filter „Gemerkt“ wendet die App auf die geladene Liste an. */
+    val eventBookmarks: Flow<Set<String>> =
+        dataStore.data.map { it[Keys.EVENT_BOOKMARKS].orEmpty() }.distinctUntilChanged()
+
+    /** Merkt die Veranstaltung oder nimmt sie wieder weg. */
+    suspend fun toggleEventBookmark(id: String) {
+        dataStore.edit { preferences ->
+            val current = preferences[Keys.EVENT_BOOKMARKS].orEmpty()
+            preferences[Keys.EVENT_BOOKMARKS] = if (id in current) current - id else current + id
+        }
+    }
+
     private fun decodeFilter(text: String?): MensaFilter =
         text?.let { runCatching { FilterJson.decodeFromString(MensaFilter.serializer(), it) }.getOrNull() }
             ?: MensaFilter()
@@ -97,6 +109,7 @@ class AppSettings @Inject constructor(private val dataStore: DataStore<Preferenc
         val MENSA_FILTER = stringPreferencesKey("MensaFilter")
         val MENSA_FAVORITES = stringSetPreferencesKey("mensaFavoriteMeals")
         val HEUTE_MENSA = stringPreferencesKey("heuteMensa")
+        val EVENT_BOOKMARKS = stringSetPreferencesKey("eventsMerkliste")
         val NOTICES_DISMISSED = stringSetPreferencesKey("heuteHinweiseAusgeblendet")
     }
 

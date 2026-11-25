@@ -91,6 +91,96 @@ class CampusEventTest {
         assertEquals("Club", heute.location)
     }
 
+    // MARK: Detail und Kalender
+
+    @Test
+    fun `Tickets und Kalender entfallen bei einer Absage`() {
+        val base = event(at(20)).copy(ticketUrl = "https://t.example", infoUrl = "https://i.example")
+        val normal = EventDetailDisplay(base)
+        assertTrue(normal.showTickets)
+        assertFalse(normal.calendarIsPrimary)
+        assertTrue(normal.showExternalHint)
+        assertEquals("https://i.example", normal.shareUrl)
+
+        val cancelled = EventDetailDisplay(base.copy(status = EventStatus.Cancelled))
+        assertFalse(cancelled.showTickets)
+        assertFalse(cancelled.showCalendar)
+        // Der Infolink bleibt, damit der Hinweis zur externen Seite stimmt.
+        assertTrue(cancelled.showExternalHint)
+    }
+
+    @Test
+    fun `ohne Tickets ist der Kalender der Hauptbutton und ohne Links entfaellt der Hinweis`() {
+        val display = EventDetailDisplay(event(at(20)))
+        assertTrue(display.calendarIsPrimary)
+        assertFalse(display.showExternalHint)
+        assertNull(display.shareUrl)
+        assertEquals("t", EventDetailDisplay(event(at(20)).copy(ticketUrl = "t")).shareUrl)
+    }
+
+    @Test
+    fun `die Titelgroesse sinkt bei langen Titeln und leere Texte entfallen`() {
+        assertEquals(32, EventDetailDisplay(event(at(20))).titleSize)
+        assertEquals(26, EventDetailDisplay(event(at(20)).copy(title = "x".repeat(41))).titleSize)
+        val display = EventDetailDisplay(event(at(20)).copy(location = "  ", description = " Text ", address = ""))
+        assertNull(display.location)
+        assertNull(display.address)
+        assertNull(display.mapQuery)
+        assertEquals("Text", display.description)
+    }
+
+    @Test
+    fun `der Kalendereintrag nimmt ohne Ende zwei Stunden und fasst Ort und Adresse zusammen`() {
+        val entry = CalendarEntry.of(event(at(19)).copy(location = "Club", address = " Ehrenbergstr. 1 ", infoUrl = "https://i.example"))
+        assertEquals(at(19).toEpochMilli(), entry.beginMillis)
+        assertEquals(at(21).toEpochMilli(), entry.endMillis)
+        assertFalse(entry.allDay)
+        assertEquals("Club, Ehrenbergstr. 1", entry.location)
+        assertEquals("https://i.example", entry.url)
+        // Ein Ende vor dem Beginn zählt nicht.
+        assertEquals(at(21).toEpochMilli(), CalendarEntry.of(event(at(19), end = at(18))).endMillis)
+        assertNull(CalendarEntry.of(event(at(19))).location)
+    }
+
+    @Test
+    fun `ein ganztaegiger Eintrag laeuft in UTC bis Mitternacht nach dem letzten Tag`() {
+        val allDay = event(BerlinTime.startOfDay(day), end = BerlinTime.startOfDay(day.plusDays(2)), allDay = true)
+        val entry = CalendarEntry.of(allDay)
+        assertTrue(entry.allDay)
+        // 24.11. und 25.11., Ende exklusiv am 26.11. 00:00 UTC
+        assertEquals(LocalDate.of(2026, 11, 24).atStartOfDay(java.time.ZoneOffset.UTC).toInstant().toEpochMilli(), entry.beginMillis)
+        assertEquals(LocalDate.of(2026, 11, 26).atStartOfDay(java.time.ZoneOffset.UTC).toInstant().toEpochMilli(), entry.endMillis)
+    }
+
+    @Test
+    fun `Zeitzeile der Karte`() {
+        fun text(event: CampusEvent, reference: LocalDate = day) = EventTimes.timeLine(event, reference, java.util.Locale.GERMAN)
+        assertEquals(de.kaigothe.campusilmenau.core.common.UiText(de.kaigothe.campusilmenau.R.string.events_ganztaegig), text(event(at(0), allDay = true)))
+        assertEquals(
+            de.kaigothe.campusilmenau.core.common.UiText(de.kaigothe.campusilmenau.R.string.events_zeit_von_bis, "19:00", "23:00"),
+            text(event(at(19), end = at(23))),
+        )
+        assertEquals(
+            de.kaigothe.campusilmenau.core.common.UiText(de.kaigothe.campusilmenau.R.string.events_zeit_ab, "20:00"),
+            text(event(at(20))),
+        )
+        // Mehrtägig, schon vor dem Bezugstag begonnen: „Läuft seit … · bis …“.
+        val multi = event(at(10, 0, day.minusDays(1)), end = at(12, 0, day.plusDays(1)))
+        val running = text(multi)
+        assertEquals(de.kaigothe.campusilmenau.R.string.events_zeit_laeuft_seit, running.id)
+    }
+
+    @Test
+    fun `Titel der Tagesabschnitte`() {
+        val locale = java.util.Locale.GERMAN
+        assertEquals(de.kaigothe.campusilmenau.R.string.events_abschnitt_heute, EventTimes.sectionTitle(day, day, locale).id)
+        assertEquals(de.kaigothe.campusilmenau.R.string.events_abschnitt_morgen, EventTimes.sectionTitle(day.plusDays(1), day, locale).id)
+        assertEquals(de.kaigothe.campusilmenau.R.string.events_abschnitt_datum, EventTimes.sectionTitle(day.plusDays(5), day, locale).id)
+        assertEquals(de.kaigothe.campusilmenau.R.string.events_abschnitt_gestern, EventTimes.pastSectionTitle(day.minusDays(1), day, locale).id)
+        assertEquals("Dienstag", EventTimes.weekday(day, locale))
+        assertEquals("Di", EventTimes.weekdayShort(day, locale))
+    }
+
     // MARK: Filter
 
     private val now = at(10)

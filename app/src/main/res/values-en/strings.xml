@@ -179,6 +179,95 @@
     <string name="heute_event_laeuft_seit">Running since %1$s</string>
     <string name="heute_event_heute_um">Today · %1$s</string>
 
+    <!-- Events: list -->
+    <string name="events_titel">Events</string>
+    <string name="events_vergangene">Past</string>
+    <string name="events_vergangene_button">Past events</string>
+    <string name="events_kommende">Upcoming</string>
+    <string name="events_unterzeile_standard">What is on in Ilmenau</string>
+    <string name="events_unterzeile_alles_von">Everything from %1$s</string>
+    <string name="events_unterzeile_abend">%1$s from 5 pm</string>
+    <string name="events_unterzeile_vergangene">The last month, newest first</string>
+    <string name="events_unterzeile_zusatz">%1$s · %2$s</string>
+    <string name="events_ab_heute">From today</string>
+    <string name="events_tag_leiste">Day</string>
+    <string name="events_alles_ab_heute">Everything from today</string>
+    <string name="events_mit_veranstaltungen">%1$s, with events</string>
+    <string name="events_gemerkt">Saved</string>
+    <string name="events_veranstalter_kommende">%1$s, %2$d upcoming</string>
+    <string name="events_filter_aktiv">Filter, %1$d active</string>
+    <plurals name="events_anzahl">
+        <item quantity="one">%1$d event</item>
+        <item quantity="other">%1$d events</item>
+    </plurals>
+    <string name="events_fehler_titel">Events could not be loaded</string>
+    <string name="events_fehler_text">Check your connection and try again.</string>
+    <string name="events_weitere">More load automatically as you scroll.</string>
+    <string name="events_laedt">Loading events</string>
+    <string name="events_leer_gemerkt_titel">Nothing saved yet</string>
+    <string name="events_leer_gemerkt_text">Tap the star on an event. Saved events stay on this device.</string>
+    <string name="events_leer_alle_anzeigen">Show all</string>
+    <string name="events_leer_abend_heute">Nothing listed for tonight</string>
+    <string name="events_leer_abend_tag">Nothing listed for this evening</string>
+    <string name="events_leer_abend_text">From 5 pm you will find parties, pub nights and more here.</string>
+    <string name="events_leer_abend_aktion">Show everything from today</string>
+    <string name="events_leer_titel">No events for this selection</string>
+    <string name="events_leer_text">Choose another day or another organizer.</string>
+    <string name="events_leer_vergangene_text">There was nothing like that last month.</string>
+    <string name="events_filter_zuruecksetzen">Reset filter</string>
+
+    <!-- Events: card and times -->
+    <string name="events_chip_faellt_aus">Cancelled</string>
+    <string name="events_chip_unbestaetigt">Not confirmed yet</string>
+    <string name="events_chip_frist">Deadline</string>
+    <string name="events_sprech_faellt_aus">cancelled</string>
+    <string name="events_sprech_unbestaetigt">not confirmed yet</string>
+    <string name="events_sprech_gemerkt">saved</string>
+    <string name="events_merken">Save</string>
+    <string name="events_nicht_mehr_merken">Remove from saved</string>
+    <string name="events_ganztaegig">All day</string>
+    <string name="events_ganztaegig_laeuft">All day · running now</string>
+    <string name="events_zeit_von_bis">%1$s–%2$s</string>
+    <string name="events_zeit_von_bis_detail">%1$s – %2$s</string>
+    <string name="events_zeit_ab">From %1$s</string>
+    <string name="events_zeit_laeuft_seit">Running since %1$s · until %2$s</string>
+    <string name="events_zeit_ab_bis_tag">From %1$s · until %2$s</string>
+    <string name="events_zeit_ab_und_bis_uhr">%1$s · until %2$s</string>
+    <string name="events_tage_bis">%1$s – %2$s</string>
+    <string name="events_abschnitt_heute">Today · %1$s</string>
+    <string name="events_abschnitt_morgen">Tomorrow · %1$s</string>
+    <string name="events_abschnitt_gestern">Yesterday · %1$s</string>
+    <string name="events_abschnitt_datum">%1$s, %2$s</string>
+
+    <!-- Events: detail -->
+    <string name="events_detail_zurueck">Back to events</string>
+    <string name="events_toast_gemerkt">Saved</string>
+    <string name="events_toast_nicht_mehr_gemerkt">Removed from saved</string>
+    <string name="events_nicht_gefunden_titel">Event not found</string>
+    <string name="events_nicht_gefunden_text">It may have been removed.</string>
+    <string name="events_detail_fehler_titel">Could not be loaded</string>
+    <string name="events_hinweis_abgesagt">The organizer has cancelled this event.</string>
+    <string name="events_hinweis_unbestaetigt">The date is not confirmed yet. Check again shortly before.</string>
+    <string name="events_in_karten">Open in Maps</string>
+    <string name="events_alle_kommenden">All upcoming from %1$s</string>
+    <string name="events_alle_n_kommenden">All %1$d upcoming from %2$s</string>
+    <string name="events_tickets">Tickets</string>
+    <string name="events_zum_kalender">Add to calendar</string>
+    <string name="events_infoseite">Organizer\'s info page</string>
+    <string name="events_extern_hinweis">↗ opens a page outside the app.</string>
+    <string name="events_angaben_hinweis">Information from the organizer. Short-notice changes are possible.</string>
+    <string name="events_mehr_anzeigen">Show more</string>
+    <string name="events_weniger_anzeigen">Show less</string>
+
+    <!-- Events: filter -->
+    <string name="events_filter_art">Type</string>
+    <string name="events_art_alle">All</string>
+    <string name="events_art_veranstaltungen">Events</string>
+    <string name="events_art_fristen">Deadlines</string>
+    <string name="events_abgesagte_ausblenden">Hide cancelled</string>
+    <string name="events_abgesagte_hinweis">Otherwise they appear as “Cancelled”.</string>
+    <string name="events_filter_hinweis">Choose the day, tonight and the organizer above the list.</string>
+
     <!-- Placeholder until the screens of the individual milestones -->
     <string name="platzhalter_text">This screen is coming.</string>
 </resources>

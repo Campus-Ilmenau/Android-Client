@@ -493,7 +493,7 @@ private fun FilterButton(count: Int, onClick: () -> Unit) {
 
 /** Zahl in `accent` an der Filter-Taste. Im Dark Mode ist `accent` hell, deshalb steht dort dunkle Schrift darauf. */
 @Composable
-private fun FilterCountBadge(count: Int, modifier: Modifier = Modifier) {
+internal fun FilterCountBadge(count: Int, modifier: Modifier = Modifier) {
     val colors = CampusTheme.colors
     val isDark = MaterialTheme.colorScheme.background.luminance() < 0.5f
     Text(

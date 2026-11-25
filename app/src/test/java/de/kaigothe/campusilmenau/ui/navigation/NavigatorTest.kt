@@ -149,6 +149,23 @@ class NavigatorTest {
     }
 
     @Test
+    fun `ein Event-Link oeffnet das Detail, die Liste beginnt bei Events wieder vorn`() {
+        val navigator = navigator()
+
+        navigator.open(DeepLink.Event("abc"))
+        assertEquals(AppTab.Events, navigator.state.selectedTab)
+        assertEquals(listOf<NavKey>(EventsRoute, EventDetailRoute("abc")), navigator.stack(AppTab.Events))
+
+        navigator.navigate(EventsVergangeneRoute("All", false))
+        navigator.open(DeepLink.EventsHeuteAbend)
+        assertEquals(listOf<NavKey>(EventsRoute), navigator.stack(AppTab.Events))
+
+        navigator.open(DeepLink.Event("x"))
+        navigator.open(DeepLink.Events)
+        assertEquals(listOf<NavKey>(EventsRoute), navigator.stack(AppTab.Events))
+    }
+
+    @Test
     fun `der Link Thoska auslesen wird ohne NFC ignoriert`() {
         val navigator = navigator(noNfcTabs)
         navigator.selectTab(AppTab.Mensa)

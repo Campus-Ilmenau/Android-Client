@@ -27,6 +27,11 @@ import de.kaigothe.campusilmenau.R
 import de.kaigothe.campusilmenau.ui.components.ToastHost
 import de.kaigothe.campusilmenau.ui.components.ToastState
 import de.kaigothe.campusilmenau.ui.components.rememberToastState
+import de.kaigothe.campusilmenau.domain.model.events.EventKind
+import de.kaigothe.campusilmenau.domain.model.events.EventsSelection
+import de.kaigothe.campusilmenau.ui.events.EventDetailScreen
+import de.kaigothe.campusilmenau.ui.events.EventsPastScreen
+import de.kaigothe.campusilmenau.ui.events.EventsScreen
 import de.kaigothe.campusilmenau.ui.heute.HeuteScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaMealDetailScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaOpeningHoursScreen
@@ -95,7 +100,25 @@ fun AppShell(
         entry<MensaZeitenRoute> { MensaOpeningHoursScreen(onBack = { navigator.goBack() }) }
         entry<ThoskaRoute> { FeaturePlaceholder(title = R.string.tab_thoska) }
         entry<BibliothekRoute> { FeaturePlaceholder(title = R.string.tab_bibliothek) }
-        entry<EventsRoute> { FeaturePlaceholder(title = R.string.tab_events) }
+        entry<EventsRoute> {
+            EventsScreen(
+                onOpenEvent = { id -> navigator.navigate(EventDetailRoute(id)) },
+                onOpenPast = { selection ->
+                    navigator.navigate(EventsVergangeneRoute(selection.kind.name, selection.hideCancelled))
+                },
+            )
+        }
+        entry<EventsVergangeneRoute> { route ->
+            EventsPastScreen(
+                initial = EventsSelection(
+                    kind = EventKind.entries.firstOrNull { it.name == route.kind } ?: EventKind.All,
+                    hideCancelled = route.hideCancelled,
+                ),
+                onBack = { navigator.goBack() },
+                onOpenEvent = { id -> navigator.navigate(EventDetailRoute(id)) },
+            )
+        }
+        entry<EventDetailRoute> { route -> EventDetailScreen(id = route.id, onBack = { navigator.goBack() }) }
         entry<MehrRoute> { FeaturePlaceholder(title = R.string.mehr_titel) }
     }
 

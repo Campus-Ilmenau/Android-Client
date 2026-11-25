@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.kaigothe.campusilmenau.core.device.DeviceCapabilities
 import de.kaigothe.campusilmenau.data.preferences.AppSettings
+import de.kaigothe.campusilmenau.data.repository.EventsRequest
+import de.kaigothe.campusilmenau.data.repository.EventsRequests
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaVenue
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,6 +18,7 @@ class ShellViewModel @Inject constructor(
     capabilities: DeviceCapabilities,
     private val router: DeepLinkRouter,
     private val settings: AppSettings,
+    private val eventsRequests: EventsRequests,
 ) : ViewModel() {
 
     /** Die Tabs dieses Geräts: ohne NFC-Hardware kein Thoska. */
@@ -24,13 +27,19 @@ class ShellViewModel @Inject constructor(
     val deepLinkRequest: StateFlow<DeepLinkRequest?> = router.request
 
     /**
-     * Setzt, was ein Link außer dem Ziel verlangt: `campusilmenau://mensa?mensa=<id>` wählt die Mensa. Eine unbekannte
-     * ID ändert nichts, es bleibt die zuletzt gewählte Mensa.
+     * Setzt, was ein Link außer dem Ziel verlangt: `campusilmenau://mensa?mensa=<id>` wählt die Mensa (eine unbekannte
+     * ID ändert nichts), die Links auf die Veranstaltungsliste setzen deren Auswahl zurück bzw. auf „Heute Abend“.
      */
     fun prepare(link: DeepLink) {
-        if (link is DeepLink.Mensa) {
-            val venue = MensaVenue.fromKey(link.venueId) ?: return
-            viewModelScope.launch { settings.setMensaVenue(venue) }
+        when (link) {
+            is DeepLink.Mensa -> {
+                val venue = MensaVenue.fromKey(link.venueId) ?: return
+                viewModelScope.launch { settings.setMensaVenue(venue) }
+            }
+
+            DeepLink.Events -> eventsRequests.post(EventsRequest.ShowAll)
+            DeepLink.EventsHeuteAbend -> eventsRequests.post(EventsRequest.ShowEvening)
+            else -> Unit
         }
     }
 
