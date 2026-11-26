@@ -1,6 +1,8 @@
 package de.kaigothe.campusilmenau.ui.navigation
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import de.kaigothe.campusilmenau.ui.adaptive.currentWindowWidthClass
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -169,34 +171,53 @@ fun AppShell(
     }
 
     val imeVisible = WindowInsets.isImeVisible
+    // Fenster ab 600 dp Breite: Navigation am Rand statt Tab-Leiste unten. Der Zustand (Tab, Back Stacks) liegt im
+    // NavigationState und ist von der Breite unabhängig, ein Wechsel (Drehen, Falten, Fenstergröße) verliert nichts.
+    val widthClass = currentWindowWidthClass()
+    val sideNavigation = widthClass.usesSideNavigation
+    val mehrSelected = navigationState.selectedTab == navigationState.startTab &&
+        navigationState.currentStack.lastOrNull() is MehrRoute
 
     CompositionLocalProvider(LocalToastState provides toastState) {
-        Scaffold(
-            modifier = modifier,
-            containerColor = MaterialTheme.colorScheme.background,
-            contentWindowInsets = WindowInsets(0.dp),
-            bottomBar = {
-                if (!imeVisible) {
-                    CampusTabBar(
-                        tabs = navigationState.tabs,
-                        selected = navigationState.selectedTab,
-                        onSelect = navigator::selectTab,
-                        onReselect = navigator::onReselect,
-                    )
-                }
-            },
-        ) { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .consumeWindowInsets(innerPadding)
-                    .then(if (imeVisible) Modifier.imePadding() else Modifier),
-            ) {
-                NavDisplay(
-                    entries = navigationState.toDecoratedEntries(entries),
-                    onBack = { navigator.goBack() },
+        Row(modifier = modifier) {
+            if (sideNavigation) {
+                CampusNavigationRail(
+                    tabs = navigationState.tabs,
+                    selected = navigationState.selectedTab,
+                    mehrSelected = mehrSelected,
+                    onSelect = navigator::selectTab,
+                    onReselect = navigator::onReselect,
+                    onOpenMehr = { navigator.openMehr(bereich = null) },
+                    widthClass = widthClass,
                 )
-                ToastHost(state = toastState, modifier = Modifier.align(Alignment.BottomCenter))
+            }
+            Scaffold(
+                modifier = Modifier.weight(1f),
+                containerColor = MaterialTheme.colorScheme.background,
+                contentWindowInsets = WindowInsets(0.dp),
+                bottomBar = {
+                    if (!sideNavigation && !imeVisible) {
+                        CampusTabBar(
+                            tabs = navigationState.tabs,
+                            selected = navigationState.selectedTab,
+                            onSelect = navigator::selectTab,
+                            onReselect = navigator::onReselect,
+                        )
+                    }
+                },
+            ) { innerPadding ->
+                Box(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .consumeWindowInsets(innerPadding)
+                        .then(if (imeVisible) Modifier.imePadding() else Modifier),
+                ) {
+                    NavDisplay(
+                        entries = navigationState.toDecoratedEntries(entries),
+                        onBack = { navigator.goBack() },
+                    )
+                    ToastHost(state = toastState, modifier = Modifier.align(Alignment.BottomCenter))
+                }
             }
         }
     }
