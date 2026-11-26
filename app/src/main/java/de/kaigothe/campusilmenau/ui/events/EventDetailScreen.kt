@@ -70,6 +70,10 @@ import de.kaigothe.campusilmenau.domain.model.events.CampusEvent
 import de.kaigothe.campusilmenau.domain.model.events.EventDetailDisplay
 import de.kaigothe.campusilmenau.domain.model.events.EventStatus
 import de.kaigothe.campusilmenau.domain.model.events.EventTimes
+import androidx.compose.material.icons.outlined.Share
+import de.kaigothe.campusilmenau.domain.model.share.EventShare
+import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
+import de.kaigothe.campusilmenau.ui.share.shareText
 import de.kaigothe.campusilmenau.ui.components.BackBar
 import de.kaigothe.campusilmenau.ui.components.BandsStyle
 import de.kaigothe.campusilmenau.ui.components.CampusChip
@@ -104,6 +108,7 @@ fun EventDetailScreen(
     val toast = LocalToastState.current
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
+    val shareStrings = rememberShareStrings()
     val bookmarkedText = stringResource(R.string.events_toast_gemerkt)
     val unbookmarkedText = stringResource(R.string.events_toast_nicht_mehr_gemerkt)
 
@@ -125,6 +130,7 @@ fun EventDetailScreen(
             onOpenUrl = { url -> runCatching { uriHandler.openUri(url) } },
             onOpenMap = { address -> openMap(context, address) },
             onAddToCalendar = { addToCalendar(context, CalendarEntry.of(current.event)) },
+            onShare = { context.shareText(EventShare(current.event, shareStrings)) },
             modifier = modifier,
         )
 
@@ -189,6 +195,7 @@ fun EventDetailContent(
     onOpenUrl: (String) -> Unit,
     onOpenMap: (String) -> Unit,
     onAddToCalendar: () -> Unit,
+    onShare: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val display = EventDetailDisplay(event)
@@ -227,7 +234,7 @@ fun EventDetailContent(
         ) {
             RoundButton(Icons.AutoMirrored.Outlined.ArrowBack, stringResource(R.string.events_detail_zurueck), onClick = onBack)
             Box(modifier = Modifier.weight(1f))
-            // Das Teilen der Veranstaltung kommt mit M8 hierher, links vom Stern.
+            RoundButton(Icons.Outlined.Share, stringResource(R.string.share_button), onClick = onShare)
             RoundButton(
                 icon = if (isBookmarked) Icons.Filled.Star else Icons.Outlined.StarBorder,
                 description = stringResource(if (isBookmarked) R.string.events_nicht_mehr_merken else R.string.events_merken),
@@ -504,7 +511,7 @@ private fun DetailPreview(dark: Boolean, event: CampusEvent) {
     CampusIlmenauTheme(darkTheme = dark) {
         EventDetailContent(
             event = event, isBookmarked = true, upcomingCount = 4, now = BerlinTime.at(PreviewDay, 12 * 60),
-            onBack = {}, onToggleBookmark = {}, onAllFromOrganizer = {}, onOpenUrl = {}, onOpenMap = {}, onAddToCalendar = {},
+            onBack = {}, onToggleBookmark = {}, onAllFromOrganizer = {}, onOpenUrl = {}, onOpenMap = {}, onAddToCalendar = {}, onShare = {},
         )
     }
 }

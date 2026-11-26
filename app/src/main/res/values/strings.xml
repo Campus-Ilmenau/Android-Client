@@ -658,6 +658,38 @@
     <string name="mehr_app_icon">App-Icon</string>
     <string name="mehr_icon_standard">Standard</string>
     <string name="mehr_icon_dunkel">Dunkel</string>
+
+    <!-- Teilen: Texte, die in den geteilten Text kommen (ShareStrings) -->
+    <string name="share_button">Teilen</string>
+    <string name="share_chooser">Teilen über</string>
+    <string name="share_brand">Geteilt mit Campus Ilmenau – %1$s</string>
+    <string name="share_group_students">Studierende</string>
+    <string name="share_group_staff">Bedienstete</string>
+    <string name="share_group_guests">Gäste</string>
+    <string name="share_plan_lunch">Mittagsangebot</string>
+    <string name="share_plan_dinner">Abendessen</string>
+    <string name="share_hours">%1$s Uhr</string>
+    <string name="share_prices_students">Preise für Studierende</string>
+    <string name="share_prices_staff">Preise für Bedienstete</string>
+    <string name="share_prices_guests">Preise für Gäste</string>
+    <string name="share_tag_vegan">Vegan</string>
+    <string name="share_tag_vegetarian">Vegetarisch</string>
+    <string name="share_tag_organic">Bio</string>
+    <string name="share_tag_regional">Regional</string>
+    <string name="share_meal_fallback_category">Gericht</string>
+    <string name="share_meal_allergens">Allergene: %1$s</string>
+    <string name="share_meal_additives">Zusatzstoffe: %1$s</string>
+    <string name="share_meal_co2">≈ %1$s g CO₂ pro Portion</string>
+    <string name="share_event_cancelled">Fällt aus: %1$s</string>
+    <string name="share_event_tentative">(Termin noch nicht bestätigt)</string>
+    <string name="share_event_organizer">Veranstalter: %1$s</string>
+    <string name="share_event_tickets">Tickets: %1$s</string>
+    <string name="share_event_info">Infos: %1$s</string>
+    <string name="share_event_all_day">ganztägig</string>
+    <string name="share_event_range">%1$s–%2$s Uhr</string>
+    <string name="share_event_from">ab %1$s Uhr</string>
+    <string name="share_medium_intro">Aus dem Katalog der UB Ilmenau:</string>
+    <string name="share_medium_online">Online im Campusnetz</string>
     <string name="mehr_sprache_de" translatable="false">Deutsch</string>
     <string name="mehr_sprache_en" translatable="false">English</string>
     <string name="mehr_gespeicherte_daten">Gespeicherte Daten</string>

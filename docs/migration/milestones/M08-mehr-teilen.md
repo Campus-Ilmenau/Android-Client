@@ -22,9 +22,10 @@ Bereich „Mehr“ mit Einstellungen sowie Teilen von Gerichten, Events und Medi
 ### Teilen
 - [ ] Teilkarten als Bitmap rendern (Compose → `GraphicsLayer`) (`ShareCardView`, `ShareEventCard`, `ShareImage`, `ShareBranding`).
 - [ ] Share-Intent mit `FileProvider`, Text und Bild getrennt (kein zusätzlicher Text beim Teilen als Bild).
-- [ ] Inhalte: Gericht (`MensaShare`), Event (`EventShare`), Medium (`LibraryMediaShare`).
+- [x] Inhalte als Text (8b-1): Gericht (`MensaMealShare`), Speiseplan einer Mensa (`MensaPlanShare`, Teilen-Taste im Speiseplan folgt mit der Bildkarte), Event (`EventShare`), Medium (`LibraryMediaShare`). Reines Kotlin in `domain/model/share/`, Texte über `ShareStrings` (App: `ResourceShareStrings`, `share_*` de/en). Teilen-Taste in Gericht, Veranstaltung und Titelansicht, Teilen-Blatt per `ACTION_SEND` (`Context.shareText`).
+- [ ] Bildkarten (8b-2) und Teilen-Taste im Speiseplan.
 - [ ] Bild sichern: über Share-Intent bzw. `MediaStore`, keine Berechtigung nötig.
-- [ ] Tests: `ShareTextTests`, `ShareCardTests`.
+- [ ] Tests: `ShareTextTest` (steht, 24 Fälle), `ShareCardTests` (mit den Bildkarten).
 
 ## Abnahme
 

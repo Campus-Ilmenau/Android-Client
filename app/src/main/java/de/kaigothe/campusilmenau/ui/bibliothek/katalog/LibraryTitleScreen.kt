@@ -87,6 +87,11 @@ import de.kaigothe.campusilmenau.ui.components.PrimaryButton
 import de.kaigothe.campusilmenau.ui.components.SecondaryButton
 import de.kaigothe.campusilmenau.ui.navigation.LocalToastState
 import de.kaigothe.campusilmenau.ui.theme.CampusTheme
+import androidx.compose.ui.platform.LocalContext
+import de.kaigothe.campusilmenau.domain.model.share.LibraryMediaShare
+import de.kaigothe.campusilmenau.ui.share.ShareButton
+import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
+import de.kaigothe.campusilmenau.ui.share.shareText
 import de.kaigothe.campusilmenau.ui.theme.CardShape
 import de.kaigothe.campusilmenau.ui.theme.Spacing
 import kotlinx.coroutines.launch
@@ -116,6 +121,8 @@ fun LibraryTitleScreen(
     val refreshFailed = stringResource(R.string.bib_titel_aktualisieren_fehler)
 
     val more = stringResource(R.string.bib_kat_u_a)
+    val context = LocalContext.current
+    val shareStrings = rememberShareStrings()
     val addedText = stringResource(R.string.bib_merkliste_gesetzt)
     val showText = stringResource(R.string.bib_merkliste_anzeigen)
     val removedText = stringResource(R.string.bib_merkliste_entfernt_kurz)
@@ -142,6 +149,7 @@ fun LibraryTitleScreen(
         onToggleToc = viewModel::toggleToc,
         onToggleBlurb = viewModel::toggleBlurb,
         onToggleBookmark = { viewModel.toggleBookmark(more) },
+        onShare = { state.detail?.let { context.shareText(LibraryMediaShare(it, shareStrings, more)) } },
         onOpenUrl = { url -> if (url.startsWith("http://", true) || url.startsWith("https://", true)) runCatching { uriHandler.openUri(url) } },
         onCopySignature = { signature ->
             scope.launch {
@@ -163,6 +171,7 @@ fun LibraryTitleContent(
     onToggleToc: () -> Unit,
     onToggleBlurb: () -> Unit,
     onToggleBookmark: () -> Unit,
+    onShare: () -> Unit,
     onOpenUrl: (String) -> Unit,
     onCopySignature: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -171,6 +180,7 @@ fun LibraryTitleContent(
         Row(verticalAlignment = Alignment.CenterVertically) {
             BackBar(onBack = onBack, description = stringResource(R.string.bib_titel_zurueck), modifier = Modifier.weight(1f))
             if (state.detail != null) {
+                ShareButton(onClick = onShare)
                 val bookmarked = state.isBookmarked
                 IconButton(onClick = onToggleBookmark, modifier = Modifier.padding(end = 4.dp).size(Spacing.MinTouchTarget)) {
                     Icon(
