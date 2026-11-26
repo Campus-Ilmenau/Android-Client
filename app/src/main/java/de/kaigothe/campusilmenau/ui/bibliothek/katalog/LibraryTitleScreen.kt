@@ -21,11 +21,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.ExpandLess
 import androidx.compose.material.icons.outlined.ExpandMore
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
@@ -97,6 +100,7 @@ fun LibraryTitleScreen(
     id: String,
     searchId: String?,
     onBack: () -> Unit,
+    onOpenMerkliste: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: LibraryTitleViewModel = hiltViewModel<LibraryTitleViewModel, LibraryTitleViewModel.Factory>(
         key = "titel-$id",
@@ -111,6 +115,18 @@ fun LibraryTitleScreen(
     val copied = stringResource(R.string.bib_titel_signatur_kopiert)
     val refreshFailed = stringResource(R.string.bib_titel_aktualisieren_fehler)
 
+    val more = stringResource(R.string.bib_kat_u_a)
+    val addedText = stringResource(R.string.bib_merkliste_gesetzt)
+    val showText = stringResource(R.string.bib_merkliste_anzeigen)
+    val removedText = stringResource(R.string.bib_merkliste_entfernt_kurz)
+    LaunchedEffect(viewModel, addedText, showText, removedText) {
+        viewModel.meldungen.collect { meldung ->
+            when (meldung) {
+                TitelMeldung.Gemerkt -> toast.show(addedText, actionLabel = showText, onAction = onOpenMerkliste)
+                TitelMeldung.Entfernt -> toast.show(removedText)
+            }
+        }
+    }
     LaunchedEffect(state.refreshFailed) {
         if (state.refreshFailed) {
             toast.show(refreshFailed)
@@ -125,6 +141,7 @@ fun LibraryTitleScreen(
         onRefresh = viewModel::refresh,
         onToggleToc = viewModel::toggleToc,
         onToggleBlurb = viewModel::toggleBlurb,
+        onToggleBookmark = { viewModel.toggleBookmark(more) },
         onOpenUrl = { url -> if (url.startsWith("http://", true) || url.startsWith("https://", true)) runCatching { uriHandler.openUri(url) } },
         onCopySignature = { signature ->
             scope.launch {
@@ -145,12 +162,25 @@ fun LibraryTitleContent(
     onRefresh: () -> Unit,
     onToggleToc: () -> Unit,
     onToggleBlurb: () -> Unit,
+    onToggleBookmark: () -> Unit,
     onOpenUrl: (String) -> Unit,
     onCopySignature: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding()) {
-        BackBar(onBack = onBack, description = stringResource(R.string.bib_titel_zurueck))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            BackBar(onBack = onBack, description = stringResource(R.string.bib_titel_zurueck), modifier = Modifier.weight(1f))
+            if (state.detail != null) {
+                val bookmarked = state.isBookmarked
+                IconButton(onClick = onToggleBookmark, modifier = Modifier.padding(end = 4.dp).size(Spacing.MinTouchTarget)) {
+                    Icon(
+                        if (bookmarked) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
+                        contentDescription = stringResource(if (bookmarked) R.string.bib_merkliste_entfernen else R.string.bib_merkliste_setzen),
+                        tint = if (bookmarked) CampusTheme.colors.accent else CampusTheme.colors.textPrimary,
+                    )
+                }
+            }
+        }
         PullToRefreshBox(isRefreshing = false, onRefresh = onRefresh, modifier = Modifier.weight(1f)) {
             Column(
                 modifier = Modifier

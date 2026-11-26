@@ -7,6 +7,9 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.SQLiteConnection
+import androidx.sqlite.execSQL
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 
@@ -46,16 +49,29 @@ interface ThoskaDao {
     suspend fun deleteName(cardId: String)
 }
 
-/** Die Datenbank der App. Bisher nur die Thoska; weitere Tabellen kommen mit Bibliothek (M7). */
+/** Die Datenbank der App: Thoska-Verlauf und Merkliste der Bibliothek. */
 @Database(
-    entities = [ThoskaBalanceEntity::class, ThoskaCardNameEntity::class],
-    version = 1,
+    entities = [ThoskaBalanceEntity::class, ThoskaCardNameEntity::class, MerklisteTitelEntity::class],
+    version = 2,
     exportSchema = true,
 )
 abstract class CampusDatabase : RoomDatabase() {
     abstract fun thoskaDao(): ThoskaDao
+    abstract fun merklisteDao(): MerklisteDao
 
     companion object {
         const val NAME = "campus.db"
+
+        /** Version 2: Tabelle der Merkliste (Bibliothek, M7). */
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(connection: SQLiteConnection) {
+                connection.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `merkliste_titel` (`id` TEXT NOT NULL, `titel` TEXT NOT NULL, " +
+                        "`personen` TEXT NOT NULL, `jahr` TEXT, `medientyp` TEXT NOT NULL, `coverUrl` TEXT, " +
+                        "`gemerktAmMillis` INTEGER NOT NULL, `foundAtMillis` INTEGER, `changedAtMillis` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`id`))",
+                )
+            }
+        }
     }
 }

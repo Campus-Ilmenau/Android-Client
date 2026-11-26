@@ -51,6 +51,10 @@ data class KatalogRoute(val term: String? = null) : NavKey
 @Serializable
 data class KatalogTitelRoute(val id: String, val searchId: String? = null) : NavKey
 
+/** Die Merkliste der Bibliothek, erreichbar aus dem Bibliothek-Tab und aus dem Toast nach dem Merken. */
+@Serializable
+data object MerklisteRoute : NavKey
+
 /** Die Wurzel-Route des Tabs. */
 val AppTab.route: NavKey
     get() = when (this) {

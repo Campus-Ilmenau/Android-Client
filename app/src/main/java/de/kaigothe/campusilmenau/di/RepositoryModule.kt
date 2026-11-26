@@ -13,7 +13,9 @@ import de.kaigothe.campusilmenau.data.nfc.ThoskaReader
 import de.kaigothe.campusilmenau.data.remote.events.EventsApi
 import de.kaigothe.campusilmenau.data.remote.library.LibraryApi
 import de.kaigothe.campusilmenau.data.repository.LibraryCatalogRepository
+import de.kaigothe.campusilmenau.data.repository.MerklisteRepository
 import de.kaigothe.campusilmenau.data.repository.NetworkLibraryCatalogRepository
+import de.kaigothe.campusilmenau.data.repository.RoomMerklisteRepository
 import de.kaigothe.campusilmenau.data.repository.RoomThoskaRepository
 import de.kaigothe.campusilmenau.data.security.CredentialStore
 import de.kaigothe.campusilmenau.data.security.KeystoreCredentialStore
@@ -54,6 +56,9 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindThoskaRepository(impl: RoomThoskaRepository): ThoskaRepository
+
+    @Binds
+    abstract fun bindMerklisteRepository(impl: RoomMerklisteRepository): MerklisteRepository
 
     @Binds
     abstract fun bindThoskaReader(impl: NfcThoskaReader): ThoskaReader

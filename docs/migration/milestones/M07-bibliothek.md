@@ -40,10 +40,10 @@ Bibliothekskonto, Katalogsuche, Merkliste und Ausweis. Größter Block (ca. 9.80
 
 ## 7d – Merkliste
 
-- [ ] Merkliste lokal (Room), funktioniert abgemeldet. Felder siehe [spec/lokale-daten.md](../spec/lokale-daten.md) (`foundAt`, `changedAt` mitführen, keine Grabsteine bis Wear OS).
-- [ ] Offen/Gefunden, Entfernen und „Gefunden“ **widerrufbar** (Snackbar „Widerrufen“), „Alle entfernen“.
-- [ ] Verfügbarkeit beim Öffnen frisch laden (Pakete à 20 IDs, parallel), nie speichern, Fehler → „Unbekannt“. Zeile mit Signatur, Standort, „+ N weitere“, Lageplan-Link.
-- [ ] Liste und Titel (Tablet: nebeneinander, siehe M9).
+- [x] Merkliste lokal (Room, Datenbank-Version 2 mit Migration), funktioniert abgemeldet. Felder siehe [spec/lokale-daten.md](../spec/lokale-daten.md) (`foundAt`, `changedAt` mitgeführt, keine Grabsteine bis Wear OS). Lesezeichen in der Titelansicht (Toast „Anzeigen“), Einstieg über das Lesezeichen im Bibliothek-Tab.
+- [x] Offen/Gefunden, Entfernen und „Gefunden“ **widerrufbar** (Toast „Widerrufen“), „Merkliste leeren“ mit Rückfrage. Wischen (rechts: entfernen, links: gefunden) plus Menü beim langen Drücken und TalkBack-Aktionen. Widerruf setzt den Eintrag mit seinem `gemerktAm` zurück, die Stelle ergibt sich aus der Sortierung (keine eigene Position nötig).
+- [x] Verfügbarkeit beim Öffnen und Aktualisieren frisch laden (Pakete à 20 IDs, parallel), nie speichern, Fehler → „Unbekannt“. Zeile mit Signatur, Standort, „+ N weitere“, Lageplan-Link.
+- [ ] Liste und Titel nebeneinander (Tablet) folgt in M9.
 
 ## 7e – Ausweis
 

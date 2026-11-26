@@ -9,14 +9,24 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import de.kaigothe.campusilmenau.core.network.ApiError
 import de.kaigothe.campusilmenau.data.repository.LibraryCatalogRepository
 import de.kaigothe.campusilmenau.data.repository.LibraryCoverLoader
+import de.kaigothe.campusilmenau.data.repository.MerklisteRepository
+import de.kaigothe.campusilmenau.domain.model.library.merkliste.GemerkterTitel
+import java.time.Clock
 import de.kaigothe.campusilmenau.domain.model.library.catalog.LibraryMedia
 import de.kaigothe.campusilmenau.domain.model.library.catalog.LibraryMediaDetail
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
+enum class TitelMeldung { Gemerkt, Entfernt }
 
 sealed interface TitlePhase {
     data object Loading : TitlePhase
@@ -38,6 +48,8 @@ data class LibraryTitleState(
     val blurbOpen: Boolean = false,
     /** Einmalige Meldung nach einem fehlgeschlagenen Aktualisieren; die Seite zeigt weiter ihre Daten. */
     val refreshFailed: Boolean = false,
+    /** Der Titel steht auf der Merkliste. */
+    val isBookmarked: Boolean = false,
 ) {
     val media: LibraryMedia? get() = detail?.media
 
@@ -52,6 +64,8 @@ class LibraryTitleViewModel @AssistedInject constructor(
     @Assisted("searchId") private val searchId: String?,
     private val repository: LibraryCatalogRepository,
     private val covers: LibraryCoverLoader,
+    private val merkliste: MerklisteRepository,
+    private val clock: Clock,
 ) : ViewModel() {
 
     @AssistedFactory
@@ -60,7 +74,13 @@ class LibraryTitleViewModel @AssistedInject constructor(
     }
 
     private val _state = MutableStateFlow(LibraryTitleState())
-    val state: StateFlow<LibraryTitleState> = _state.asStateFlow()
+    private val _meldungen = MutableSharedFlow<TitelMeldung>(extraBufferCapacity = 2)
+
+    val state: StateFlow<LibraryTitleState> = combine(_state, merkliste.ids) { state, ids -> state.copy(isBookmarked = id in ids) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), LibraryTitleState())
+
+    /** Kurze Rückmeldungen nach dem Merken bzw. Entfernen, als Toast zu zeigen. */
+    val meldungen: SharedFlow<TitelMeldung> = _meldungen.asSharedFlow()
 
     init {
         load(track = true)
@@ -101,4 +121,18 @@ class LibraryTitleViewModel @AssistedInject constructor(
     fun refreshFailedShown() = _state.update { it.copy(refreshFailed = false) }
 
     suspend fun cover(media: LibraryMedia) = covers.image(media)
+
+    /** Lesezeichen: auf die Merkliste setzen oder wieder entfernen. [more] ist „u. a.“ in der Sprache der App. */
+    fun toggleBookmark(more: String) {
+        val media = _state.value.media ?: return
+        viewModelScope.launch {
+            if (state.value.isBookmarked) {
+                merkliste.entfernen(media.id)
+                _meldungen.emit(TitelMeldung.Entfernt)
+            } else {
+                merkliste.merken(GemerkterTitel.of(media, more, clock.instant()))
+                _meldungen.emit(TitelMeldung.Gemerkt)
+            }
+        }
+    }
 }

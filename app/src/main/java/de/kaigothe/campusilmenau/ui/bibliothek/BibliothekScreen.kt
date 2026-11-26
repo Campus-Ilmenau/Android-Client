@@ -16,6 +16,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.QrCodeScanner
 import androidx.compose.material.icons.outlined.Search
@@ -83,6 +84,7 @@ import java.time.format.FormatStyle
 @Composable
 fun BibliothekScreen(
     onOpenCatalog: () -> Unit,
+    onOpenMerkliste: () -> Unit,
     onOpenTitle: (id: String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: BibliothekViewModel = hiltViewModel(),
@@ -119,6 +121,7 @@ fun BibliothekScreen(
             onOpenNotifications = viewModel::openNotifications,
             onOpenLogin = viewModel::openLogin,
             onOpenCatalog = onOpenCatalog,
+            onOpenMerkliste = onOpenMerkliste,
             onOpenTitle = onOpenTitle,
         )
     }
@@ -156,6 +159,7 @@ fun BibliothekContent(
     onOpenLogin: () -> Unit,
     modifier: Modifier = Modifier,
     onOpenCatalog: () -> Unit = {},
+    onOpenMerkliste: () -> Unit = {},
     onOpenTitle: (id: String) -> Unit = {},
 ) {
     val colors = CampusTheme.colors
@@ -193,7 +197,10 @@ fun BibliothekContent(
                     color = colors.textSecondary,
                 )
             }
-            // Der Katalog braucht keine Anmeldung.
+            // Katalog und Merkliste brauchen keine Anmeldung.
+            IconButton(onClick = onOpenMerkliste, modifier = Modifier.size(Spacing.MinTouchTarget)) {
+                Icon(Icons.Outlined.BookmarkBorder, contentDescription = stringResource(R.string.bib_merkliste_oeffnen), tint = colors.textSecondary)
+            }
             IconButton(onClick = onOpenCatalog, modifier = Modifier.size(Spacing.MinTouchTarget)) {
                 Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.bib_kat_oeffnen), tint = colors.textSecondary)
             }
