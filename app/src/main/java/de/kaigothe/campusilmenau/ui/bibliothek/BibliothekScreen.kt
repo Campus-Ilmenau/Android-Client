@@ -17,6 +17,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.QrCodeScanner
+import androidx.compose.ui.focus.focusRequester
+import de.kaigothe.campusilmenau.ui.components.SecondaryButton
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -308,6 +311,8 @@ private fun NotificationsSheet(notifications: List<PaiaNotification>, onRefresh:
 
 // MARK: - Anmelden
 
+private enum class ScanFocus { Username, Password }
+
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun LoginSheet(
@@ -321,6 +326,35 @@ private fun LoginSheet(
 ) {
     val colors = CampusTheme.colors
     var showPassword by rememberSaveable { mutableStateOf(false) }
+    var scanning by rememberSaveable { mutableStateOf(false) }
+    // Nach dem Scanner: bei Treffer Fokus aufs Passwort, sonst auf die Benutzernummer.
+    var focusAfterScan by remember { mutableStateOf<ScanFocus?>(null) }
+    val usernameFocus = remember { androidx.compose.ui.focus.FocusRequester() }
+    val passwordFocus = remember { androidx.compose.ui.focus.FocusRequester() }
+    LaunchedEffect(focusAfterScan, scanning) {
+        if (!scanning) {
+            when (focusAfterScan) {
+                ScanFocus.Password -> passwordFocus.requestFocus()
+                ScanFocus.Username -> usernameFocus.requestFocus()
+                null -> Unit
+            }
+            focusAfterScan = null
+        }
+    }
+    if (scanning) {
+        BenutzernummerScanner(
+            onScanned = { number ->
+                onUsername(number)
+                focusAfterScan = ScanFocus.Password
+                scanning = false
+            },
+            onCancel = { scanning = false },
+            onEnterManually = {
+                focusAfterScan = ScanFocus.Username
+                scanning = false
+            },
+        )
+    }
     CampusSheet(onDismissRequest = onDismiss) {
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState()).padding(horizontal = Spacing.ScreenEdge, vertical = 12.dp),
@@ -365,7 +399,14 @@ private fun LoginSheet(
                 singleLine = true,
                 enabled = !form.isLoggingIn,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth().semantics { contentType = ContentType.Username },
+                modifier = Modifier.fillMaxWidth().focusRequester(usernameFocus).semantics { contentType = ContentType.Username },
+            )
+            SecondaryButton(
+                text = stringResource(R.string.bib_scan_starten),
+                onClick = { scanning = true },
+                icon = Icons.Outlined.QrCodeScanner,
+                enabled = !form.isLoggingIn,
+                modifier = Modifier.fillMaxWidth(),
             )
             OutlinedTextField(
                 value = form.password,
@@ -383,7 +424,7 @@ private fun LoginSheet(
                         )
                     }
                 },
-                modifier = Modifier.fillMaxWidth().semantics { contentType = ContentType.Password },
+                modifier = Modifier.fillMaxWidth().focusRequester(passwordFocus).semantics { contentType = ContentType.Password },
             )
             NeutralSwitchRow(label = stringResource(R.string.bib_login_bleiben), checked = form.remember, onCheckedChange = onRemember)
             Text(

@@ -412,6 +412,22 @@
     <string name="bib_login_ohne_text">Benutzernummer und Passwort werden nicht gespeichert – nach einem Neustart der App meldest du dich neu an.</string>
     <string name="bib_login_quelle">Anmeldung über die PAIA-Schnittstelle der Universitätsbibliothek.</string>
 
+    <!-- Bibliothek: Scanner der Benutzernummer -->
+    <string name="bib_scan_starten">Von der Thoska scannen</string>
+    <string name="bib_scan_titel">Benutzernummer scannen</string>
+    <string name="bib_scan_hinweis">Halte den Strichcode auf der Rückseite deiner Thoska in den Rahmen.</string>
+    <string name="bib_scan_pruefe">Kamera wird vorbereitet …</string>
+    <string name="bib_scan_gefunden">Nummer erkannt</string>
+    <string name="bib_scan_verweigert_titel">Kein Zugriff auf die Kamera</string>
+    <string name="bib_scan_verweigert_text">Erlaube den Kamerazugriff in den Einstellungen, um die Nummer zu scannen. Du kannst sie auch von Hand eingeben.</string>
+    <string name="bib_scan_einstellungen">Einstellungen öffnen</string>
+    <string name="bib_scan_nicht_verfuegbar_titel">Kamera nicht verfügbar</string>
+    <string name="bib_scan_nicht_verfuegbar_text">Die Kamera wird gerade von einer anderen App benutzt oder ist nicht vorhanden. Gib die Nummer von Hand ein.</string>
+    <string name="bib_scan_lampe_an">Taschenlampe einschalten</string>
+    <string name="bib_scan_lampe_aus">Taschenlampe ausschalten</string>
+    <string name="bib_scan_von_hand">Nummer selbst eingeben</string>
+    <string name="bib_scan_schliessen">Scanner schließen</string>
+
     <!-- Bibliothek: Fehler -->
     <string name="paia_fehler_antwort">Ungültige Server-Antwort</string>
     <string name="paia_fehler_http">HTTP-Fehler: %1$d</string>

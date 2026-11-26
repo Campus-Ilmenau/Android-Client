@@ -19,13 +19,13 @@ Bibliothekskonto, Katalogsuche, Merkliste und Ausweis. Größter Block (ca. 9.80
 
 ## 7b – Login-Sheet und Scan
 
-- [ ] Login-Sheet (Formular stabil gegenüber Szenenwechsel/Autofill, bekannter iOS-Fehler). Zustand mit `rememberSaveable`/ViewModel halten.
-- [ ] Autofill/Credential Manager.
-- [ ] Schalter „Angemeldet bleiben“ mit Erklärtext (Passwort wird verschlüsselt auf dem Gerät gespeichert). Aus: nur Sitzung im Speicher, wie iOS.
-- [ ] Benutzernummer: Buchstaben erlaubt. Nach Sitzungsablauf bleibt die Nummer vorbelegt, nach manuellem Abmelden ist das Feld leer.
-- [ ] Scanner der Benutzernummer: **Barcode** auf der Thoska-Rückseite (nicht Text). CameraX + ML Kit **Barcode Scanning** (Code 39/93/128, ITF, EAN-8/13, Codabar). `BenutzernummerFormat` portieren: Leerraum entfernen, 8–14 Zeichen, beginnt mit ASCII-Ziffer, nur ASCII-Ziffern/-Buchstaben, bei Codabar Start/Stopp A–D abtrennen. Anderes still ignorieren.
-- [ ] Scanner-Zustände: prüft, scannt, gefunden (kurze Pause, dann schließen), verweigert, nicht verfügbar. Taschenlampe. Kein Bild speichern, nichts loggen.
-- [ ] `CAMERA` als Runtime-Request im Scan-Auslöser (`rememberLauncherForActivityResult`), Fallback manuelle Eingabe. Nach dem Schließen Fokus auf Passwort (nach Treffer) bzw. Benutzernummer.
+- [x] Login-Sheet (Formular stabil gegenüber Szenenwechsel/Autofill, bekannter iOS-Fehler). Zustand mit `rememberSaveable`/ViewModel halten.
+- [x] Autofill (`contentType` Username/Password). Credential Manager noch nicht angebunden.
+- [x] Schalter „Angemeldet bleiben“ mit Erklärtext (Passwort wird verschlüsselt auf dem Gerät gespeichert). Aus: nur Sitzung im Speicher, wie iOS.
+- [x] Benutzernummer: Buchstaben erlaubt. Nach Sitzungsablauf bleibt die Nummer vorbelegt, nach manuellem Abmelden ist das Feld leer.
+- [x] Scanner der Benutzernummer: **Barcode** auf der Thoska-Rückseite (nicht Text). CameraX + ML Kit **Barcode Scanning** (Code 39/93/128, ITF, EAN-8/13, Codabar). `BenutzernummerFormat` portieren: Leerraum entfernen, 8–14 Zeichen, beginnt mit ASCII-Ziffer, nur ASCII-Ziffern/-Buchstaben, bei Codabar Start/Stopp A–D abtrennen. Anderes still ignorieren.
+- [x] Scanner-Zustände: prüft, scannt, gefunden (kurze Pause, dann schließen), verweigert, nicht verfügbar. Taschenlampe. Kein Bild speichern, nichts loggen.
+- [x] `CAMERA` als Runtime-Request im Scan-Auslöser (`rememberLauncherForActivityResult`), Fallback manuelle Eingabe. Nach dem Schließen Fokus auf Passwort (nach Treffer) bzw. Benutzernummer.
 
 ## 7c – Katalog
 

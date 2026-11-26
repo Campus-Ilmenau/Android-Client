@@ -409,6 +409,22 @@
     <string name="bib_login_ohne_text">User number and password are not stored – after restarting the app you sign in again.</string>
     <string name="bib_login_quelle">Sign-in through the PAIA interface of the university library.</string>
 
+    <!-- Library: user number scanner -->
+    <string name="bib_scan_starten">Scan from Thoska</string>
+    <string name="bib_scan_titel">Scan user number</string>
+    <string name="bib_scan_hinweis">Hold the barcode on the back of your Thoska inside the frame.</string>
+    <string name="bib_scan_pruefe">Preparing camera …</string>
+    <string name="bib_scan_gefunden">Number recognised</string>
+    <string name="bib_scan_verweigert_titel">No access to the camera</string>
+    <string name="bib_scan_verweigert_text">Allow camera access in Settings to scan the number. You can also type it in.</string>
+    <string name="bib_scan_einstellungen">Open Settings</string>
+    <string name="bib_scan_nicht_verfuegbar_titel">Camera unavailable</string>
+    <string name="bib_scan_nicht_verfuegbar_text">The camera is in use by another app or missing. Type the number in instead.</string>
+    <string name="bib_scan_lampe_an">Turn flashlight on</string>
+    <string name="bib_scan_lampe_aus">Turn flashlight off</string>
+    <string name="bib_scan_von_hand">Enter number manually</string>
+    <string name="bib_scan_schliessen">Close scanner</string>
+
     <!-- Library: errors -->
     <string name="paia_fehler_antwort">Invalid server response</string>
     <string name="paia_fehler_http">HTTP error: %1$d</string>

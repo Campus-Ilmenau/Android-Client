@@ -11,6 +11,13 @@
         android:name="android.hardware.nfc"
         android:required="false" />
 
+    <!-- Benutzernummer der Bibliothek von der Thoska scannen. Ohne Kamera bleibt die Eingabe von Hand. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:name=".CampusApp"
         android:allowBackup="true"
