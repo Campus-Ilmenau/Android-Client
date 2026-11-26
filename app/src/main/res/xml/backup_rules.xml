@@ -13,4 +13,7 @@
     <exclude
         domain="database"
         path="campus.db-shm" />
+    <exclude
+        domain="sharedpref"
+        path="paia_credentials.xml" />
 </full-backup-content>

@@ -14,5 +14,9 @@
         <exclude
             domain="database"
             path="campus.db-shm" />
-    </cloud-backup>
+        <!-- Verschlüsselte Zugangsdaten der Bibliothek („Angemeldet bleiben“): Der Schlüssel verlässt den Keystore nie. -->
+        <exclude
+            domain="sharedpref"
+            path="paia_credentials.xml" />
+        </cloud-backup>
 </data-extraction-rules>

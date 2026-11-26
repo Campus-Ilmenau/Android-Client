@@ -322,6 +322,52 @@
     <string name="thoska_chart_keine_aufladung">Keine Aufladung.</string>
     <string name="thoska_chart_aufladungen">%1$d-mal aufgeladen.</string>
 
+    <!-- Bibliothek: Ausleihen -->
+    <string name="bib_unbekanntes_medium">Unbekanntes Medium</string>
+    <string name="bib_heute_faellig">Heute fällig</string>
+    <plurals name="bib_ueberfaellig_seit">
+        <item quantity="one">Überfällig seit %1$d Tag</item>
+        <item quantity="other">Überfällig seit %1$d Tagen</item>
+    </plurals>
+    <plurals name="bib_faellig_in">
+        <item quantity="one">Fällig in %1$d Tag</item>
+        <item quantity="other">Fällig in %1$d Tagen</item>
+    </plurals>
+    <string name="bib_faellig_am">Fällig %1$s</string>
+    <string name="bib_verlaengert_n">%1$d× verlängert</string>
+    <string name="bib_noch_nicht_verlaengert">Noch nicht verlängert</string>
+    <string name="bib_nicht_verlaengerbar">%1$s · nicht verlängerbar</string>
+    <string name="bib_timeline">Leihfrist: %1$s, %2$s</string>
+    <string name="bib_timeline_ueberfaellig">überfällig</string>
+    <string name="bib_timeline_faellig_am">fällig am %1$s</string>
+    <string name="bib_timeline_ohne">ohne Fälligkeit</string>
+    <string name="bib_timeline_n_mal">%1$d-mal verlängert</string>
+    <string name="bib_timeline_noch_nicht">noch nicht verlängert</string>
+    <string name="bib_status_kein">Kein Status</string>
+    <string name="bib_status_vorgemerkt">Vorgemerkt</string>
+    <string name="bib_status_bestellt">Bestellt</string>
+    <string name="bib_status_ausgeliehen">Ausgeliehen</string>
+    <string name="bib_status_abholbereit">Abholbereit</string>
+    <string name="bib_status_abgelehnt">Abgelehnt</string>
+    <string name="bib_abholort">Abholort: %1$s</string>
+    <string name="bib_standort">Standort: %1$s</string>
+    <string name="bib_warteschlange">Warteschlange: %1$d</string>
+    <string name="bib_abholbar_bis">Abholbar bis %1$s</string>
+    <string name="bib_nichts_ausgeliehen">Nichts ausgeliehen</string>
+    <string name="bib_n_ausgeliehen">%1$d ausgeliehen</string>
+    <string name="bib_n_ueberfaellig">%1$d überfällig</string>
+    <string name="bib_n_bald_faellig">%1$d bald fällig</string>
+    <string name="bib_zusammenfassung_trenner"> · </string>
+
+    <!-- Bibliothek: Fehler -->
+    <string name="paia_fehler_antwort">Ungültige Server-Antwort</string>
+    <string name="paia_fehler_http">HTTP-Fehler: %1$d</string>
+    <string name="paia_fehler_nicht_angemeldet">Nicht angemeldet</string>
+    <string name="paia_fehler_sitzung">Sitzung abgelaufen, bitte erneut anmelden</string>
+    <string name="paia_fehler_verlaengerung">Verlängerung fehlgeschlagen: %1$s</string>
+    <string name="paia_fehler_ohne_kennung">Dieses Medium kann nicht verlängert werden</string>
+    <string name="paia_fehler_netz">Keine Verbindung zur Bibliothek. Prüfe deine Internetverbindung.</string>
+
     <!-- Platzhalter bis zu den Ansichten der einzelnen Meilensteine -->
     <string name="platzhalter_text">Diese Ansicht folgt.</string>
 </resources>

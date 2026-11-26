@@ -12,6 +12,8 @@ import de.kaigothe.campusilmenau.data.nfc.SystemNfcAvailability
 import de.kaigothe.campusilmenau.data.nfc.ThoskaReader
 import de.kaigothe.campusilmenau.data.remote.events.EventsApi
 import de.kaigothe.campusilmenau.data.repository.RoomThoskaRepository
+import de.kaigothe.campusilmenau.data.security.CredentialStore
+import de.kaigothe.campusilmenau.data.security.KeystoreCredentialStore
 import de.kaigothe.campusilmenau.data.repository.ThoskaRepository
 import de.kaigothe.campusilmenau.data.repository.EventsRepository
 import de.kaigothe.campusilmenau.data.repository.NetworkEventsRepository
@@ -40,6 +42,9 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindEventsRepository(impl: NetworkEventsRepository): EventsRepository
+
+    @Binds
+    abstract fun bindCredentialStore(impl: KeystoreCredentialStore): CredentialStore
 
     @Binds
     abstract fun bindThoskaRepository(impl: RoomThoskaRepository): ThoskaRepository

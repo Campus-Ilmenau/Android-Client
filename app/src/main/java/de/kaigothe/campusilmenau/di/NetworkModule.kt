@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import de.kaigothe.campusilmenau.BuildConfig
 import de.kaigothe.campusilmenau.core.network.ApiJson
 import de.kaigothe.campusilmenau.core.network.CamelCaseKeysInterceptor
+import de.kaigothe.campusilmenau.data.remote.paia.PaiaApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -56,6 +57,16 @@ object NetworkModule {
         }
         return builder.build()
     }
+
+    /** Der PAIA-Server der UB (fremder Host, eigene Basis-URL), über denselben HTTP-Client. */
+    @Provides
+    @Singleton
+    fun providePaiaApi(client: OkHttpClient, json: Json): PaiaApi = Retrofit.Builder()
+        .baseUrl(PaiaApi.BASE_URL)
+        .client(client)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .build()
+        .create(PaiaApi::class.java)
 
     @Provides
     @Singleton

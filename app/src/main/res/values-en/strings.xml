@@ -319,6 +319,52 @@
     <string name="thoska_chart_keine_aufladung">No top-up.</string>
     <string name="thoska_chart_aufladungen">Topped up %1$d times.</string>
 
+    <!-- Library: loans -->
+    <string name="bib_unbekanntes_medium">Unknown item</string>
+    <string name="bib_heute_faellig">Due today</string>
+    <plurals name="bib_ueberfaellig_seit">
+        <item quantity="one">Overdue for %1$d day</item>
+        <item quantity="other">Overdue for %1$d days</item>
+    </plurals>
+    <plurals name="bib_faellig_in">
+        <item quantity="one">Due in %1$d day</item>
+        <item quantity="other">Due in %1$d days</item>
+    </plurals>
+    <string name="bib_faellig_am">Due %1$s</string>
+    <string name="bib_verlaengert_n">Renewed %1$d×</string>
+    <string name="bib_noch_nicht_verlaengert">Not renewed yet</string>
+    <string name="bib_nicht_verlaengerbar">%1$s · cannot be renewed</string>
+    <string name="bib_timeline">Loan period: %1$s, %2$s</string>
+    <string name="bib_timeline_ueberfaellig">overdue</string>
+    <string name="bib_timeline_faellig_am">due on %1$s</string>
+    <string name="bib_timeline_ohne">no due date</string>
+    <string name="bib_timeline_n_mal">renewed %1$d times</string>
+    <string name="bib_timeline_noch_nicht">not renewed yet</string>
+    <string name="bib_status_kein">No status</string>
+    <string name="bib_status_vorgemerkt">Reserved</string>
+    <string name="bib_status_bestellt">Ordered</string>
+    <string name="bib_status_ausgeliehen">On loan</string>
+    <string name="bib_status_abholbereit">Ready for pickup</string>
+    <string name="bib_status_abgelehnt">Rejected</string>
+    <string name="bib_abholort">Pickup: %1$s</string>
+    <string name="bib_standort">Location: %1$s</string>
+    <string name="bib_warteschlange">Queue: %1$d</string>
+    <string name="bib_abholbar_bis">Available until %1$s</string>
+    <string name="bib_nichts_ausgeliehen">Nothing on loan</string>
+    <string name="bib_n_ausgeliehen">%1$d on loan</string>
+    <string name="bib_n_ueberfaellig">%1$d overdue</string>
+    <string name="bib_n_bald_faellig">%1$d due soon</string>
+    <string name="bib_zusammenfassung_trenner"> · </string>
+
+    <!-- Library: errors -->
+    <string name="paia_fehler_antwort">Invalid server response</string>
+    <string name="paia_fehler_http">HTTP error: %1$d</string>
+    <string name="paia_fehler_nicht_angemeldet">Not signed in</string>
+    <string name="paia_fehler_sitzung">Session expired, please sign in again</string>
+    <string name="paia_fehler_verlaengerung">Renewal failed: %1$s</string>
+    <string name="paia_fehler_ohne_kennung">This item cannot be renewed</string>
+    <string name="paia_fehler_netz">No connection to the library. Check your internet connection.</string>
+
     <!-- Placeholder until the screens of the individual milestones -->
     <string name="platzhalter_text">This screen is coming.</string>
 </resources>
