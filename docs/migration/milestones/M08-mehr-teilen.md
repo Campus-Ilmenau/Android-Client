@@ -14,7 +14,7 @@ Bereich „Mehr“ mit Einstellungen sowie Teilen von Gerichten, Events und Medi
 - [x] Bereich „Sprache“: Automatisch/Deutsch/English. Ab Android 13 über `LocaleManager` (`locales_config.xml`), davor eigene Speicherung und `attachBaseContext` (die App nutzt kein AppCompat-Theme).
 - [x] Bereich „Mensa“: Preisgruppe, Mensa auf Heute, Öffnungszeiten. (Der Einstieg in den Mensa-Filter bleibt im Mensa-Tab.)
 - [x] Darstellung (`AppDarstellung`): System/Hell/Dunkel über DataStore, wirkt sofort im Theme.
-- [ ] Alternative App-Icons (`AlternativeAppIcons`) über `activity-alias`; Hinweis auf kurzen Neustart. Themed Icon als „Tinted“-Ersatz.
+- [x] Alternative App-Icons (`AppIcon`, `AppIconWahl`) über zwei `activity-alias` (Standard, Dunkel); Themed Icon als „Tinted“-Ersatz im Standard-Icon. Android hat kein „Automatisch“ nach Hell/Dunkel, daher nur Standard und Dunkel. Der Wechsel nutzt `DONT_KILL_APP`, der Launcher zieht das Icon nach (kann einen Moment dauern). Auf Gerät noch zu prüfen: Launcher-Eintrag bleibt einzeln, Wechsel Standard ↔ Dunkel.
 - [x] Links (`AppLinks`): Datenschutz (`https://campus-ilmenau.de/datenschutz/`) und Impressum (`https://campus-ilmenau.de/impressum/`) in „Allgemein“, öffnen im Browser. In der iOS-App sind die Adressen noch leer (`AppLinks.swift`).
 - [x] „Gespeicherte Daten“ (`GespeicherteDatenView`): Übersicht (Thoska, Merkliste, Veranstaltungen, Einstellungen, was nicht gespeichert wird) und **Alle gespeicherten Daten löschen** (Verlauf, Merkliste, Einstellungen, Sitzung und gespeichertes PAIA-Passwort).
 - [ ] Shortcut-Tipps (`SiriFragenView`, `SiriTipps`) als Android-Variante (siehe M10).

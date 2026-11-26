@@ -655,6 +655,9 @@
     <string name="mehr_sprache">Sprache</string>
     <string name="mehr_sprache_auto">Automatisch · %1$s</string>
     <string name="mehr_sprache_automatisch">Automatisch</string>
+    <string name="mehr_app_icon">App-Icon</string>
+    <string name="mehr_icon_standard">Standard</string>
+    <string name="mehr_icon_dunkel">Dunkel</string>
     <string name="mehr_sprache_de" translatable="false">Deutsch</string>
     <string name="mehr_sprache_en" translatable="false">English</string>
     <string name="mehr_gespeicherte_daten">Gespeicherte Daten</string>

@@ -36,12 +36,6 @@
             android:launchMode="singleTop"
             android:theme="@style/Theme.CampusIlmenau.Starting"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
             <!-- Links aus Widgets, Shortcuts und dem Browser: campusilmenau://mensa, …/events/<id>, …/katalog/suche -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -52,6 +46,38 @@
                 <data android:scheme="campusilmenau" />
             </intent-filter>
         </activity>
+
+        <!-- Die Launcher-Einträge. Genau einer ist aktiv, „Mehr“ schaltet um (AppIcon.kt). Alle öffnen MainActivity;
+             die Aliase heißen wie in AppIconWahl. Ohne Icon-Angabe fiele ein Alias auf das Icon der App zurück. -->
+        <activity-alias
+            android:name=".IconStandard"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".IconDunkel"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_dark"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_dark"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
     </application>
 
 </manifest>

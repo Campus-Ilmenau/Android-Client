@@ -14,6 +14,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -69,6 +72,7 @@ fun MehrScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
+    var appIcon by remember { mutableStateOf(AppIcon.aktuell(context)) }
     MehrContent(
         state = state,
         bereich = MehrBereich.ofLink(bereich),
@@ -79,6 +83,11 @@ fun MehrScreen(
         onHeuteMensa = viewModel::setHeuteMensa,
         onPreisgruppe = viewModel::setPriceGroup,
         onSprache = { wahl -> context.findFragmentActivity()?.let { AppSprache.waehle(it, wahl) } },
+        appIcon = appIcon,
+        onAppIcon = { wahl ->
+            AppIcon.waehle(context, wahl)
+            appIcon = AppIcon.aktuell(context)
+        },
         onOpenMensaZeiten = onOpenMensaZeiten,
         onOpenGespeicherteDaten = onOpenGespeicherteDaten,
         onAnmelden = onOpenLogin,
@@ -102,6 +111,8 @@ fun MehrContent(
     onHeuteMensa: (MensaVenue) -> Unit,
     onPreisgruppe: (MensaPriceGroup) -> Unit,
     onSprache: (SpracheWahl) -> Unit,
+    appIcon: AppIconWahl,
+    onAppIcon: (AppIconWahl) -> Unit,
     onOpenMensaZeiten: () -> Unit,
     onOpenGespeicherteDaten: () -> Unit,
     onAnmelden: () -> Unit,
@@ -203,6 +214,15 @@ fun MehrContent(
                         gewaehlt = sprache,
                         beschriftung = { it.anzeige() },
                         onWahl = onSprache,
+                    )
+                    MehrTrenner()
+                    MehrAuswahlZeile(
+                        titel = stringResource(R.string.mehr_app_icon),
+                        wert = stringResource(appIcon.titel),
+                        optionen = AppIconWahl.entries.toList(),
+                        gewaehlt = appIcon,
+                        beschriftung = { stringResource(it.titel) },
+                        onWahl = onAppIcon,
                     )
                     MehrTrenner()
                     MehrLinkZeile(titel = stringResource(R.string.mehr_gespeicherte_daten), onClick = onOpenGespeicherteDaten)

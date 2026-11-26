@@ -651,6 +651,9 @@
     <string name="mehr_sprache">Language</string>
     <string name="mehr_sprache_auto">Automatic · %1$s</string>
     <string name="mehr_sprache_automatisch">Automatic</string>
+    <string name="mehr_app_icon">App icon</string>
+    <string name="mehr_icon_standard">Default</string>
+    <string name="mehr_icon_dunkel">Dark</string>
     <string name="mehr_gespeicherte_daten">Stored data</string>
     <string name="mehr_version">Campus Ilmenau · Version %1$s (%2$s)</string>
     <string name="mehr_abbrechen">Cancel</string>
