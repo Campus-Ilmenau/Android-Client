@@ -14,7 +14,7 @@ Stand: 2026-11-23
 | 8 | API-Umgebung | `BuildConfig`: debug → `dev-api…/develop`, release → `api.campus-ilmenau.de`. | Wie `APIUmgebung.swift`. |
 | 9 | Lokalisierung | `strings.xml`, Deutsch als Standard. | `Localizable.xcstrings` wird konvertiert. Alle UI-Texte über `stringResource`. |
 | 10 | Dokumentationsort | `docs/migration/` | Sichtbar in der Projektansicht. Die vom Migrations-Skill geforderte `feature_specification.md` liegt unter `.migration/feature_specification.md`. |
-| 11 | Biometrie für den Bibliotheksausweis | **Offen.** Vorschlag: Biometrie **oder** Geräte-PIN (`BIOMETRIC_STRONG or DEVICE_CREDENTIAL`). | iOS erlaubt nur Face ID/Touch ID und nie den Gerätecode. Auf Android haben viele Geräte nur eine PIN, der Ausweis wäre dort sonst unbenutzbar. Strikte Parität wäre `BIOMETRIC_STRONG` allein. Entscheidung vor M7e. |
+| 11 | Biometrie für den Bibliotheksausweis | **Biometrie oder Geräte-PIN** (`BIOMETRIC_STRONG or DEVICE_CREDENTIAL`, vor Android 11 `BIOMETRIC_WEAK or DEVICE_CREDENTIAL`). Umgesetzt in M7e. | iOS erlaubt nur Face ID/Touch ID und nie den Gerätecode. Auf Android haben viele Geräte nur eine PIN, der Ausweis wäre dort sonst unbenutzbar. Strikte Parität wäre `BIOMETRIC_STRONG` allein. Entscheidung vor M7e. |
 | 12 | Thoska-Tab ohne NFC | Tab **entfällt** auf Geräten ohne NFC-Hardware. | Wie iOS (`NFCVerfuegbarkeit`). Ist NFC vorhanden, aber ausgeschaltet, erscheint ein Hinweis mit Weg in die Einstellungen. |
 | 13 | Strichcode des Ausweises | Eigener **Code-39**-Renderer, kein ZXing. | iOS zeichnet Code 39 selbst. Gleiche Logik, keine zusätzliche Bibliothek. |
 | 14 | Scanner der Benutzernummer | ML Kit **Barcode** Scanning, nicht Text Recognition. | iOS liest den Barcode auf der Thoska-Rückseite. |

@@ -47,11 +47,12 @@ Bibliothekskonto, Katalogsuche, Merkliste und Ausweis. Größter Block (ca. 9.80
 
 ## 7e – Ausweis
 
-- [ ] Strichcode **Code 39**, selbst gezeichnet (kein ZXing): Muster-Tabelle aus `Strichcode.code39Muster` übernehmen, Start/Stopp `*`, schmale Lücke zwischen Zeichen, Kleinbuchstaben → groß, unbekannte Zeichen → kein Bild. Ganzzahlige Pixelbreiten, breit:schmal ≈ 2,5:1, Höhe 32 px, Ruhezone ≥ 10 schmale Striche, schmaler Strich höchstens 1,8 px/pt. Ausgabe als Bitmap ohne Filterung (`FilterQuality.None`) oder Canvas mit ganzzahligen Pixeln.
-- [ ] Schutz per `BiometricPrompt` bei **jedem** Öffnen (keine zwischengespeicherte Bestätigung). Zulässige Authentifizierung: siehe Entscheidung 11 in [02-entscheidungen.md](../02-entscheidungen.md) (Vorschlag: Biometrie oder Geräte-PIN).
-- [ ] Hinweise für „nicht eingerichtet“, „keine Bildschirmsperre gesetzt“, „gesperrt“ (Texte aus `BibliotheksausweisZugang`).
-- [ ] Inhalt: Name, Ablaufdatum, Status, Nutzergruppe-Chip. Die Zuordnungstabelle der UB-URIs ist in iOS **leer** (TODO): Chip entfällt, bis die URIs bekannt sind. `email`/`address` nie lesen. Daten nur im Speicher.
-- [ ] Helligkeit/Bildschirm beim Anzeigen optimieren.
+- [x] Strichcode **Code 39**, selbst gezeichnet (kein ZXing): Muster-Tabelle aus `Strichcode.code39Muster` übernehmen, Start/Stopp `*`, schmale Lücke zwischen Zeichen, Kleinbuchstaben → groß, unbekannte Zeichen → kein Bild. Ganzzahlige Pixelbreiten, breit:schmal ≈ 2,5:1, Höhe 32 px, Ruhezone ≥ 10 schmale Striche, schmaler Strich höchstens 1,8 px/pt. Ausgabe als Bitmap ohne Filterung (`FilterQuality.None`) oder Canvas mit ganzzahligen Pixeln.
+- [x] Schutz per `BiometricPrompt` bei **jedem** Öffnen (neuer Prompt ohne `CryptoObject`, keine zwischengespeicherte Bestätigung). Entscheidung 11: Biometrie oder Geräte-PIN. `MainActivity` ist dazu eine `FragmentActivity`.
+- [x] Hinweise für „nicht eingerichtet“, „nicht verfügbar“, „gesperrt“ (`AusweisZugang`, mit Tests auf die Fehlercodes).
+- [x] Inhalt: Name, Ablaufdatum, Status, Nutzergruppe-Chip (entfällt, bis die URIs der UB bekannt sind). `email`/`address` werden nie gelesen. Daten nur im Speicher; schließt nach 2 Minuten und sobald die App nicht mehr sichtbar ist.
+- [x] Helligkeit auf Maximum, Bildschirm bleibt an, `FLAG_SECURE` (keine Screenshots/Vorschaubilder).
+- [ ] Auf Gerät prüfen: BiometricPrompt mit `BIOMETRIC_WEAK or DEVICE_CREDENTIAL` auf Android 8–10, Scan des Strichcodes an einem echten Lesestoßen.
 
 ## Tests (aus iOS portieren)
 

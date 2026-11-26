@@ -8,6 +8,8 @@ import de.kaigothe.campusilmenau.data.repository.PaiaRepository
 import de.kaigothe.campusilmenau.data.repository.PaiaState
 import de.kaigothe.campusilmenau.domain.model.library.PaiaError
 import de.kaigothe.campusilmenau.domain.model.library.PaiaLoanItem
+import de.kaigothe.campusilmenau.domain.model.library.ausweis.AusweisDaten
+import de.kaigothe.campusilmenau.domain.model.library.ausweis.AusweisZugang
 import de.kaigothe.campusilmenau.ui.components.LoadingGate
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -45,6 +47,12 @@ data class BibliothekUiState(
     val loginVisible: Boolean = false,
     val notificationsVisible: Boolean = false,
     val login: LoginForm = LoginForm(),
+    /** Der Ausweis wird gerade geprüft oder geladen (Taste gesperrt, damit nichts doppelt startet). */
+    val ausweisWirdGeprueft: Boolean = false,
+    /** Der Ausweis ist offen. Die Daten leben nur im Speicher und nur so lange wie die Ansicht. */
+    val ausweis: AusweisDaten? = null,
+    /** „Nicht eingerichtet“ oder „gesperrt“ nach der Prüfung. */
+    val zugangHinweis: AusweisZugang.Hinweis? = null,
 ) {
     /** Die Bibliothek hat noch keine Ausleihen und lädt zum ersten Mal: Der Bereich gehört der Ziege. */
     val isFirstLoad: Boolean get() = paia.isLoading && paia.items.isEmpty()
@@ -53,7 +61,7 @@ data class BibliothekUiState(
 @HiltViewModel
 class BibliothekViewModel @Inject constructor(
     private val repository: PaiaRepository,
-    private val clock: Clock,
+    val clock: Clock,
 ) : ViewModel() {
 
     private data class Local(
@@ -61,6 +69,9 @@ class BibliothekViewModel @Inject constructor(
         val loginVisible: Boolean = false,
         val notificationsVisible: Boolean = false,
         val login: LoginForm = LoginForm(),
+        val ausweisWirdGeprueft: Boolean = false,
+        val ausweis: AusweisDaten? = null,
+        val zugangHinweis: AusweisZugang.Hinweis? = null,
     )
 
     private val local = MutableStateFlow(Local())
@@ -73,6 +84,9 @@ class BibliothekViewModel @Inject constructor(
             loginVisible = local.loginVisible,
             notificationsVisible = local.notificationsVisible,
             login = local.login,
+            ausweisWirdGeprueft = local.ausweisWirdGeprueft,
+            ausweis = local.ausweis,
+            zugangHinweis = local.zugangHinweis,
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, BibliothekUiState(repository.state.value, today = BerlinTime.date(clock.instant())))
 
@@ -117,6 +131,52 @@ class BibliothekViewModel @Inject constructor(
     }
 
     fun dismissError() = repository.dismissError()
+
+    /**
+     * Prüfung bei **jedem** Öffnen ([pruefen] fragt Biometrie oder Geräte-PIN neu ab), danach das Konto frisch laden und den
+     * Ausweis öffnen. Abbruch oder Fehlschlag der Prüfung bleibt ohne Meldung.
+     */
+    fun zeigeAusweis(pruefen: suspend () -> AusweisZugang) {
+        if (local.value.ausweisWirdGeprueft || local.value.ausweis != null) return
+        local.update { it.copy(ausweisWirdGeprueft = true) }
+        viewModelScope.launch {
+            try {
+                when (val zugang = pruefen()) {
+                    AusweisZugang.Erlaubt -> ladeAusweis()
+                    is AusweisZugang.Hinweis -> local.update { it.copy(zugangHinweis = zugang) }
+                    AusweisZugang.Abgebrochen -> Unit
+                }
+            } finally {
+                local.update { it.copy(ausweisWirdGeprueft = false) }
+            }
+        }
+    }
+
+    private suspend fun ladeAusweis() {
+        val letzter = repository.state.value.patron
+        // Schlägt der Abruf fehl, wird der Ausweis trotzdem gezeigt: mit Name und Nummer aus der Sitzung, aber ohne
+        // „Gültig bis“, Gruppe und Status.
+        val frisch = try {
+            repository.fetchPatron()
+        } catch (e: CancellationException) {
+            throw e
+        } catch (_: PaiaError.SessionExpired) {
+            null
+        } catch (_: PaiaError) {
+            null
+        }
+        val paia = repository.state.value
+        // Lief die Sitzung währenddessen ab (401/403), öffnet sich stattdessen das Login-Sheet.
+        if (paia.isAuthenticated) {
+            local.update { it.copy(ausweis = AusweisDaten.of(paia.lastUsername.orEmpty(), frisch, letzter)) }
+        } else {
+            onSessionExpired()
+        }
+    }
+
+    fun schliesseAusweis() = local.update { it.copy(ausweis = null) }
+
+    fun schliesseZugangHinweis() = local.update { it.copy(zugangHinweis = null) }
 
     fun logout() {
         repository.logout()

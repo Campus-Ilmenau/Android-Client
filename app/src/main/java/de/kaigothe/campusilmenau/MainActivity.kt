@@ -3,7 +3,6 @@ package de.kaigothe.campusilmenau
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import de.kaigothe.campusilmenau.domain.model.Darstellung
@@ -26,7 +26,8 @@ import de.kaigothe.campusilmenau.ui.theme.CampusIlmenauTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+/** `FragmentActivity`, weil der `BiometricPrompt` für den Bibliotheksausweis eine solche braucht. */
+class MainActivity : FragmentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 

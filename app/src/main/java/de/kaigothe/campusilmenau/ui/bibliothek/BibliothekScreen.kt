@@ -16,7 +16,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.BookmarkBorder
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+import androidx.compose.ui.platform.LocalContext
+import de.kaigothe.campusilmenau.ui.bibliothek.ausweis.AusweisPruefung
+import de.kaigothe.campusilmenau.ui.bibliothek.ausweis.AusweisScreen
+import de.kaigothe.campusilmenau.ui.bibliothek.ausweis.findFragmentActivity
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.QrCodeScanner
 import androidx.compose.material.icons.outlined.Search
@@ -92,6 +99,8 @@ fun BibliothekScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     var refreshing by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val pruefungTitel = stringResource(R.string.ausweis_pruefung_titel)
 
     LaunchedEffect(viewModel) { viewModel.start() }
 
@@ -123,6 +132,25 @@ fun BibliothekScreen(
             onOpenCatalog = onOpenCatalog,
             onOpenMerkliste = onOpenMerkliste,
             onOpenTitle = onOpenTitle,
+            onShowAusweis = {
+                context.findFragmentActivity()?.let { activity ->
+                    viewModel.zeigeAusweis { AusweisPruefung.pruefen(activity, pruefungTitel) }
+                }
+            },
+        )
+    }
+
+    state.ausweis?.let { daten -> AusweisScreen(daten = daten, clock = viewModel.clock, onClose = viewModel::schliesseAusweis) }
+    state.zugangHinweis?.let { hinweis ->
+        AlertDialog(
+            onDismissRequest = viewModel::schliesseZugangHinweis,
+            title = { Text(hinweis.titel.asString()) },
+            text = { Text(hinweis.text.asString()) },
+            confirmButton = {
+                TextButton(onClick = viewModel::schliesseZugangHinweis) {
+                    Text(stringResource(R.string.ausweis_ok), color = CampusTheme.colors.accent)
+                }
+            },
         )
     }
 
@@ -161,6 +189,7 @@ fun BibliothekContent(
     onOpenCatalog: () -> Unit = {},
     onOpenMerkliste: () -> Unit = {},
     onOpenTitle: (id: String) -> Unit = {},
+    onShowAusweis: () -> Unit = {},
 ) {
     val colors = CampusTheme.colors
     val paia = state.paia
@@ -264,6 +293,14 @@ fun BibliothekContent(
             else -> stringResource(R.string.bib_fuss_ohne_nutzer)
         }
         Text(text = footer, style = MaterialTheme.typography.bodySmall, color = colors.textTertiary, modifier = Modifier.padding(top = 6.dp))
+        SecondaryButton(
+            text = stringResource(R.string.ausweis_zeigen),
+            onClick = onShowAusweis,
+            icon = Icons.Outlined.Badge,
+            isLoading = state.ausweisWirdGeprueft,
+            enabled = !state.ausweisWirdGeprueft,
+            modifier = Modifier.fillMaxWidth(),
+        )
         SoftDestructiveButton(text = stringResource(R.string.bib_abmelden), onClick = onLogout, modifier = Modifier.fillMaxWidth())
     }
 }

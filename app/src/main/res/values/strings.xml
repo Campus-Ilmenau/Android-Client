@@ -609,6 +609,34 @@
     <string name="bib_merkliste_gesetzt">Auf die Merkliste gesetzt</string>
     <string name="bib_merkliste_entfernt_kurz">Von der Merkliste entfernt</string>
     <string name="bib_merkliste_anzeigen">Anzeigen</string>
+    <string name="ausweis_status_gesperrt">Konto gesperrt – bitte an der Ausleihtheke melden.</string>
+    <string name="ausweis_status_abgelaufen">Ausweis abgelaufen – bitte an der Ausleihtheke verlängern lassen.</string>
+    <string name="ausweis_status_gebuehren">Konto gesperrt wegen offener Gebühren – bitte an der Ausleihtheke bezahlen.</string>
+    <string name="ausweis_status_abgelaufen_gebuehren">Ausweis abgelaufen und Gebühren offen – bitte an der Ausleihtheke melden.</string>
+    <string name="ausweis_zugang_nicht_eingerichtet_titel">Bildschirmsperre nicht eingerichtet</string>
+    <string name="ausweis_zugang_nicht_eingerichtet_text">Um den Ausweis zu zeigen, richte in den Einstellungen eine Bildschirmsperre (PIN, Muster oder Passwort) oder Biometrie ein.</string>
+    <string name="ausweis_zugang_nicht_verfuegbar_titel">Prüfung nicht verfügbar</string>
+    <string name="ausweis_zugang_nicht_verfuegbar_text">Das Gerät kann dich gerade nicht prüfen. Versuche es später noch einmal.</string>
+    <string name="ausweis_zugang_gesperrt_titel">Biometrie ist gesperrt</string>
+    <string name="ausweis_zugang_gesperrt_text">Entsperre dein Gerät einmal mit PIN, Muster oder Passwort und versuche es dann erneut.</string>
+    <string name="ausweis_pruefung_titel">Bibliotheksausweis zeigen</string>
+    <string name="ausweis_zeigen">Bibliotheksausweis zeigen</string>
+    <string name="ausweis_titel">Bibliotheksausweis</string>
+    <string name="ausweis_fertig">Fertig</string>
+    <string name="ausweis_ok">OK</string>
+    <string name="ausweis_uni">Universitätsbibliothek Ilmenau</string>
+    <string name="ausweis_unterzeile">Ausweis in Campus Ilmenau</string>
+    <string name="ausweis_name">Name</string>
+    <string name="ausweis_nummer">Benutzernummer</string>
+    <string name="ausweis_gueltig">Gültig bis</string>
+    <string name="ausweis_live">Live · %1$s</string>
+    <string name="ausweis_schliesst">Schließt in %1$s</string>
+    <string name="ausweis_live_cd">Live angezeigt, schließt in %1$d Minuten %2$d Sekunden</string>
+    <string name="ausweis_lichtbild_titel">Nur mit Lichtbildausweis gültig</string>
+    <string name="ausweis_lichtbild_text">Nimm zusätzlich deinen Personalausweis oder Reisepass mit. Die Bibliothek kann ihn bei der Ausleihe sehen wollen.</string>
+    <string name="ausweis_hinweis_titel">Hinweis der Bibliothek</string>
+    <string name="ausweis_fussnote">Die Helligkeit ist erhöht. Die Angaben kommen aus deinem Bibliothekskonto und werden nicht gespeichert.</string>
+    <string name="ausweis_strichcode_cd">Strichcode der Benutzernummer %1$s</string>
 
     <!-- Bibliothek: Fehler -->
     <string name="paia_fehler_antwort">Ungültige Server-Antwort</string>

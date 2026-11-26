@@ -605,6 +605,34 @@
     <string name="bib_merkliste_gesetzt">Added to the reading list</string>
     <string name="bib_merkliste_entfernt_kurz">Removed from the reading list</string>
     <string name="bib_merkliste_anzeigen">Show</string>
+    <string name="ausweis_status_gesperrt">Account blocked – please contact the loan desk.</string>
+    <string name="ausweis_status_abgelaufen">Card expired – please have it renewed at the loan desk.</string>
+    <string name="ausweis_status_gebuehren">Account blocked because of outstanding fees – please pay at the loan desk.</string>
+    <string name="ausweis_status_abgelaufen_gebuehren">Card expired and fees outstanding – please contact the loan desk.</string>
+    <string name="ausweis_zugang_nicht_eingerichtet_titel">Screen lock not set up</string>
+    <string name="ausweis_zugang_nicht_eingerichtet_text">To show the card, set up a screen lock (PIN, pattern or password) or biometrics in the settings.</string>
+    <string name="ausweis_zugang_nicht_verfuegbar_titel">Verification unavailable</string>
+    <string name="ausweis_zugang_nicht_verfuegbar_text">The device cannot verify you right now. Please try again later.</string>
+    <string name="ausweis_zugang_gesperrt_titel">Biometrics locked</string>
+    <string name="ausweis_zugang_gesperrt_text">Unlock your device once with your PIN, pattern or password, then try again.</string>
+    <string name="ausweis_pruefung_titel">Show library card</string>
+    <string name="ausweis_zeigen">Show library card</string>
+    <string name="ausweis_titel">Library card</string>
+    <string name="ausweis_fertig">Done</string>
+    <string name="ausweis_ok">OK</string>
+    <string name="ausweis_uni">Ilmenau University Library</string>
+    <string name="ausweis_unterzeile">Card in Campus Ilmenau</string>
+    <string name="ausweis_name">Name</string>
+    <string name="ausweis_nummer">User number</string>
+    <string name="ausweis_gueltig">Valid until</string>
+    <string name="ausweis_live">Live · %1$s</string>
+    <string name="ausweis_schliesst">Closes in %1$s</string>
+    <string name="ausweis_live_cd">Shown live, closes in %1$d minutes %2$d seconds</string>
+    <string name="ausweis_lichtbild_titel">Valid only with photo ID</string>
+    <string name="ausweis_lichtbild_text">Also bring your ID card or passport. The library may want to see it when you borrow.</string>
+    <string name="ausweis_hinweis_titel">Note from the library</string>
+    <string name="ausweis_fussnote">The brightness is turned up. The details come from your library account and are not stored.</string>
+    <string name="ausweis_strichcode_cd">Barcode of user number %1$s</string>
 
     <!-- Library: errors -->
     <string name="paia_fehler_antwort">Invalid server response</string>
