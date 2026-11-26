@@ -42,7 +42,9 @@ object NetworkModule {
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .addInterceptor { chain ->
-                chain.proceed(chain.request().newBuilder().header("Accept", "application/json").build())
+                // Aufrufe mit eigenem Accept (Cover: image/*) bleiben unverändert.
+                val request = chain.request()
+                chain.proceed(if (request.header("Accept") == null) request.newBuilder().header("Accept", "application/json").build() else request)
             }
             // Schlüssel der Antworten in camelCase vereinheitlichen (die API mischt snake_case und camelCase).
             .addInterceptor(CamelCaseKeysInterceptor(json))

@@ -81,6 +81,17 @@ data class LibraryCover(val status: LibraryCoverStatus, val url: String?, val wi
     }
 }
 
+/** Ergebnis eines Cover-Abrufs. */
+sealed interface LibraryCoverResult {
+    class Image(val bytes: ByteArray) : LibraryCoverResult
+
+    /** Es gibt kein Cover. */
+    data object Missing : LibraryCoverResult
+
+    /** Das Cover wird noch geholt; [retryAfter] laut `Retry-After`. */
+    data class Pending(val retryAfter: kotlin.time.Duration?) : LibraryCoverResult
+}
+
 data class LibraryLink(val kind: String, val url: String?, val mimeType: String?)
 
 /** Warum ein Treffer passt. Bei `in=catalog` gibt es kein `match`. */
@@ -187,6 +198,8 @@ data class LibraryMediaDetail(
     val availabilityStatus: LibraryAvailabilityStatus,
     val contentsStatus: LibraryContentsStatus?,
     val contents: LibraryContents?,
+    /** `X-Cache-Status: stale`: Die Antwort kam aus dem Zwischenspeicher, weil der Katalog langsam war. */
+    val isStale: Boolean = false,
 ) {
     /** Inhalte dürfen gezeigt werden: Status `available` und tatsächlich vorhanden. */
     val hasContents: Boolean

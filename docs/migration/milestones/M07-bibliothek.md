@@ -29,13 +29,14 @@ Bibliothekskonto, Katalogsuche, Merkliste und Ausweis. Größter Block (ca. 9.80
 
 ## 7c – Katalog
 
-- [ ] Such-Modell (`LibrarySearchModel`): Debounce 700 ms, Generationszähler/Abbruch, Reset bei leerem Feld.
-- [ ] Parameter und Quellen laut `Suche-API-Analyse.md`: `q`, `title`, `author`, `isbn`, `subject`, `year_from/to`, `type`, `in=local|catalog|content`, `page`, `per_page=20`.
-- [ ] Fortsetzung „Im Gesamtkatalog suchen“ (`in=catalog`, `page=1`, Deduplizierung per `id`).
-- [ ] Availability-Batching (80 ms, max. 20 IDs), `GET /v1/library/features` beim Öffnen.
-- [ ] Cover mit Retry bei `cover_pending` (Coil, `Retry-After`).
-- [ ] UI: Katalog-Screen, Ergebniskarte, erweiterte Suche, Medienart-Pills, Titelansicht (`LibraryTitleView`, `LibraryTitleModel`), Pull-to-Refresh.
-- [ ] Hinweise: langsamer Katalog (`X-Cache-Status: stale`), Wartehinweis nach 900 ms.
+- [x] Such-Modell (`LibrarySearchViewModel`): Debounce 700 ms, Generationszähler/Abbruch, Reset bei leerem Feld.
+- [x] Parameter und Quellen laut `Suche-API-Analyse.md`: `q`, `title`, `author`, `isbn`, `subject`, `year_from/to`, `type`, `in=local|catalog|content`, `page`, `per_page=20`.
+- [x] Fortsetzung „Im Gesamtkatalog suchen“ (`in=catalog`, `page=1`, Deduplizierung per `id`).
+- [x] Availability-Batching (80 ms, max. 20 IDs), `GET /v1/library/features` beim Öffnen.
+- [x] Cover mit Retry bei `cover_pending` (`Retry-After`, höchstens 30 s, drei Versuche). Eigener `LibraryCoverLoader` mit Sitzungs-Cache statt Coil, weil das Cover-Ergebnis (404 + `cover_pending`) sonst nicht auswertbar ist.
+- [x] UI: Katalog-Screen, Ergebniskarte, erweiterte Suche, Medienart-Pills, Titelansicht (`LibraryTitleScreen`, `LibraryTitleViewModel`), Pull-to-Refresh. Einstieg über die Lupe im Bibliothek-Tab; Ausleihen und Vormerkungen öffnen ihren Titel über `catalogPpn`.
+- [x] Hinweise: langsamer Katalog (`X-Cache-Status: stale`), Wartehinweis nach 900 ms.
+- [ ] Offen für später: Merkliste-Taste (7d) und Teilen (M8) in der Titelansicht, Deeplink `katalog/suche?q=` (M10), Prüfung auf Gerät/Emulator.
 
 ## 7d – Merkliste
 

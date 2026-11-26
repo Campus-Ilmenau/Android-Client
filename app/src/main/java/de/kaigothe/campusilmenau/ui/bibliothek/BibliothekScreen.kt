@@ -18,6 +18,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.QrCodeScanner
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.ui.focus.focusRequester
 import de.kaigothe.campusilmenau.ui.components.SecondaryButton
 import androidx.compose.material.icons.outlined.Visibility
@@ -80,7 +81,12 @@ import java.time.format.FormatStyle
 /** Der Tab „Bibliothek“: Ausleihen und Vormerkungen aus dem PAIA-Konto, Mitteilungen, Anmelde-Sheet. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BibliothekScreen(modifier: Modifier = Modifier, viewModel: BibliothekViewModel = hiltViewModel()) {
+fun BibliothekScreen(
+    onOpenCatalog: () -> Unit,
+    onOpenTitle: (id: String) -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: BibliothekViewModel = hiltViewModel(),
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     var refreshing by remember { mutableStateOf(false) }
@@ -112,6 +118,8 @@ fun BibliothekScreen(modifier: Modifier = Modifier, viewModel: BibliothekViewMod
             onLogout = viewModel::logout,
             onOpenNotifications = viewModel::openNotifications,
             onOpenLogin = viewModel::openLogin,
+            onOpenCatalog = onOpenCatalog,
+            onOpenTitle = onOpenTitle,
         )
     }
 
@@ -147,6 +155,8 @@ fun BibliothekContent(
     onOpenNotifications: () -> Unit,
     onOpenLogin: () -> Unit,
     modifier: Modifier = Modifier,
+    onOpenCatalog: () -> Unit = {},
+    onOpenTitle: (id: String) -> Unit = {},
 ) {
     val colors = CampusTheme.colors
     val paia = state.paia
@@ -182,6 +192,10 @@ fun BibliothekContent(
                     style = MaterialTheme.typography.bodyMedium,
                     color = colors.textSecondary,
                 )
+            }
+            // Der Katalog braucht keine Anmeldung.
+            IconButton(onClick = onOpenCatalog, modifier = Modifier.size(Spacing.MinTouchTarget)) {
+                Icon(Icons.Outlined.Search, contentDescription = stringResource(R.string.bib_kat_oeffnen), tint = colors.textSecondary)
             }
             if (paia.isAuthenticated) {
                 val count = paia.notifications.size
@@ -219,13 +233,20 @@ fun BibliothekContent(
                 MessageCard(title = stringResource(R.string.bib_leer_ausleihen_titel), text = stringResource(R.string.bib_leer_ausleihen_text))
             } else {
                 lists.loans.forEach { item ->
-                    LoanCard(item = item, today = state.today, onRenew = { onRenew(item) }, onOpen = null)
+                    LoanCard(
+                        item = item,
+                        today = state.today,
+                        onRenew = { onRenew(item) },
+                        onOpen = item.catalogPpn?.let { ppn -> { onOpenTitle("med_$ppn") } },
+                    )
                 }
             }
             BibliothekTab.Holds -> if (lists.holds.isEmpty()) {
                 MessageCard(title = stringResource(R.string.bib_leer_vormerkungen_titel), text = stringResource(R.string.bib_leer_vormerkungen_text))
             } else {
-                lists.holds.forEach { item -> HoldCard(item = item, onOpen = null) }
+                lists.holds.forEach { item ->
+                    HoldCard(item = item, onOpen = item.catalogPpn?.let { ppn -> { onOpenTitle("med_$ppn") } })
+                }
             }
         }
 

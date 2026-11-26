@@ -43,6 +43,14 @@ data object MensaZeitenRoute : NavKey
 @Serializable
 data class MehrRoute(val bereich: String? = null) : NavKey
 
+/** Katalogsuche der UB. Mit [term] (Link `katalog/suche?q=`) stehen die Treffer sofort da. */
+@Serializable
+data class KatalogRoute(val term: String? = null) : NavKey
+
+/** Ein Titel des Katalogs; [searchId] stammt aus der Suche, von der man kam. */
+@Serializable
+data class KatalogTitelRoute(val id: String, val searchId: String? = null) : NavKey
+
 /** Die Wurzel-Route des Tabs. */
 val AppTab.route: NavKey
     get() = when (this) {

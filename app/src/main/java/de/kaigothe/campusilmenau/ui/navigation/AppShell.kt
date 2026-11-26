@@ -39,6 +39,8 @@ import de.kaigothe.campusilmenau.ui.mensa.MensaMealDetailScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaOpeningHoursScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaScreen
 import de.kaigothe.campusilmenau.ui.bibliothek.BibliothekScreen
+import de.kaigothe.campusilmenau.ui.bibliothek.katalog.LibraryCatalogScreen
+import de.kaigothe.campusilmenau.ui.bibliothek.katalog.LibraryTitleScreen
 import de.kaigothe.campusilmenau.ui.placeholder.FeaturePlaceholder
 import de.kaigothe.campusilmenau.ui.placeholder.MehrButton
 
@@ -103,7 +105,22 @@ fun AppShell(
         entry<MensaZeitenRoute> { MensaOpeningHoursScreen(onBack = { navigator.goBack() }) }
         entry<ThoskaRoute> { ThoskaScreen(onOpenHistory = { navigator.navigate(ThoskaVerlaufRoute) }) }
         entry<ThoskaVerlaufRoute> { ThoskaHistoryScreen(onBack = { navigator.goBack() }) }
-        entry<BibliothekRoute> { BibliothekScreen() }
+        entry<BibliothekRoute> {
+            BibliothekScreen(
+                onOpenCatalog = { navigator.navigate(KatalogRoute()) },
+                onOpenTitle = { id -> navigator.navigate(KatalogTitelRoute(id)) },
+            )
+        }
+        entry<KatalogRoute> { route ->
+            LibraryCatalogScreen(
+                term = route.term,
+                onBack = { navigator.goBack() },
+                onOpenTitle = { media, searchId -> navigator.navigate(KatalogTitelRoute(media.id, searchId)) },
+            )
+        }
+        entry<KatalogTitelRoute> { route ->
+            LibraryTitleScreen(id = route.id, searchId = route.searchId, onBack = { navigator.goBack() })
+        }
         entry<EventsRoute> {
             EventsScreen(
                 onOpenEvent = { id -> navigator.navigate(EventDetailRoute(id)) },

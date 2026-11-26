@@ -2,9 +2,12 @@ package de.kaigothe.campusilmenau.data.repository
 
 import de.kaigothe.campusilmenau.core.common.IoDispatcher
 import de.kaigothe.campusilmenau.core.network.ApiCaller
+import de.kaigothe.campusilmenau.core.network.ApiError
 import de.kaigothe.campusilmenau.data.remote.library.LibraryApi
 import de.kaigothe.campusilmenau.data.remote.library.toDomain
 import de.kaigothe.campusilmenau.domain.model.library.catalog.LibraryAvailability
+import de.kaigothe.campusilmenau.domain.model.library.catalog.LibraryCover
+import de.kaigothe.campusilmenau.domain.model.library.catalog.LibraryCoverResult
 import de.kaigothe.campusilmenau.domain.model.library.catalog.LibraryMediaDetail
 import de.kaigothe.campusilmenau.domain.model.library.catalog.LibrarySearchQuery
 import de.kaigothe.campusilmenau.domain.model.library.catalog.LibrarySearchResponse
@@ -34,6 +37,12 @@ interface LibraryCatalogRepository {
 
     /** Ob Inhaltsverzeichnis, Klappentext und Inhaltssuche angeboten werden. Wird nicht gespeichert. */
     suspend fun contentsAvailable(): Boolean
+
+    /**
+     * Holt das Cover. Die API antwortet nie mit 202: „wird noch geholt“ ist 404 mit `cover_pending` (und `Retry-After`),
+     * „kein Cover“ ist 404 mit `cover_missing`. Bei `none` und `disabled` fragt der Aufruf gar nicht erst.
+     */
+    suspend fun cover(cover: LibraryCover): LibraryCoverResult
 
     companion object {
         const val AVAILABILITY_BATCH = 20
@@ -67,11 +76,32 @@ class NetworkLibraryCatalogRepository @Inject constructor(
     }
 
     override suspend fun media(id: String, searchId: String?, track: Boolean?): LibraryMediaDetail = withContext(io) {
-        caller.call { api.media(id, searchId, track).checked().dto.toDomain() }
+        caller.call {
+            val response = api.media(id, searchId, track).checked()
+            response.dto.toDomain().copy(isStale = response.isStale)
+        }
     }
 
     override suspend fun contentsAvailable(): Boolean = withContext(io) {
         caller.call { api.features().contents }
+    }
+
+    override suspend fun cover(cover: LibraryCover): LibraryCoverResult = withContext(io) {
+        val url = cover.url?.takeIf { cover.isFetchable } ?: return@withContext LibraryCoverResult.Missing
+        try {
+            caller.call {
+                val response = api.cover(url)
+                if (!response.isSuccessful) throw HttpException(response)
+                val bytes = response.body()?.bytes() ?: throw HttpException(response)
+                LibraryCoverResult.Image(bytes)
+            }
+        } catch (e: ApiError.Http) {
+            when {
+                e.isNotFound && e.code == "cover_pending" -> LibraryCoverResult.Pending(e.retryAfter)
+                e.isNotFound -> LibraryCoverResult.Missing
+                else -> throw e
+            }
+        }
     }
 
     private class Body<T>(val dto: T, val isStale: Boolean)

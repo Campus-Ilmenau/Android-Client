@@ -1,1 +1,1648 @@
-{"object":"list","url":"/v1/mensa?date=2026-11-24&per_page=100","has_more":false,"total_count":12,"page":1,"per_page":100,"data":[{"id":"meal_09eb9245-8e55-4754-bd60-b8384f16caad","object":"meal","canteen":{"rscId":46,"name":"Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Rahm-Pfannengyros mit Paprika,Tomate und Lauch , dazu Kräuterreis","dishId":"dish_6f32f205-1821-4adf-a42c-30c8d206d3a8","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"So","name":"Soja","description":"enthält Soja"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"S","name":"Schweinefleisch","description":"Schweinefleisch"}],"flags":{"vegetarian":false,"vegan":false,"pork":true,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":1475,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Rahm-Pfannengyros%20mit%20Paprika%2CTomate%20und%20Lauch%20%2C%20dazu%20Kr%C3%A4uterreis&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg","sourceMealKey":"636111","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":3.7,"staff":5.9,"guest":7.3,"currency":"€"},"components":[{"name":"Kräuterreis","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]},{"name":"Rahm-Pfannengyros mit Paprika","codes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"S","name":"Schweinefleisch","description":"Schweinefleisch"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"So","name":"Soja","description":"enthält Soja"}]}],"createdAt":"2026-11-09T06:30:14.223Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_2aa0f74d-5001-49ed-b1b5-1d0d8c5075c7","object":"meal","canteen":{"rscId":46,"name":"Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Pilzpfanne mit Champignons,Stockschwämmchen und Lauch auf Röstiecken","dishId":"dish_069efc3a-d55d-479b-8bf3-a980402d6ce3","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"}],"flags":{"vegetarian":true,"vegan":false,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":false,"alcohol":false},"co2GramPerPortion":831,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Pilzpfanne%20mit%20Champignons%2CStockschw%C3%A4mmchen%20und%20Lauch%20auf%20R%C3%B6stiecken&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg","sourceMealKey":"635900","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":2.8,"staff":5.1,"guest":6.5,"currency":"€"},"components":[{"name":"Pilzpfanne mit Champignons und Stockschwämmchen","codes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Kartoffelrösti 3 Stk a 55g","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]}],"createdAt":"2026-11-09T06:30:14.069Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_5ed84e93-1c2d-4959-9f02-0b9eda85eafe","object":"meal","canteen":{"rscId":57,"name":"Cafeteria Röntgenbau","city":"Ilmenau","address":"Weimarer Straße 25, 98693 Ilmenau","latitude":50.6883,"longitude":10.9195},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Pilzpfanne mit Champignons,Stockschwämmchen und Lauch auf Röstiecken","dishId":"dish_069efc3a-d55d-479b-8bf3-a980402d6ce3","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"}],"flags":{"vegetarian":true,"vegan":false,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":false,"alcohol":false},"co2GramPerPortion":831,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Pilzpfanne%20mit%20Champignons%2CStockschw%C3%A4mmchen%20und%20Lauch%20auf%20R%C3%B6stiecken&datum=24.11.2026&einrichtung=Cafeteria%20R%C3%B6ntgenbau","sourceMealKey":"636552","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":2.8,"staff":5.1,"guest":6.5,"currency":"€"},"components":[{"name":"Pilzpfanne mit Champignons und Stockschwämmchen","codes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Kartoffelrösti 3 Stk a 55g","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]}],"createdAt":"2026-11-09T06:30:15.254Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_69be5565-bd15-4b84-9453-9bed55304127","object":"meal","canteen":{"rscId":46,"name":"Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Mediterranes Sojageschnetzeltes mit Reiskornnudeln","dishId":"dish_13d937fb-467c-4dce-beb8-16c896d95d94","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"}],"allergenCodes":[{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}],"flags":{"vegetarian":true,"vegan":true,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":383,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg","sourceMealKey":"639094","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":2,"staff":4.4,"guest":5.8,"currency":"€"},"components":[{"name":"Reiskornnudeln","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Mediterranes Sojageschnetzeltes","codes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"},{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]}],"createdAt":"2026-11-09T06:30:13.857Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_83294920-1d91-4513-8ce0-edcbb31510bd","object":"meal","canteen":{"rscId":53,"name":"Cafeteria Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Abendessen","title":"Feurige Rindfleischpfanne mit Reis oder Pommes","dishId":"dish_fa6e9340-6c4b-4ab7-b967-39800cca0d12","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"R","name":"Rindfleisch","description":"Rindfleisch"}],"flags":{"vegetarian":false,"vegan":false,"pork":false,"beef":true,"poultry":false,"fish":false,"garlic":false,"alcohol":false},"co2GramPerPortion":2435,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Feurige%20Rindfleischpfanne%20mit%20Reis%20oder%20Pommes&datum=24.11.2026&einrichtung=Cafeteria%20Mensa%20Ehrenberg","sourceMealKey":"636125","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":5.2,"staff":7.2,"guest":8.6,"currency":"€"},"components":[{"name":"Pommes frites","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]},{"name":"Feurige Rindfleischpfanne","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"R","name":"Rindfleisch","description":"Rindfleisch"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Reis naturell","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]}],"createdAt":"2026-11-09T06:30:13.674Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_8fc97163-e8ad-4d35-913e-9b4e74b68d87","object":"meal","canteen":{"rscId":55,"name":"Cafeteria NANOteria","city":"Ilmenau","address":"Gustav-Kirchhoff-Str. 5, 98693 Ilmenau, Deutschland","latitude":50.6838,"longitude":10.9408},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Mediterranes Sojageschnetzeltes mit Reiskornnudeln","dishId":"dish_13d937fb-467c-4dce-beb8-16c896d95d94","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"}],"allergenCodes":[{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}],"flags":{"vegetarian":true,"vegan":true,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":383,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Cafeteria%20NANOteria","sourceMealKey":"636564","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":2,"staff":4.4,"guest":5.8,"currency":"€"},"components":[{"name":"Reiskornnudeln","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Mediterranes Sojageschnetzeltes","codes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"},{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]}],"createdAt":"2026-11-09T06:30:14.715Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_9d97585c-aad7-4a08-b917-c2d6203e81b9","object":"meal","canteen":{"rscId":53,"name":"Cafeteria Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Mediterranes Sojageschnetzeltes mit Reiskornnudeln","dishId":"dish_13d937fb-467c-4dce-beb8-16c896d95d94","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"}],"allergenCodes":[{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}],"flags":{"vegetarian":true,"vegan":true,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":383,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Cafeteria%20Mensa%20Ehrenberg","sourceMealKey":"633366","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":2,"staff":4.4,"guest":5.8,"currency":"€"},"components":[{"name":"Mediterranes Sojageschnetzeltes","codes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"},{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Reiskornnudeln","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]}],"createdAt":"2026-11-20T07:00:09.421Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_b65814f3-de46-4891-88a2-3f94a98306d3","object":"meal","canteen":{"rscId":57,"name":"Cafeteria Röntgenbau","city":"Ilmenau","address":"Weimarer Straße 25, 98693 Ilmenau","latitude":50.6883,"longitude":10.9195},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Rahm-Pfannengyros mit Paprika,Tomate und Lauch , dazu Kräuterreis","dishId":"dish_6f32f205-1821-4adf-a42c-30c8d206d3a8","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"So","name":"Soja","description":"enthält Soja"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"S","name":"Schweinefleisch","description":"Schweinefleisch"}],"flags":{"vegetarian":false,"vegan":false,"pork":true,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":1476,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Rahm-Pfannengyros%20mit%20Paprika%2CTomate%20und%20Lauch%20%2C%20dazu%20Kr%C3%A4uterreis&datum=24.11.2026&einrichtung=Cafeteria%20R%C3%B6ntgenbau","sourceMealKey":"636551","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":3.7,"staff":5.9,"guest":7.3,"currency":"€"},"components":[{"name":"Rahm-Pfannengyros mit Paprika","codes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"S","name":"Schweinefleisch","description":"Schweinefleisch"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"So","name":"Soja","description":"enthält Soja"}]},{"name":"Kräuterreis","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]}],"createdAt":"2026-11-09T06:30:15.376Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_d68845f5-0fbf-4e9e-82b0-35886921c31a","object":"meal","canteen":{"rscId":55,"name":"Cafeteria NANOteria","city":"Ilmenau","address":"Gustav-Kirchhoff-Str. 5, 98693 Ilmenau, Deutschland","latitude":50.6838,"longitude":10.9408},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Rahm-Pfannengyros mit Paprika,Tomate und Lauch , dazu Kräuterreis","dishId":"dish_6f32f205-1821-4adf-a42c-30c8d206d3a8","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"So","name":"Soja","description":"enthält Soja"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"S","name":"Schweinefleisch","description":"Schweinefleisch"}],"flags":{"vegetarian":false,"vegan":false,"pork":true,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":1477,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Rahm-Pfannengyros%20mit%20Paprika%2CTomate%20und%20Lauch%20%2C%20dazu%20Kr%C3%A4uterreis&datum=24.11.2026&einrichtung=Cafeteria%20NANOteria","sourceMealKey":"636565","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":3.7,"staff":5.9,"guest":7.3,"currency":"€"},"components":[{"name":"Rahm-Pfannengyros mit Paprika","codes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"S","name":"Schweinefleisch","description":"Schweinefleisch"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"So","name":"Soja","description":"enthält Soja"}]},{"name":"Kräuterreis","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]}],"createdAt":"2026-11-09T06:30:14.909Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_e346e335-3294-43f1-92ed-e3bcaa7bc081","object":"meal","canteen":{"rscId":57,"name":"Cafeteria Röntgenbau","city":"Ilmenau","address":"Weimarer Straße 25, 98693 Ilmenau","latitude":50.6883,"longitude":10.9195},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Mediterranes Sojageschnetzeltes mit Reiskornnudeln","dishId":"dish_13d937fb-467c-4dce-beb8-16c896d95d94","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"}],"allergenCodes":[{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}],"flags":{"vegetarian":true,"vegan":true,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":true,"alcohol":false},"co2GramPerPortion":383,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Cafeteria%20R%C3%B6ntgenbau","sourceMealKey":"636550","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":2,"staff":4.4,"guest":5.8,"currency":"€"},"components":[{"name":"Reiskornnudeln","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]},{"name":"Mediterranes Sojageschnetzeltes","codes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"},{"code":"K","name":"Knoblauch","description":"Knoblauch"},{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]}],"createdAt":"2026-11-09T06:30:15.081Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_e8ecde20-cd0b-4384-9e8d-5ad052460061","object":"meal","canteen":{"rscId":46,"name":"Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Mittagessen","title":"Fisch and Chips mit Ketchup-Mayo Dip","dishId":"dish_9e5fe372-bc95-4bc2-9884-6d624f8793e5","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[{"code":"2","name":"Konservierungsstoff","description":"mit Konservierungsstoff"},{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"}],"allergenCodes":[{"code":"Ei","name":"Hühnerei","description":"enthält Hühnerei"},{"code":"Fi","name":"Fisch","description":"enthält Fisch"},{"code":"Gs","name":"Gerste","description":"enthält Gerste"},{"code":"Sen","name":"Senf","description":"enthält Senf"},{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"F","name":"Fisch","description":"Fisch"}],"flags":{"vegetarian":false,"vegan":false,"pork":false,"beef":false,"poultry":false,"fish":true,"garlic":false,"alcohol":false},"co2GramPerPortion":1509,"likeCount":3,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Fisch%20and%20Chips%20mit%20Ketchup-Mayo%20Dip&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg","sourceMealKey":"635906","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":4.2,"staff":6.2,"guest":7.6,"currency":"€"},"components":[{"name":"Pommes frites","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]},{"name":"Mayo Ketchup Dip","codes":[{"code":"2","name":"Konservierungsstoff","description":"mit Konservierungsstoff"},{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"},{"code":"Sen","name":"Senf","description":"enthält Senf"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]},{"name":"panierte Fischwürfel","codes":[{"code":"3","name":"Antioxidationsmittel","description":"mit Antioxidationsmittel"},{"code":"Ei","name":"Hühnerei","description":"enthält Hühnerei"},{"code":"F","name":"Fisch","description":"Fisch"},{"code":"Fi","name":"Fisch","description":"enthält Fisch"},{"code":"Gs","name":"Gerste","description":"enthält Gerste"},{"code":"So","name":"Soja","description":"enthält Soja"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]}],"createdAt":"2026-11-09T06:30:14.392Z","updatedAt":"2026-11-24T08:15:07.000Z"},{"id":"meal_ed4acb95-2bec-4c61-86f3-642534580705","object":"meal","canteen":{"rscId":53,"name":"Cafeteria Mensa Ehrenberg","city":"Ilmenau","address":"Max-Planck-Ring 1, 98693 Ilmenau, Deutschland","latitude":50.6826,"longitude":10.9338},"date":"2026-11-24T00:00:00.000Z","mealGroup":"Abendessen","title":"Brokkoli-Nussecke mit Zwiebel-Sahne Dip,dazu Pommes frites","dishId":"dish_74493f42-ed7d-4c65-8290-ec25dfb48610","translated":false,"isActive":true,"lastSeenAt":"2026-11-24T08:15:08.000Z","additiveCodes":[],"allergenCodes":[{"code":"Ha","name":"Haselnüsse","description":"enthält Haselnüsse"},{"code":"Hf","name":"Hafer","description":"enthält Hafer"},{"code":"Ma","name":"Mandeln","description":"enthält Mandeln"},{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}],"symbolCodes":[{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"}],"flags":{"vegetarian":true,"vegan":false,"pork":false,"beef":false,"poultry":false,"fish":false,"garlic":false,"alcohol":false},"co2GramPerPortion":726,"likeCount":0,"feedbackUrl":"https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Brokkoli-Nussecke%20mit%20Zwiebel-Sahne%20Dip%2Cdazu%20Pommes%20frites&datum=24.11.2026&einrichtung=Cafeteria%20Mensa%20Ehrenberg","sourceMealKey":"636129","productionDate":"2026-11-24T00:00:00.000Z","price":{"student":3.7,"staff":5.9,"guest":7.3,"currency":"€"},"components":[{"name":"Zwiebel-Sahne Dip","codes":[{"code":"Mi","name":"Milch und Milchzucker","description":"enthält Milch- und Milchzucker"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"}]},{"name":"Pommes frites","codes":[{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"}]},{"name":"Brokkoli-Nussecke","codes":[{"code":"Ha","name":"Haselnüsse","description":"enthält Haselnüsse"},{"code":"Hf","name":"Hafer","description":"enthält Hafer"},{"code":"Ma","name":"Mandeln","description":"enthält Mandeln"},{"code":"odZ","name":"Ohne Zusatzstoffe","description":"ohne deklarationspflichtige Zusatzstoffe"},{"code":"Sel","name":"Sellerie","description":"enthält Sellerie"},{"code":"V","name":"Vegetarisch","description":"Vegetarische Speisen"},{"code":"V*","name":"Vegan","description":"Vegane Speisen"},{"code":"Wz","name":"Weizen","description":"enthält Weizen"}]}],"createdAt":"2026-11-24T07:15:08.729Z","updatedAt":"2026-11-24T08:15:07.000Z"}]}
+{
+  "data": [
+    {
+      "id": "meal_09eb9245-8e55-4754-bd60-b8384f16caad",
+      "object": "meal",
+      "canteen": {
+        "rscId": 46,
+        "name": "Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Rahm-Pfannengyros mit Paprika,Tomate und Lauch , dazu Kräuterreis",
+      "dishId": "dish_6f32f205-1821-4adf-a42c-30c8d206d3a8",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Mi",
+          "name": "Milch und Milchzucker",
+          "description": "enthält Milch- und Milchzucker"
+        },
+        {
+          "code": "Sel",
+          "name": "Sellerie",
+          "description": "enthält Sellerie"
+        },
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "S",
+          "name": "Schweinefleisch",
+          "description": "Schweinefleisch"
+        }
+      ],
+      "flags": {
+        "vegetarian": false,
+        "vegan": false,
+        "pork": true,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 1475,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Rahm-Pfannengyros%20mit%20Paprika%2CTomate%20und%20Lauch%20%2C%20dazu%20Kr%C3%A4uterreis&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg",
+      "sourceMealKey": "636111",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 3.7,
+        "staff": 5.9,
+        "guest": 7.3,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Kräuterreis",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        },
+        {
+          "name": "Rahm-Pfannengyros mit Paprika",
+          "codes": [
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "Mi",
+              "name": "Milch und Milchzucker",
+              "description": "enthält Milch- und Milchzucker"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "S",
+              "name": "Schweinefleisch",
+              "description": "Schweinefleisch"
+            },
+            {
+              "code": "Sel",
+              "name": "Sellerie",
+              "description": "enthält Sellerie"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:14.223Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_2aa0f74d-5001-49ed-b1b5-1d0d8c5075c7",
+      "object": "meal",
+      "canteen": {
+        "rscId": 46,
+        "name": "Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Pilzpfanne mit Champignons,Stockschwämmchen und Lauch auf Röstiecken",
+      "dishId": "dish_069efc3a-d55d-479b-8bf3-a980402d6ce3",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Mi",
+          "name": "Milch und Milchzucker",
+          "description": "enthält Milch- und Milchzucker"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": false,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": false,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 831,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Pilzpfanne%20mit%20Champignons%2CStockschw%C3%A4mmchen%20und%20Lauch%20auf%20R%C3%B6stiecken&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg",
+      "sourceMealKey": "635900",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 2.8,
+        "staff": 5.1,
+        "guest": 6.5,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Pilzpfanne mit Champignons und Stockschwämmchen",
+          "codes": [
+            {
+              "code": "Mi",
+              "name": "Milch und Milchzucker",
+              "description": "enthält Milch- und Milchzucker"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Kartoffelrösti 3 Stk a 55g",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:14.069Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_5ed84e93-1c2d-4959-9f02-0b9eda85eafe",
+      "object": "meal",
+      "canteen": {
+        "rscId": 57,
+        "name": "Cafeteria Röntgenbau",
+        "city": "Ilmenau",
+        "address": "Weimarer Straße 25, 98693 Ilmenau",
+        "latitude": 50.6883,
+        "longitude": 10.9195
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Pilzpfanne mit Champignons,Stockschwämmchen und Lauch auf Röstiecken",
+      "dishId": "dish_069efc3a-d55d-479b-8bf3-a980402d6ce3",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Mi",
+          "name": "Milch und Milchzucker",
+          "description": "enthält Milch- und Milchzucker"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": false,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": false,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 831,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Pilzpfanne%20mit%20Champignons%2CStockschw%C3%A4mmchen%20und%20Lauch%20auf%20R%C3%B6stiecken&datum=24.11.2026&einrichtung=Cafeteria%20R%C3%B6ntgenbau",
+      "sourceMealKey": "636552",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 2.8,
+        "staff": 5.1,
+        "guest": 6.5,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Pilzpfanne mit Champignons und Stockschwämmchen",
+          "codes": [
+            {
+              "code": "Mi",
+              "name": "Milch und Milchzucker",
+              "description": "enthält Milch- und Milchzucker"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Kartoffelrösti 3 Stk a 55g",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:15.254Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_69be5565-bd15-4b84-9453-9bed55304127",
+      "object": "meal",
+      "canteen": {
+        "rscId": 46,
+        "name": "Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Mediterranes Sojageschnetzeltes mit Reiskornnudeln",
+      "dishId": "dish_13d937fb-467c-4dce-beb8-16c896d95d94",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [
+        {
+          "code": "3",
+          "name": "Antioxidationsmittel",
+          "description": "mit Antioxidationsmittel"
+        }
+      ],
+      "allergenCodes": [
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        },
+        {
+          "code": "V*",
+          "name": "Vegan",
+          "description": "Vegane Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": true,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 383,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg",
+      "sourceMealKey": "639094",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 2,
+        "staff": 4.4,
+        "guest": 5.8,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Reiskornnudeln",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Mediterranes Sojageschnetzeltes",
+          "codes": [
+            {
+              "code": "3",
+              "name": "Antioxidationsmittel",
+              "description": "mit Antioxidationsmittel"
+            },
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:13.857Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_83294920-1d91-4513-8ce0-edcbb31510bd",
+      "object": "meal",
+      "canteen": {
+        "rscId": 53,
+        "name": "Cafeteria Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Abendessen",
+      "title": "Feurige Rindfleischpfanne mit Reis oder Pommes",
+      "dishId": "dish_fa6e9340-6c4b-4ab7-b967-39800cca0d12",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "R",
+          "name": "Rindfleisch",
+          "description": "Rindfleisch"
+        }
+      ],
+      "flags": {
+        "vegetarian": false,
+        "vegan": false,
+        "pork": false,
+        "beef": true,
+        "poultry": false,
+        "fish": false,
+        "garlic": false,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 2435,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Feurige%20Rindfleischpfanne%20mit%20Reis%20oder%20Pommes&datum=24.11.2026&einrichtung=Cafeteria%20Mensa%20Ehrenberg",
+      "sourceMealKey": "636125",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 5.2,
+        "staff": 7.2,
+        "guest": 8.6,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Pommes frites",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        },
+        {
+          "name": "Feurige Rindfleischpfanne",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "R",
+              "name": "Rindfleisch",
+              "description": "Rindfleisch"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Reis naturell",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:13.674Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_8fc97163-e8ad-4d35-913e-9b4e74b68d87",
+      "object": "meal",
+      "canteen": {
+        "rscId": 55,
+        "name": "Cafeteria NANOteria",
+        "city": "Ilmenau",
+        "address": "Gustav-Kirchhoff-Str. 5, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6838,
+        "longitude": 10.9408
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Mediterranes Sojageschnetzeltes mit Reiskornnudeln",
+      "dishId": "dish_13d937fb-467c-4dce-beb8-16c896d95d94",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [
+        {
+          "code": "3",
+          "name": "Antioxidationsmittel",
+          "description": "mit Antioxidationsmittel"
+        }
+      ],
+      "allergenCodes": [
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        },
+        {
+          "code": "V*",
+          "name": "Vegan",
+          "description": "Vegane Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": true,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 383,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Cafeteria%20NANOteria",
+      "sourceMealKey": "636564",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 2,
+        "staff": 4.4,
+        "guest": 5.8,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Reiskornnudeln",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Mediterranes Sojageschnetzeltes",
+          "codes": [
+            {
+              "code": "3",
+              "name": "Antioxidationsmittel",
+              "description": "mit Antioxidationsmittel"
+            },
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:14.715Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_9d97585c-aad7-4a08-b917-c2d6203e81b9",
+      "object": "meal",
+      "canteen": {
+        "rscId": 53,
+        "name": "Cafeteria Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Mediterranes Sojageschnetzeltes mit Reiskornnudeln",
+      "dishId": "dish_13d937fb-467c-4dce-beb8-16c896d95d94",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [
+        {
+          "code": "3",
+          "name": "Antioxidationsmittel",
+          "description": "mit Antioxidationsmittel"
+        }
+      ],
+      "allergenCodes": [
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        },
+        {
+          "code": "V*",
+          "name": "Vegan",
+          "description": "Vegane Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": true,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 383,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Cafeteria%20Mensa%20Ehrenberg",
+      "sourceMealKey": "633366",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 2,
+        "staff": 4.4,
+        "guest": 5.8,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Mediterranes Sojageschnetzeltes",
+          "codes": [
+            {
+              "code": "3",
+              "name": "Antioxidationsmittel",
+              "description": "mit Antioxidationsmittel"
+            },
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Reiskornnudeln",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-20T07:00:09.421Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_b65814f3-de46-4891-88a2-3f94a98306d3",
+      "object": "meal",
+      "canteen": {
+        "rscId": 57,
+        "name": "Cafeteria Röntgenbau",
+        "city": "Ilmenau",
+        "address": "Weimarer Straße 25, 98693 Ilmenau",
+        "latitude": 50.6883,
+        "longitude": 10.9195
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Rahm-Pfannengyros mit Paprika,Tomate und Lauch , dazu Kräuterreis",
+      "dishId": "dish_6f32f205-1821-4adf-a42c-30c8d206d3a8",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Mi",
+          "name": "Milch und Milchzucker",
+          "description": "enthält Milch- und Milchzucker"
+        },
+        {
+          "code": "Sel",
+          "name": "Sellerie",
+          "description": "enthält Sellerie"
+        },
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "S",
+          "name": "Schweinefleisch",
+          "description": "Schweinefleisch"
+        }
+      ],
+      "flags": {
+        "vegetarian": false,
+        "vegan": false,
+        "pork": true,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 1476,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Rahm-Pfannengyros%20mit%20Paprika%2CTomate%20und%20Lauch%20%2C%20dazu%20Kr%C3%A4uterreis&datum=24.11.2026&einrichtung=Cafeteria%20R%C3%B6ntgenbau",
+      "sourceMealKey": "636551",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 3.7,
+        "staff": 5.9,
+        "guest": 7.3,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Rahm-Pfannengyros mit Paprika",
+          "codes": [
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "Mi",
+              "name": "Milch und Milchzucker",
+              "description": "enthält Milch- und Milchzucker"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "S",
+              "name": "Schweinefleisch",
+              "description": "Schweinefleisch"
+            },
+            {
+              "code": "Sel",
+              "name": "Sellerie",
+              "description": "enthält Sellerie"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            }
+          ]
+        },
+        {
+          "name": "Kräuterreis",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:15.376Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_d68845f5-0fbf-4e9e-82b0-35886921c31a",
+      "object": "meal",
+      "canteen": {
+        "rscId": 55,
+        "name": "Cafeteria NANOteria",
+        "city": "Ilmenau",
+        "address": "Gustav-Kirchhoff-Str. 5, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6838,
+        "longitude": 10.9408
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Rahm-Pfannengyros mit Paprika,Tomate und Lauch , dazu Kräuterreis",
+      "dishId": "dish_6f32f205-1821-4adf-a42c-30c8d206d3a8",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Mi",
+          "name": "Milch und Milchzucker",
+          "description": "enthält Milch- und Milchzucker"
+        },
+        {
+          "code": "Sel",
+          "name": "Sellerie",
+          "description": "enthält Sellerie"
+        },
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "S",
+          "name": "Schweinefleisch",
+          "description": "Schweinefleisch"
+        }
+      ],
+      "flags": {
+        "vegetarian": false,
+        "vegan": false,
+        "pork": true,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 1477,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Rahm-Pfannengyros%20mit%20Paprika%2CTomate%20und%20Lauch%20%2C%20dazu%20Kr%C3%A4uterreis&datum=24.11.2026&einrichtung=Cafeteria%20NANOteria",
+      "sourceMealKey": "636565",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 3.7,
+        "staff": 5.9,
+        "guest": 7.3,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Rahm-Pfannengyros mit Paprika",
+          "codes": [
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "Mi",
+              "name": "Milch und Milchzucker",
+              "description": "enthält Milch- und Milchzucker"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "S",
+              "name": "Schweinefleisch",
+              "description": "Schweinefleisch"
+            },
+            {
+              "code": "Sel",
+              "name": "Sellerie",
+              "description": "enthält Sellerie"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            }
+          ]
+        },
+        {
+          "name": "Kräuterreis",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:14.909Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_e346e335-3294-43f1-92ed-e3bcaa7bc081",
+      "object": "meal",
+      "canteen": {
+        "rscId": 57,
+        "name": "Cafeteria Röntgenbau",
+        "city": "Ilmenau",
+        "address": "Weimarer Straße 25, 98693 Ilmenau",
+        "latitude": 50.6883,
+        "longitude": 10.9195
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Mediterranes Sojageschnetzeltes mit Reiskornnudeln",
+      "dishId": "dish_13d937fb-467c-4dce-beb8-16c896d95d94",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [
+        {
+          "code": "3",
+          "name": "Antioxidationsmittel",
+          "description": "mit Antioxidationsmittel"
+        }
+      ],
+      "allergenCodes": [
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "K",
+          "name": "Knoblauch",
+          "description": "Knoblauch"
+        },
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        },
+        {
+          "code": "V*",
+          "name": "Vegan",
+          "description": "Vegane Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": true,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": true,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 383,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Mediterranes%20Sojageschnetzeltes%20mit%20Reiskornnudeln&datum=24.11.2026&einrichtung=Cafeteria%20R%C3%B6ntgenbau",
+      "sourceMealKey": "636550",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 2,
+        "staff": 4.4,
+        "guest": 5.8,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Reiskornnudeln",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        },
+        {
+          "name": "Mediterranes Sojageschnetzeltes",
+          "codes": [
+            {
+              "code": "3",
+              "name": "Antioxidationsmittel",
+              "description": "mit Antioxidationsmittel"
+            },
+            {
+              "code": "K",
+              "name": "Knoblauch",
+              "description": "Knoblauch"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:15.081Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_e8ecde20-cd0b-4384-9e8d-5ad052460061",
+      "object": "meal",
+      "canteen": {
+        "rscId": 46,
+        "name": "Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Mittagessen",
+      "title": "Fisch and Chips mit Ketchup-Mayo Dip",
+      "dishId": "dish_9e5fe372-bc95-4bc2-9884-6d624f8793e5",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [
+        {
+          "code": "2",
+          "name": "Konservierungsstoff",
+          "description": "mit Konservierungsstoff"
+        },
+        {
+          "code": "3",
+          "name": "Antioxidationsmittel",
+          "description": "mit Antioxidationsmittel"
+        }
+      ],
+      "allergenCodes": [
+        {
+          "code": "Ei",
+          "name": "Hühnerei",
+          "description": "enthält Hühnerei"
+        },
+        {
+          "code": "Fi",
+          "name": "Fisch",
+          "description": "enthält Fisch"
+        },
+        {
+          "code": "Gs",
+          "name": "Gerste",
+          "description": "enthält Gerste"
+        },
+        {
+          "code": "Sen",
+          "name": "Senf",
+          "description": "enthält Senf"
+        },
+        {
+          "code": "So",
+          "name": "Soja",
+          "description": "enthält Soja"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "F",
+          "name": "Fisch",
+          "description": "Fisch"
+        }
+      ],
+      "flags": {
+        "vegetarian": false,
+        "vegan": false,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": true,
+        "garlic": false,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 1509,
+      "likeCount": 3,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Fisch%20and%20Chips%20mit%20Ketchup-Mayo%20Dip&datum=24.11.2026&einrichtung=Mensa%20Ehrenberg",
+      "sourceMealKey": "635906",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 4.2,
+        "staff": 6.2,
+        "guest": 7.6,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Pommes frites",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        },
+        {
+          "name": "Mayo Ketchup Dip",
+          "codes": [
+            {
+              "code": "2",
+              "name": "Konservierungsstoff",
+              "description": "mit Konservierungsstoff"
+            },
+            {
+              "code": "3",
+              "name": "Antioxidationsmittel",
+              "description": "mit Antioxidationsmittel"
+            },
+            {
+              "code": "Sen",
+              "name": "Senf",
+              "description": "enthält Senf"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        },
+        {
+          "name": "panierte Fischwürfel",
+          "codes": [
+            {
+              "code": "3",
+              "name": "Antioxidationsmittel",
+              "description": "mit Antioxidationsmittel"
+            },
+            {
+              "code": "Ei",
+              "name": "Hühnerei",
+              "description": "enthält Hühnerei"
+            },
+            {
+              "code": "F",
+              "name": "Fisch",
+              "description": "Fisch"
+            },
+            {
+              "code": "Fi",
+              "name": "Fisch",
+              "description": "enthält Fisch"
+            },
+            {
+              "code": "Gs",
+              "name": "Gerste",
+              "description": "enthält Gerste"
+            },
+            {
+              "code": "So",
+              "name": "Soja",
+              "description": "enthält Soja"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-09T06:30:14.392Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    },
+    {
+      "id": "meal_ed4acb95-2bec-4c61-86f3-642534580705",
+      "object": "meal",
+      "canteen": {
+        "rscId": 53,
+        "name": "Cafeteria Mensa Ehrenberg",
+        "city": "Ilmenau",
+        "address": "Max-Planck-Ring 1, 98693 Ilmenau, Deutschland",
+        "latitude": 50.6826,
+        "longitude": 10.9338
+      },
+      "date": "2026-11-24T00:00:00.000Z",
+      "mealGroup": "Abendessen",
+      "title": "Brokkoli-Nussecke mit Zwiebel-Sahne Dip,dazu Pommes frites",
+      "dishId": "dish_74493f42-ed7d-4c65-8290-ec25dfb48610",
+      "translated": false,
+      "isActive": true,
+      "lastSeenAt": "2026-11-24T08:15:08.000Z",
+      "additiveCodes": [],
+      "allergenCodes": [
+        {
+          "code": "Ha",
+          "name": "Haselnüsse",
+          "description": "enthält Haselnüsse"
+        },
+        {
+          "code": "Hf",
+          "name": "Hafer",
+          "description": "enthält Hafer"
+        },
+        {
+          "code": "Ma",
+          "name": "Mandeln",
+          "description": "enthält Mandeln"
+        },
+        {
+          "code": "Mi",
+          "name": "Milch und Milchzucker",
+          "description": "enthält Milch- und Milchzucker"
+        },
+        {
+          "code": "Sel",
+          "name": "Sellerie",
+          "description": "enthält Sellerie"
+        },
+        {
+          "code": "Wz",
+          "name": "Weizen",
+          "description": "enthält Weizen"
+        }
+      ],
+      "symbolCodes": [
+        {
+          "code": "V",
+          "name": "Vegetarisch",
+          "description": "Vegetarische Speisen"
+        }
+      ],
+      "flags": {
+        "vegetarian": true,
+        "vegan": false,
+        "pork": false,
+        "beef": false,
+        "poultry": false,
+        "fish": false,
+        "garlic": false,
+        "alcohol": false
+      },
+      "co2GramPerPortion": 726,
+      "likeCount": 0,
+      "feedbackUrl": "https://www.stw-thueringen.de/mensen/lob-und-kritik.html?essen=Brokkoli-Nussecke%20mit%20Zwiebel-Sahne%20Dip%2Cdazu%20Pommes%20frites&datum=24.11.2026&einrichtung=Cafeteria%20Mensa%20Ehrenberg",
+      "sourceMealKey": "636129",
+      "productionDate": "2026-11-24T00:00:00.000Z",
+      "price": {
+        "student": 3.7,
+        "staff": 5.9,
+        "guest": 7.3,
+        "currency": "€"
+      },
+      "components": [
+        {
+          "name": "Zwiebel-Sahne Dip",
+          "codes": [
+            {
+              "code": "Mi",
+              "name": "Milch und Milchzucker",
+              "description": "enthält Milch- und Milchzucker"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            }
+          ]
+        },
+        {
+          "name": "Pommes frites",
+          "codes": [
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            }
+          ]
+        },
+        {
+          "name": "Brokkoli-Nussecke",
+          "codes": [
+            {
+              "code": "Ha",
+              "name": "Haselnüsse",
+              "description": "enthält Haselnüsse"
+            },
+            {
+              "code": "Hf",
+              "name": "Hafer",
+              "description": "enthält Hafer"
+            },
+            {
+              "code": "Ma",
+              "name": "Mandeln",
+              "description": "enthält Mandeln"
+            },
+            {
+              "code": "odZ",
+              "name": "Ohne Zusatzstoffe",
+              "description": "ohne deklarationspflichtige Zusatzstoffe"
+            },
+            {
+              "code": "Sel",
+              "name": "Sellerie",
+              "description": "enthält Sellerie"
+            },
+            {
+              "code": "V",
+              "name": "Vegetarisch",
+              "description": "Vegetarische Speisen"
+            },
+            {
+              "code": "V*",
+              "name": "Vegan",
+              "description": "Vegane Speisen"
+            },
+            {
+              "code": "Wz",
+              "name": "Weizen",
+              "description": "enthält Weizen"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-11-24T07:15:08.729Z",
+      "updatedAt": "2026-11-24T08:15:07.000Z"
+    }
+  ],
+  "has_more": false,
+  "object": "list",
+  "page": 1,
+  "per_page": 100,
+  "total_count": 12,
+  "url": "/v1/mensa?date=2026-11-24&per_page=100"
+}

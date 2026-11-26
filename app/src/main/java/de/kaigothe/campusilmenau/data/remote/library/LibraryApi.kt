@@ -1,10 +1,13 @@
 package de.kaigothe.campusilmenau.data.remote.library
 
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
+import retrofit2.http.Url
 
 /** Katalog-Teil der Campus-Ilmenau-API. Ohne Anmeldung, nur lesend. */
 interface LibraryApi {
@@ -27,4 +30,8 @@ interface LibraryApi {
 
     @GET("v1/library/features")
     suspend fun features(): FeaturesDto
+
+    /** Das Bild eines Covers. [url] ist ein Pfad zur Basis-URL oder eine absolute Adresse (`LibraryCover.url`). */
+    @GET
+    suspend fun cover(@Url url: String, @Header("Accept") accept: String = "image/*"): Response<ResponseBody>
 }
