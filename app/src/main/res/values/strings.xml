@@ -428,6 +428,14 @@
     <string name="bib_scan_von_hand">Nummer selbst eingeben</string>
     <string name="bib_scan_schliessen">Scanner schließen</string>
 
+    <!-- Bibliothek: Katalogsuche, Eingabeprüfung -->
+    <string name="bib_suche_fehler_begriff">Bitte gib einen Suchbegriff ein.</string>
+    <string name="bib_suche_fehler_laenge">Der Suchbegriff darf höchstens %1$d Zeichen lang sein.</string>
+    <string name="bib_suche_fehler_jahr">Bitte das Jahr vierstellig eingeben.</string>
+    <string name="bib_suche_fehler_von_bis">„von“ darf nicht nach „bis“ liegen.</string>
+    <string name="bib_suche_fehler_spanne">Höchstens %1$d Jahre auf einmal.</string>
+    <string name="bib_suche_fehler_seite">Die Seitenzahl muss mindestens 1 sein.</string>
+
     <!-- Bibliothek: Fehler -->
     <string name="paia_fehler_antwort">Ungültige Server-Antwort</string>
     <string name="paia_fehler_http">HTTP-Fehler: %1$d</string>

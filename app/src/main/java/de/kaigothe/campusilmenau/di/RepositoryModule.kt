@@ -11,6 +11,9 @@ import de.kaigothe.campusilmenau.data.nfc.NfcThoskaReader
 import de.kaigothe.campusilmenau.data.nfc.SystemNfcAvailability
 import de.kaigothe.campusilmenau.data.nfc.ThoskaReader
 import de.kaigothe.campusilmenau.data.remote.events.EventsApi
+import de.kaigothe.campusilmenau.data.remote.library.LibraryApi
+import de.kaigothe.campusilmenau.data.repository.LibraryCatalogRepository
+import de.kaigothe.campusilmenau.data.repository.NetworkLibraryCatalogRepository
 import de.kaigothe.campusilmenau.data.repository.RoomThoskaRepository
 import de.kaigothe.campusilmenau.data.security.CredentialStore
 import de.kaigothe.campusilmenau.data.security.KeystoreCredentialStore
@@ -44,6 +47,9 @@ abstract class RepositoryModule {
     abstract fun bindEventsRepository(impl: NetworkEventsRepository): EventsRepository
 
     @Binds
+    abstract fun bindLibraryCatalogRepository(impl: NetworkLibraryCatalogRepository): LibraryCatalogRepository
+
+    @Binds
     abstract fun bindCredentialStore(impl: KeystoreCredentialStore): CredentialStore
 
     @Binds
@@ -63,5 +69,9 @@ abstract class RepositoryModule {
         @Provides
         @Singleton
         fun provideEventsApi(retrofit: Retrofit): EventsApi = retrofit.create()
+
+        @Provides
+        @Singleton
+        fun provideLibraryApi(retrofit: Retrofit): LibraryApi = retrofit.create()
     }
 }

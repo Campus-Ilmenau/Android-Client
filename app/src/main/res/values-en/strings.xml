@@ -425,6 +425,14 @@
     <string name="bib_scan_von_hand">Enter number manually</string>
     <string name="bib_scan_schliessen">Close scanner</string>
 
+    <!-- Library: catalogue search, input validation -->
+    <string name="bib_suche_fehler_begriff">Please enter a search term.</string>
+    <string name="bib_suche_fehler_laenge">The search term can be at most %1$d characters long.</string>
+    <string name="bib_suche_fehler_jahr">Please enter the year with four digits.</string>
+    <string name="bib_suche_fehler_von_bis">“From” cannot be after “to”.</string>
+    <string name="bib_suche_fehler_spanne">At most %1$d years at a time.</string>
+    <string name="bib_suche_fehler_seite">The page number must be at least 1.</string>
+
     <!-- Library: errors -->
     <string name="paia_fehler_antwort">Invalid server response</string>
     <string name="paia_fehler_http">HTTP error: %1$d</string>
