@@ -356,6 +356,59 @@
     <string name="bib_n_bald_faellig">%1$d due soon</string>
     <string name="bib_zusammenfassung_trenner"> · </string>
 
+    <!-- Library: screen -->
+    <string name="bib_nicht_angemeldet">Not signed in</string>
+    <string name="bib_sitzung_abgelaufen">Session expired</string>
+    <string name="bib_wird_geladen">Loading …</string>
+    <string name="bib_segment_ausgeliehen">On loan</string>
+    <string name="bib_segment_vormerkungen">Reservations</string>
+    <string name="bib_segment_mit_zahl">%1$s · %2$d</string>
+    <string name="bib_mitteilungen">Messages</string>
+    <string name="bib_mitteilungen_n">Messages, %1$d new</string>
+    <string name="bib_leer_ausleihen_titel">No items on loan</string>
+    <string name="bib_leer_ausleihen_text">Items you borrow from the university library appear here with their due date.</string>
+    <string name="bib_leer_vormerkungen_titel">No reservations</string>
+    <string name="bib_leer_vormerkungen_text">Reserved and ordered items appear here until you pick them up.</string>
+    <string name="bib_ausleihen_laedt">Loading your loans …</string>
+    <string name="bib_abgemeldet_text">Sign in to see your borrowed items.</string>
+    <string name="bib_anmelden">Sign in</string>
+    <string name="bib_abmelden">Sign out</string>
+    <string name="bib_fuss_nutzer">Signed in as %1$s. You stay signed in until you close the app.</string>
+    <string name="bib_fuss_ohne_nutzer">You stay signed in until you close the app.</string>
+    <string name="bib_fuss_gespeichert_nutzer">Signed in as %1$s. You stay signed in after a restart, the password is stored encrypted on this device.</string>
+    <string name="bib_fuss_gespeichert">You stay signed in after a restart, the password is stored encrypted on this device.</string>
+    <string name="bib_meldung_schliessen">Dismiss message</string>
+    <string name="bib_verlaengern">Renew</string>
+    <string name="bib_verlaengern_titel">Renew loan?</string>
+    <string name="bib_verlaengern_text">Do you want to renew the loan period for “%1$s”?</string>
+    <string name="bib_mitteilungen_hinweis">Messages come from the library. Pull down to refresh.</string>
+    <string name="bib_mitteilungen_leer_titel">No messages</string>
+    <string name="bib_mitteilungen_leer_text">Reminders and reservations ready for pickup appear here.</string>
+    <string name="bib_art_mahnung">Reminder</string>
+    <string name="bib_art_bereitstellung">Ready for pickup</string>
+    <string name="bib_art_abgelaufen">Reservation expired</string>
+    <string name="bib_art_mitteilung">Message</string>
+    <string name="bib_datum">%1$s</string>
+
+    <!-- Library: sign in -->
+    <string name="bib_login_titel">Sign in to the library</string>
+    <string name="bib_login_titel_abgelaufen">Please sign in again</string>
+    <string name="bib_login_text">To see your loans and reservations and to renew loan periods.</string>
+    <string name="bib_login_text_abgelaufen">Then you see your loans again and can renew them.</string>
+    <string name="bib_login_hinweis_abgelaufen">Session expired, please sign in again.</string>
+    <string name="bib_login_fehler_titel">Sign-in failed</string>
+    <string name="bib_login_nummer">User number</string>
+    <string name="bib_login_nummer_beispiel">e.g. 0001234567</string>
+    <string name="bib_login_nummer_hinweis">Printed as a barcode on the back of your Thoska.</string>
+    <string name="bib_login_passwort">Password</string>
+    <string name="bib_login_passwort_zeigen">Show password</string>
+    <string name="bib_login_passwort_verbergen">Hide password</string>
+    <string name="bib_login_bitte_warten">Signing in, please wait</string>
+    <string name="bib_login_bleiben">Stay signed in</string>
+    <string name="bib_login_bleiben_text">The password is stored encrypted on this device and not backed up. Signing out deletes it.</string>
+    <string name="bib_login_ohne_text">User number and password are not stored – after restarting the app you sign in again.</string>
+    <string name="bib_login_quelle">Sign-in through the PAIA interface of the university library.</string>
+
     <!-- Library: errors -->
     <string name="paia_fehler_antwort">Invalid server response</string>
     <string name="paia_fehler_http">HTTP error: %1$d</string>

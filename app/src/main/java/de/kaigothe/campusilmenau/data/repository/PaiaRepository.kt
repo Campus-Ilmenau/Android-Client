@@ -198,6 +198,11 @@ class PaiaRepository @Inject constructor(
         _state.value = PaiaState()
     }
 
+    /** Der Nutzer hat die Fehlermeldung geschlossen. */
+    fun dismissError() {
+        _state.update { it.copy(error = null) }
+    }
+
     // MARK: Intern
 
     /** Beendet die Sitzung wie [logout], behält aber Benutzernummer und gespeicherte Zugangsdaten und merkt sich den Ablauf. */

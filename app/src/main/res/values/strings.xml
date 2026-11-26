@@ -359,6 +359,59 @@
     <string name="bib_n_bald_faellig">%1$d bald fällig</string>
     <string name="bib_zusammenfassung_trenner"> · </string>
 
+    <!-- Bibliothek: Ansicht -->
+    <string name="bib_nicht_angemeldet">Nicht angemeldet</string>
+    <string name="bib_sitzung_abgelaufen">Sitzung abgelaufen</string>
+    <string name="bib_wird_geladen">Wird geladen …</string>
+    <string name="bib_segment_ausgeliehen">Ausgeliehen</string>
+    <string name="bib_segment_vormerkungen">Vormerkungen</string>
+    <string name="bib_segment_mit_zahl">%1$s · %2$d</string>
+    <string name="bib_mitteilungen">Mitteilungen</string>
+    <string name="bib_mitteilungen_n">Mitteilungen, %1$d vorhanden</string>
+    <string name="bib_leer_ausleihen_titel">Keine ausgeliehenen Medien</string>
+    <string name="bib_leer_ausleihen_text">Was du in der Universitätsbibliothek ausleihst, erscheint hier mit Rückgabedatum.</string>
+    <string name="bib_leer_vormerkungen_titel">Keine Vormerkungen</string>
+    <string name="bib_leer_vormerkungen_text">Vorgemerkte und bestellte Medien erscheinen hier, bis du sie abholst.</string>
+    <string name="bib_ausleihen_laedt">Ausleihen werden geladen …</string>
+    <string name="bib_abgemeldet_text">Melde dich an, um deine ausgeliehenen Medien zu sehen.</string>
+    <string name="bib_anmelden">Anmelden</string>
+    <string name="bib_abmelden">Abmelden</string>
+    <string name="bib_fuss_nutzer">Angemeldet mit %1$s. Du bleibst angemeldet, bis du die App beendest.</string>
+    <string name="bib_fuss_ohne_nutzer">Du bleibst angemeldet, bis du die App beendest.</string>
+    <string name="bib_fuss_gespeichert_nutzer">Angemeldet mit %1$s. Du bleibst auch nach einem Neustart angemeldet, das Passwort liegt verschlüsselt auf diesem Gerät.</string>
+    <string name="bib_fuss_gespeichert">Du bleibst auch nach einem Neustart angemeldet, das Passwort liegt verschlüsselt auf diesem Gerät.</string>
+    <string name="bib_meldung_schliessen">Meldung schließen</string>
+    <string name="bib_verlaengern">Verlängern</string>
+    <string name="bib_verlaengern_titel">Leihfrist verlängern?</string>
+    <string name="bib_verlaengern_text">Möchtest du die Leihfrist für „%1$s“ verlängern?</string>
+    <string name="bib_mitteilungen_hinweis">Mitteilungen kommen von der Bibliothek. Zum Aktualisieren nach unten ziehen.</string>
+    <string name="bib_mitteilungen_leer_titel">Keine Mitteilungen</string>
+    <string name="bib_mitteilungen_leer_text">Mahnungen und abholbereite Vormerkungen erscheinen hier.</string>
+    <string name="bib_art_mahnung">Mahnung</string>
+    <string name="bib_art_bereitstellung">Bereitstellung</string>
+    <string name="bib_art_abgelaufen">Vormerkung abgelaufen</string>
+    <string name="bib_art_mitteilung">Mitteilung</string>
+    <string name="bib_datum">%1$s</string>
+
+    <!-- Bibliothek: Anmelden -->
+    <string name="bib_login_titel">Bei der Bibliothek anmelden</string>
+    <string name="bib_login_titel_abgelaufen">Bitte erneut anmelden</string>
+    <string name="bib_login_text">Um deine Ausleihen und Vormerkungen zu sehen und Leihfristen zu verlängern.</string>
+    <string name="bib_login_text_abgelaufen">Dann siehst du deine Ausleihen wieder und kannst verlängern.</string>
+    <string name="bib_login_hinweis_abgelaufen">Sitzung abgelaufen, bitte erneut anmelden.</string>
+    <string name="bib_login_fehler_titel">Anmeldung fehlgeschlagen</string>
+    <string name="bib_login_nummer">Benutzernummer</string>
+    <string name="bib_login_nummer_beispiel">z. B. 0001234567</string>
+    <string name="bib_login_nummer_hinweis">Steht als Barcode auf der Rückseite deiner Thoska.</string>
+    <string name="bib_login_passwort">Passwort</string>
+    <string name="bib_login_passwort_zeigen">Passwort anzeigen</string>
+    <string name="bib_login_passwort_verbergen">Passwort verbergen</string>
+    <string name="bib_login_bitte_warten">Anmelden, bitte warten</string>
+    <string name="bib_login_bleiben">Angemeldet bleiben</string>
+    <string name="bib_login_bleiben_text">Das Passwort wird verschlüsselt auf diesem Gerät gespeichert und nicht gesichert. Abmelden löscht es.</string>
+    <string name="bib_login_ohne_text">Benutzernummer und Passwort werden nicht gespeichert – nach einem Neustart der App meldest du dich neu an.</string>
+    <string name="bib_login_quelle">Anmeldung über die PAIA-Schnittstelle der Universitätsbibliothek.</string>
+
     <!-- Bibliothek: Fehler -->
     <string name="paia_fehler_antwort">Ungültige Server-Antwort</string>
     <string name="paia_fehler_http">HTTP-Fehler: %1$d</string>
