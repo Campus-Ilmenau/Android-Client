@@ -12,6 +12,9 @@ class EventShare(
 ) : ShareContent {
     override val title: String get() = "${event.title} · ${EventTimes.short(event.firstDay, strings.locale)}"
 
+    /** „Halloween-Party.png“ */
+    val imageFileName: String get() = ShareFileName.png(event.title, fallback = "Veranstaltung")
+
     override val text: String
         get() {
             val name = if (event.status == EventStatus.Cancelled) strings.eventCancelled(event.title) else event.title

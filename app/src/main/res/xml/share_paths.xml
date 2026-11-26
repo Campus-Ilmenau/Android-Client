@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nur die Bilder zum Teilen (ShareImage.kt) liegen im Zwischenspeicher unter share/ und sind per FileProvider lesbar. -->
+<paths>
+    <cache-path
+        name="share"
+        path="share/" />
+</paths>

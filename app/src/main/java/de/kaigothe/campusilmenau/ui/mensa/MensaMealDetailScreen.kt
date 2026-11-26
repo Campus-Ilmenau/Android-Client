@@ -72,10 +72,13 @@ import de.kaigothe.campusilmenau.domain.model.mensa.detailChips
 import de.kaigothe.campusilmenau.domain.model.mensa.uniqueAdditives
 import de.kaigothe.campusilmenau.domain.model.mensa.uniqueAllergies
 import androidx.compose.material.icons.outlined.Share
-import androidx.compose.ui.platform.LocalContext
 import de.kaigothe.campusilmenau.domain.model.share.MensaMealShare
 import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
-import de.kaigothe.campusilmenau.ui.share.shareText
+import de.kaigothe.campusilmenau.domain.model.share.ShareContent
+import de.kaigothe.campusilmenau.ui.share.ShareImageSpec
+import de.kaigothe.campusilmenau.ui.share.ShareMenu
+import de.kaigothe.campusilmenau.ui.share.card.ShareCardStyle
+import de.kaigothe.campusilmenau.ui.share.card.ShareMealImage
 import de.kaigothe.campusilmenau.ui.components.BackBar
 import de.kaigothe.campusilmenau.ui.components.BandsLayer
 import de.kaigothe.campusilmenau.ui.components.CampusCard
@@ -108,21 +111,24 @@ fun MensaMealDetailScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val today = remember { BerlinTime.date(java.time.Instant.now()) }
-    val context = LocalContext.current
     val shareStrings = rememberShareStrings()
 
     when (val current = state) {
-        is MensaMealDetailState.Loaded -> MensaMealDetailContent(
-            meal = current.meal,
-            priceGroup = current.priceGroup,
-            isFavorite = current.isFavorite,
-            today = today,
-            onBack = onBack,
-            onToggleFavorite = viewModel::toggleFavorite,
-            onOpenHours = onOpenHours,
-            onShare = { context.shareText(MensaMealShare(current.meal, current.priceGroup, shareStrings)) },
-            modifier = modifier,
-        )
+        is MensaMealDetailState.Loaded -> {
+            val share = remember(current.meal, current.priceGroup, shareStrings) { MensaMealShare(current.meal, current.priceGroup, shareStrings) }
+            MensaMealDetailContent(
+                meal = current.meal,
+                priceGroup = current.priceGroup,
+                isFavorite = current.isFavorite,
+                today = today,
+                onBack = onBack,
+                onToggleFavorite = viewModel::toggleFavorite,
+                onOpenHours = onOpenHours,
+                share = share,
+                shareImage = ShareImageSpec(share.imageFileName, ShareCardStyle.Light) { ShareMealImage(share, shareStrings) },
+                modifier = modifier,
+            )
+        }
 
         else -> Column(
             modifier = modifier
@@ -182,7 +188,8 @@ fun MensaMealDetailContent(
     onBack: () -> Unit,
     onToggleFavorite: () -> Unit,
     onOpenHours: () -> Unit,
-    onShare: () -> Unit,
+    share: ShareContent?,
+    shareImage: ShareImageSpec?,
     modifier: Modifier = Modifier,
 ) {
     val colors = CampusTheme.colors
@@ -257,11 +264,15 @@ fun MensaMealDetailContent(
                 onClick = onBack,
             )
             Box(modifier = Modifier.weight(1f))
-            RoundButton(
-                icon = Icons.Outlined.Share,
-                description = stringResource(R.string.share_button),
-                onClick = onShare,
-            )
+            if (share != null) {
+                ShareMenu(text = share, image = shareImage, anchor = { open ->
+                    RoundButton(
+                        icon = Icons.Outlined.Share,
+                        description = stringResource(R.string.share_button),
+                        onClick = open,
+                    )
+                })
+            }
             RoundButton(
                 icon = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                 description = stringResource(if (isFavorite) R.string.favorit_entfernen else R.string.favorit_merken),
@@ -504,7 +515,7 @@ private fun DetailPreview(darkTheme: Boolean, meal: MensaMeal, group: MensaPrice
     CampusIlmenauTheme(darkTheme = darkTheme) {
         MensaMealDetailContent(
             meal = meal, priceGroup = group, isFavorite = false, today = LocalDate.of(2026, 10, 29),
-            onBack = {}, onToggleFavorite = {}, onOpenHours = {}, onShare = {},
+            onBack = {}, onToggleFavorite = {}, onOpenHours = {}, share = null, shareImage = null,
         )
     }
 }

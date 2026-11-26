@@ -73,7 +73,11 @@ import de.kaigothe.campusilmenau.domain.model.events.EventTimes
 import androidx.compose.material.icons.outlined.Share
 import de.kaigothe.campusilmenau.domain.model.share.EventShare
 import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
-import de.kaigothe.campusilmenau.ui.share.shareText
+import de.kaigothe.campusilmenau.domain.model.share.ShareContent
+import de.kaigothe.campusilmenau.ui.share.ShareImageSpec
+import de.kaigothe.campusilmenau.ui.share.ShareMenu
+import de.kaigothe.campusilmenau.ui.share.card.ShareCardStyle
+import de.kaigothe.campusilmenau.ui.share.card.ShareEventImage
 import de.kaigothe.campusilmenau.ui.components.BackBar
 import de.kaigothe.campusilmenau.ui.components.BandsStyle
 import de.kaigothe.campusilmenau.ui.components.CampusChip
@@ -113,26 +117,30 @@ fun EventDetailScreen(
     val unbookmarkedText = stringResource(R.string.events_toast_nicht_mehr_gemerkt)
 
     when (val current = state) {
-        is EventDetailState.Loaded -> EventDetailContent(
-            event = current.event,
-            isBookmarked = current.isBookmarked,
-            upcomingCount = current.upcomingCount,
-            now = remember { Instant.now() },
-            onBack = onBack,
-            onToggleBookmark = {
-                toast.show(if (current.isBookmarked) unbookmarkedText else bookmarkedText)
-                viewModel.toggleBookmark()
-            },
-            onAllFromOrganizer = {
-                viewModel.showAllFromOrganizer(current.event)
-                onBack()
-            },
-            onOpenUrl = { url -> runCatching { uriHandler.openUri(url) } },
-            onOpenMap = { address -> openMap(context, address) },
-            onAddToCalendar = { addToCalendar(context, CalendarEntry.of(current.event)) },
-            onShare = { context.shareText(EventShare(current.event, shareStrings)) },
-            modifier = modifier,
-        )
+        is EventDetailState.Loaded -> {
+            val share = remember(current.event, shareStrings) { EventShare(current.event, shareStrings) }
+            EventDetailContent(
+                event = current.event,
+                isBookmarked = current.isBookmarked,
+                upcomingCount = current.upcomingCount,
+                now = remember { Instant.now() },
+                onBack = onBack,
+                onToggleBookmark = {
+                    toast.show(if (current.isBookmarked) unbookmarkedText else bookmarkedText)
+                    viewModel.toggleBookmark()
+                },
+                onAllFromOrganizer = {
+                    viewModel.showAllFromOrganizer(current.event)
+                    onBack()
+                },
+                onOpenUrl = { url -> runCatching { uriHandler.openUri(url) } },
+                onOpenMap = { address -> openMap(context, address) },
+                onAddToCalendar = { addToCalendar(context, CalendarEntry.of(current.event)) },
+                share = share,
+                shareImage = ShareImageSpec(share.imageFileName, ShareCardStyle.Night) { ShareEventImage(share, shareStrings) },
+                modifier = modifier,
+            )
+        }
 
         else -> Column(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding()) {
             BackBar(onBack = onBack, description = stringResource(R.string.events_detail_zurueck))
@@ -195,7 +203,8 @@ fun EventDetailContent(
     onOpenUrl: (String) -> Unit,
     onOpenMap: (String) -> Unit,
     onAddToCalendar: () -> Unit,
-    onShare: () -> Unit,
+    share: ShareContent?,
+    shareImage: ShareImageSpec?,
     modifier: Modifier = Modifier,
 ) {
     val display = EventDetailDisplay(event)
@@ -234,7 +243,11 @@ fun EventDetailContent(
         ) {
             RoundButton(Icons.AutoMirrored.Outlined.ArrowBack, stringResource(R.string.events_detail_zurueck), onClick = onBack)
             Box(modifier = Modifier.weight(1f))
-            RoundButton(Icons.Outlined.Share, stringResource(R.string.share_button), onClick = onShare)
+            if (share != null) {
+                ShareMenu(text = share, image = shareImage, anchor = { open ->
+                    RoundButton(Icons.Outlined.Share, stringResource(R.string.share_button), onClick = open)
+                })
+            }
             RoundButton(
                 icon = if (isBookmarked) Icons.Filled.Star else Icons.Outlined.StarBorder,
                 description = stringResource(if (isBookmarked) R.string.events_nicht_mehr_merken else R.string.events_merken),
@@ -511,7 +524,7 @@ private fun DetailPreview(dark: Boolean, event: CampusEvent) {
     CampusIlmenauTheme(darkTheme = dark) {
         EventDetailContent(
             event = event, isBookmarked = true, upcomingCount = 4, now = BerlinTime.at(PreviewDay, 12 * 60),
-            onBack = {}, onToggleBookmark = {}, onAllFromOrganizer = {}, onOpenUrl = {}, onOpenMap = {}, onAddToCalendar = {}, onShare = {},
+            onBack = {}, onToggleBookmark = {}, onAllFromOrganizer = {}, onOpenUrl = {}, onOpenMap = {}, onAddToCalendar = {}, share = null, shareImage = null,
         )
     }
 }

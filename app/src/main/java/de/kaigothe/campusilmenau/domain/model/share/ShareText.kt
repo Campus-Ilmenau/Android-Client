@@ -49,6 +49,22 @@ interface ShareStrings {
 
     fun mediumIntro(): String
     fun mediumOnline(): String
+
+    // Nur auf den Bildkarten.
+    fun cardDinnerCafeteria(): String
+    fun cardDisclaimer(): String
+    fun cardMealDisclaimer(): String
+    fun cardAllergens(): String
+    fun cardAdditives(): String
+    fun cardEnvironment(): String
+    fun cardEventAllDay(): String
+    fun cardEventCancelledChip(): String
+    fun cardEventCancelledNote(): String
+    fun cardEventFallbackOrganizer(): String
+    fun cardEventNoEnd(): String
+    fun cardEventTentativeChip(): String
+    fun cardEventTentativeNote(): String
+    fun cardEventUntil(time: String): String
 }
 
 object ShareText {

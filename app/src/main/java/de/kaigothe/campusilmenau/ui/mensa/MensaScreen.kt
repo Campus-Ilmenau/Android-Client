@@ -29,6 +29,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material.icons.outlined.Share
+import de.kaigothe.campusilmenau.domain.model.share.MensaPlanShare
+import de.kaigothe.campusilmenau.domain.model.share.ShareContent
+import de.kaigothe.campusilmenau.ui.share.ShareImageSpec
+import de.kaigothe.campusilmenau.ui.share.ShareMenu
+import de.kaigothe.campusilmenau.ui.share.card.ShareCardStyle
+import de.kaigothe.campusilmenau.ui.share.card.SharePlanImage
+import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -138,13 +146,25 @@ fun MensaContent(
 ) {
     var showFilter by rememberSaveable { mutableStateOf(false) }
 
+    // Das Angebot der gewählten Mensa zum Teilen: alle Gerichte des Tages, ohne Filter. Erst wenn Gerichte geladen sind.
+    val shareStrings = rememberShareStrings()
+    val planShare = remember(state, shareStrings) {
+        if (!state.ready || state.loadState != MensaLoadState.Loaded) return@remember null
+        val mealtime = if (state.venue.hasMealtimes) state.mealtime else MensaMealtime.Lunch
+        val hours = MensaPlanShare.hours(mealtime, state.selectedDay, state.canteens.firstOrNull { state.venue.matches(it.name) }?.openingHours.orEmpty())
+        MensaPlanShare(state.venue, state.selectedDay, mealtime, state.meals, state.priceGroup, hours, shareStrings).takeIf { it.meals.isNotEmpty() }
+    }
+    val planImage = remember(planShare, shareStrings) {
+        planShare?.let { plan -> ShareImageSpec(plan.imageFileName, ShareCardStyle.Light) { SharePlanImage(plan, shareStrings) } }
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .statusBarsPadding(),
     ) {
-        Header(onOpenHours = onOpenHours)
+        Header(onOpenHours = onOpenHours, share = planShare, shareImage = planImage)
 
         // Erst wenn gewählte Mensa und Filter gelesen sind, damit nichts springt.
         if (state.ready) {
@@ -194,7 +214,7 @@ fun MensaContent(
 // MARK: - Kopf
 
 @Composable
-private fun Header(onOpenHours: () -> Unit) {
+private fun Header(onOpenHours: () -> Unit, share: ShareContent?, shareImage: ShareImageSpec?) {
     val colors = CampusTheme.colors
     Row(
         modifier = Modifier
@@ -210,7 +230,26 @@ private fun Header(onOpenHours: () -> Unit) {
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f).semantics { heading() },
         )
-        // Das Teilen des Speiseplans kommt mit M8 hierher, links neben die Uhr.
+        if (share != null) {
+            ShareMenu(text = share, image = shareImage, anchor = { open ->
+                Box(
+                    modifier = Modifier.size(Spacing.MinTouchTarget).clickable(role = Role.Button, onClick = open),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Box(
+                        modifier = Modifier.size(44.dp).background(colors.surfaceSecondary, CircleShape),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Share,
+                            contentDescription = stringResource(R.string.share_button),
+                            tint = colors.textPrimary,
+                            modifier = Modifier.size(22.dp),
+                        )
+                    }
+                }
+            })
+        }
         Box(
             modifier = Modifier
                 .size(Spacing.MinTouchTarget)

@@ -20,12 +20,12 @@ Bereich „Mehr“ mit Einstellungen sowie Teilen von Gerichten, Events und Medi
 - [ ] Shortcut-Tipps (`SiriFragenView`, `SiriTipps`) als Android-Variante (siehe M10).
 
 ### Teilen
-- [ ] Teilkarten als Bitmap rendern (Compose → `GraphicsLayer`) (`ShareCardView`, `ShareEventCard`, `ShareImage`, `ShareBranding`).
-- [ ] Share-Intent mit `FileProvider`, Text und Bild getrennt (kein zusätzlicher Text beim Teilen als Bild).
-- [x] Inhalte als Text (8b-1): Gericht (`MensaMealShare`), Speiseplan einer Mensa (`MensaPlanShare`, Teilen-Taste im Speiseplan folgt mit der Bildkarte), Event (`EventShare`), Medium (`LibraryMediaShare`). Reines Kotlin in `domain/model/share/`, Texte über `ShareStrings` (App: `ResourceShareStrings`, `share_*` de/en). Teilen-Taste in Gericht, Veranstaltung und Titelansicht, Teilen-Blatt per `ACTION_SEND` (`Context.shareText`).
-- [ ] Bildkarten (8b-2) und Teilen-Taste im Speiseplan.
-- [ ] Bild sichern: über Share-Intent bzw. `MediaStore`, keine Berechtigung nötig.
-- [ ] Tests: `ShareTextTest` (steht, 24 Fälle), `ShareCardTests` (mit den Bildkarten).
+- [x] Inhalte als Text (8b-1): Gericht (`MensaMealShare`), Speiseplan einer Mensa (`MensaPlanShare`), Event (`EventShare`), Medium (`LibraryMediaShare`). Reines Kotlin in `domain/model/share/`, Texte über `ShareStrings` (App: `ResourceShareStrings`, `share_*` de/en). Teilen-Blatt per `ACTION_SEND` (`Context.shareText`).
+- [x] Bildkarten (8b-2): `SharePlanCard`, `ShareMealCard`, `ShareEventTicket` in `ui/share/card/` (feste Dichte 3, fester Modus: hell bzw. nachtblau, 1080 px breit, Höhe nach Inhalt, mindestens 450 dp). Gerendert wird erst bei der Wahl „Als Bild teilen“: `ShareImageRenderer` setzt eine `ComposeView` außerhalb des Fensters ans Fenster und zeichnet sie in ein `Bitmap` (statt `GraphicsLayer`, weil die Karte ein eigenes Fenster-Layout mit fester Dichte braucht). Vorschauen in `ShareCardPreviews.kt`.
+- [x] Share-Intent mit `FileProvider` (`<cache>/share/`, nicht exportiert), Text und Bild getrennt: Das Bild geht ohne Text und ohne Betreff raus, die Marke steht im Bild.
+- [x] Teilen-Taste mit Menü „Als Bild / Als Text teilen“ (`ShareMenu`) im Speiseplan, im Gericht und in der Veranstaltung; die Titelansicht der Bibliothek teilt nur Text (wie iOS).
+- [x] Bild sichern: über das Teilen-Blatt („In Dateien/Fotos sichern“ der Apps), keine Berechtigung nötig; ein eigenes `MediaStore`-Speichern entfällt.
+- [x] Tests: `ShareTextTest` (29 Fälle: Bausteine, Texte, Dateinamen, Zeiten). Die Bildkarten prüfen die Vorschauen und der Lauf auf dem Emulator (Speiseplan und Veranstaltung als PNG erzeugt, Teilen-Blatt zeigt das Bild). Offen: Gericht-Karte und Abgesagt/Unbestätigt auf dem Gerät sowie Telegram/Messages-Verhalten.
 
 ## Abnahme
 

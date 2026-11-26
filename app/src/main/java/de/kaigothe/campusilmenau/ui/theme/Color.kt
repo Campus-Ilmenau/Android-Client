@@ -135,3 +135,19 @@ internal val DarkCampusColors = CampusColors(
     brandNight = Color(0xFF0E1A2E),
     brandDusk = Color(0xFF1D2F4F),
 )
+
+/**
+ * Farben der Bildkarten zum Teilen. Die Karten sehen auf jedem Gerät gleich aus (hell oder nachtblau, unabhängig vom
+ * Modus), deshalb stehen die Werte hier fest: orange.200, blue.200 und blue.100 der Palette für den hellen Verlauf,
+ * orange.900 für den Schein auf dem Nachtblau.
+ */
+object ShareCardColors {
+    val Backdrop = Color(0xFFE3EEFF)
+    val GlowOrange = Color(0xFFFFCEBE)
+    val GlowBlue = Color(0xFFC6DCFF)
+    val NightGlowOrange = Color(0xFF571808)
+
+    /** Nachtblauer Grund und Schein unten links: `background` und `surfaceSecondary` des dunklen Themes. */
+    val NightBackground = DarkCampusColors.background
+    val NightGlowBlue = DarkCampusColors.surfaceSecondary
+}

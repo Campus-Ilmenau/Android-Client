@@ -13,6 +13,7 @@ import de.kaigothe.campusilmenau.domain.model.mensa.MensaMealPrice
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaMealtime
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaPriceGroup
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaVenue
+import de.kaigothe.campusilmenau.domain.model.mensa.OpeningHour
 import java.time.Instant
 import java.time.LocalDate
 import java.util.Locale
@@ -54,6 +55,20 @@ private object GermanStrings : ShareStrings {
     override fun eventFrom(from: String) = "ab $from Uhr"
     override fun mediumIntro() = "Aus dem Katalog der UB Ilmenau:"
     override fun mediumOnline() = "Online im Campusnetz"
+    override fun cardDinnerCafeteria() = "Abendessen in der Cafeteria"
+    override fun cardDisclaimer() = "Angaben ohne Gewähr"
+    override fun cardMealDisclaimer() = "Angaben laut Speiseplan des Studierendenwerks. Ohne Gewähr."
+    override fun cardAllergens() = "Allergene"
+    override fun cardAdditives() = "Zusatzstoffe"
+    override fun cardEnvironment() = "Umwelt"
+    override fun cardEventAllDay() = "Ganztägig"
+    override fun cardEventCancelledChip() = "Fällt aus"
+    override fun cardEventCancelledNote() = "Fällt aus – der Veranstalter hat abgesagt."
+    override fun cardEventFallbackOrganizer() = "Veranstaltung"
+    override fun cardEventNoEnd() = "Uhr"
+    override fun cardEventTentativeChip() = "Noch nicht bestätigt"
+    override fun cardEventTentativeNote() = "Termin noch nicht bestätigt – schau kurz vorher noch einmal in die App."
+    override fun cardEventUntil(time: String) = "bis $time Uhr"
 }
 
 private const val BRAND = "Geteilt mit Campus Ilmenau – campus-ilmenau.de"
@@ -249,6 +264,43 @@ class ShareTextTest {
         val text = EventShare(event(description = "wort ".repeat(200)), GermanStrings).text
         assertTrue(text.contains("…"))
         assertFalse(text.contains("wort ".repeat(100)))
+    }
+
+    // --- Bilder: Dateinamen und Zeiten
+
+    @Test
+    fun `slug keeps letters and digits and joins the rest with one dash`() {
+        assertEquals("Mensa-Ehrenberg", ShareFileName.slug("Mensa Ehrenberg"))
+        assertEquals("Linsen-Dal-mit-Reis", ShareFileName.slug("  Linsen-Dal (mit Reis)! "))
+        assertEquals("Röntgenbau", ShareFileName.slug("Röntgenbau"))
+        assertEquals("", ShareFileName.slug("!!!"))
+        assertEquals(80, ShareFileName.slug("a".repeat(200)).length)
+    }
+
+    @Test
+    fun `png name falls back when the name has no letters`() {
+        assertEquals("Gericht.png", ShareFileName.png("???", fallback = "Gericht"))
+        assertEquals("Halloween-Party.png", ShareFileName.png("Halloween-Party", fallback = "Veranstaltung"))
+    }
+
+    @Test
+    fun `image file names of the contents`() {
+        val day = LocalDate.of(2026, 10, 29)
+        val lunch = MensaPlanShare(MensaVenue.MensaEhrenberg, day, allMeals = emptyList(), priceGroup = MensaPriceGroup.Studierende, strings = GermanStrings)
+        assertEquals("Mensa-Ehrenberg-2026-10-29.png", lunch.imageFileName)
+        val dinner = MensaPlanShare(MensaVenue.CafeteriaEhrenberg, day, MensaMealtime.Dinner, emptyList(), MensaPriceGroup.Studierende, null, GermanStrings)
+        assertEquals("Cafeteria-Ehrenberg-2026-10-29-Abendessen.png", dinner.imageFileName)
+        assertEquals("Linsen-Dal.png", MensaMealShare(meal(), MensaPriceGroup.Studierende, GermanStrings).imageFileName)
+        assertEquals("Halloween-Party.png", EventShare(event(), GermanStrings).imageFileName)
+    }
+
+    @Test
+    fun `plan hours come from the opening hours of the weekday`() {
+        val hours = listOf(OpeningHour("thu", "10:45", "14:00"), OpeningHour("fri", "10:45", "13:30"))
+        val thursday = LocalDate.of(2026, 10, 29)
+        assertEquals("10:45–14:00", MensaPlanShare.hours(MensaMealtime.Lunch, thursday, hours))
+        assertEquals("16:30–14:00", MensaPlanShare.hours(MensaMealtime.Dinner, thursday, hours))
+        assertEquals(null, MensaPlanShare.hours(MensaMealtime.Lunch, LocalDate.of(2026, 10, 31), hours))
     }
 
     // --- Medium

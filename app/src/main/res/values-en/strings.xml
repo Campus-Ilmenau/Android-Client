@@ -658,6 +658,23 @@
     <!-- Share: texts that go into the shared text (ShareStrings) -->
     <string name="share_button">Share</string>
     <string name="share_chooser">Share via</string>
+    <string name="share_als_bild">Share as image</string>
+    <string name="share_als_text">Share as text</string>
+    <string name="share_bild_fehler">The image could not be created.</string>
+    <string name="share_card_dinner_cafeteria">Dinner at the cafeteria</string>
+    <string name="share_card_disclaimer">No guarantee for accuracy</string>
+    <string name="share_card_meal_disclaimer">Information from the Studierendenwerk menu. No guarantee for accuracy.</string>
+    <string name="share_card_allergens">Allergens</string>
+    <string name="share_card_additives">Additives</string>
+    <string name="share_card_environment">Environment</string>
+    <string name="share_card_event_all_day">All day</string>
+    <string name="share_card_event_cancelled_chip">Cancelled</string>
+    <string name="share_card_event_cancelled_note">Cancelled – the organizer has called it off.</string>
+    <string name="share_card_event_fallback_organizer">Event</string>
+    <string name="share_card_event_no_end">onwards</string>
+    <string name="share_card_event_tentative_chip">Not confirmed yet</string>
+    <string name="share_card_event_tentative_note">Date not confirmed yet – check the app again shortly before.</string>
+    <string name="share_card_event_until">until %1$s</string>
     <string name="share_brand">Shared with Campus Ilmenau – %1$s</string>
     <string name="share_group_students">Students</string>
     <string name="share_group_staff">Staff</string>

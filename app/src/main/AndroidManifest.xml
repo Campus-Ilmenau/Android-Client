@@ -47,6 +47,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Bilder zum Teilen: nur der Ordner share/ im Zwischenspeicher, nicht exportiert, Zugriff per Leseerlaubnis auf die Adresse. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/share_paths" />
+        </provider>
+
         <!-- Die Launcher-Einträge. Genau einer ist aktiv, „Mehr“ schaltet um (AppIcon.kt). Alle öffnen MainActivity;
              die Aliase heißen wie in AppIconWahl. Ohne Icon-Angabe fiele ein Alias auf das Icon der App zurück. -->
         <activity-alias

@@ -74,6 +74,21 @@ class ResourceShareStrings(private val resources: Resources, override val locale
 
     override fun mediumIntro() = s(R.string.share_medium_intro)
     override fun mediumOnline() = s(R.string.share_medium_online)
+
+    override fun cardDinnerCafeteria() = s(R.string.share_card_dinner_cafeteria)
+    override fun cardDisclaimer() = s(R.string.share_card_disclaimer)
+    override fun cardMealDisclaimer() = s(R.string.share_card_meal_disclaimer)
+    override fun cardAllergens() = s(R.string.share_card_allergens)
+    override fun cardAdditives() = s(R.string.share_card_additives)
+    override fun cardEnvironment() = s(R.string.share_card_environment)
+    override fun cardEventAllDay() = s(R.string.share_card_event_all_day)
+    override fun cardEventCancelledChip() = s(R.string.share_card_event_cancelled_chip)
+    override fun cardEventCancelledNote() = s(R.string.share_card_event_cancelled_note)
+    override fun cardEventFallbackOrganizer() = s(R.string.share_card_event_fallback_organizer)
+    override fun cardEventNoEnd() = s(R.string.share_card_event_no_end)
+    override fun cardEventTentativeChip() = s(R.string.share_card_event_tentative_chip)
+    override fun cardEventTentativeNote() = s(R.string.share_card_event_tentative_note)
+    override fun cardEventUntil(time: String) = s(R.string.share_card_event_until, time)
 }
 
 /** Die Teilen-Texte in der aktuellen Sprache; wechselt mit der Konfiguration. */
@@ -96,7 +111,7 @@ fun Context.shareText(content: ShareContent) {
     startActivity(chooser)
 }
 
-private fun Context.findActivityContext(): android.app.Activity? {
+internal fun Context.findActivityContext(): android.app.Activity? {
     var current: Context? = this
     while (current is ContextWrapper) {
         if (current is android.app.Activity) return current

@@ -1,7 +1,10 @@
 package de.kaigothe.campusilmenau.domain.model.share
 
 import de.kaigothe.campusilmenau.domain.model.events.EventTimes
+import de.kaigothe.campusilmenau.domain.model.heute.HeuteClock
+import de.kaigothe.campusilmenau.domain.model.heute.HeuteContent
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaMeal
+import de.kaigothe.campusilmenau.domain.model.mensa.OpeningHour
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaMealtime
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaPriceGroup
 import de.kaigothe.campusilmenau.domain.model.mensa.MensaVenue
@@ -36,6 +39,14 @@ class MensaPlanShare(
 
     override val title: String get() = "${venue.displayName} · ${EventTimes.short(day, strings.locale)}"
 
+    /** „Mensa-Ehrenberg-2026-10-29.png“, beim Abendessen mit „-Abendessen“. */
+    val imageFileName: String
+        get() {
+            var name = "${ShareFileName.slug(venue.displayName)}-$day"
+            if (mealtime == MensaMealtime.Dinner) name += "-" + ShareFileName.slug(strings.planOffer(true))
+            return "$name.png"
+        }
+
     override val text: String
         get() {
             val offerLine = listOfNotNull(strings.planOffer(mealtime == MensaMealtime.Dinner), hours?.let(strings::hours)).joinToString(", ")
@@ -50,6 +61,21 @@ class MensaPlanShare(
             }
             return ShareText.compose(listOf(header, lines, listOf(strings.priceNote(priceGroup))), strings)
         }
+
+    companion object {
+        /**
+         * Zeit des Angebots aus den Öffnungszeiten der API: Mittag wie geöffnet, Abendessen ab 16:30 bis Ende der
+         * Öffnung. `null`, wenn die API für den Tag nichts nennt.
+         */
+        fun hours(mealtime: MensaMealtime, day: LocalDate, openingHours: List<OpeningHour>): String? {
+            val key = day.dayOfWeek.name.take(3).lowercase()
+            val today = openingHours.firstOrNull { it.weekday.lowercase() == key } ?: return null
+            return when (mealtime) {
+                MensaMealtime.Lunch -> "${today.opensAt}–${today.closesAt}"
+                MensaMealtime.Dinner -> "${HeuteClock.time(HeuteContent.DinnerStart)}–${today.closesAt}"
+            }
+        }
+    }
 }
 
 /** Ein Gericht mit allen Angaben: alle drei Preisgruppen (die eigene zuerst), Allergene, Zusatzstoffe, CO₂. */
@@ -68,6 +94,9 @@ class MensaMealShare(
         }
 
     override val title: String get() = "${meal.name} · $venueName"
+
+    /** „Linsen-Dal.png“ */
+    val imageFileName: String get() = ShareFileName.png(meal.name, fallback = "Gericht")
 
     override val text: String
         get() {

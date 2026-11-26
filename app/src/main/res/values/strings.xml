@@ -662,6 +662,23 @@
     <!-- Teilen: Texte, die in den geteilten Text kommen (ShareStrings) -->
     <string name="share_button">Teilen</string>
     <string name="share_chooser">Teilen über</string>
+    <string name="share_als_bild">Als Bild teilen</string>
+    <string name="share_als_text">Als Text teilen</string>
+    <string name="share_bild_fehler">Das Bild konnte nicht erstellt werden.</string>
+    <string name="share_card_dinner_cafeteria">Abendessen in der Cafeteria</string>
+    <string name="share_card_disclaimer">Angaben ohne Gewähr</string>
+    <string name="share_card_meal_disclaimer">Angaben laut Speiseplan des Studierendenwerks. Ohne Gewähr.</string>
+    <string name="share_card_allergens">Allergene</string>
+    <string name="share_card_additives">Zusatzstoffe</string>
+    <string name="share_card_environment">Umwelt</string>
+    <string name="share_card_event_all_day">Ganztägig</string>
+    <string name="share_card_event_cancelled_chip">Fällt aus</string>
+    <string name="share_card_event_cancelled_note">Fällt aus – der Veranstalter hat abgesagt.</string>
+    <string name="share_card_event_fallback_organizer">Veranstaltung</string>
+    <string name="share_card_event_no_end">Uhr</string>
+    <string name="share_card_event_tentative_chip">Noch nicht bestätigt</string>
+    <string name="share_card_event_tentative_note">Termin noch nicht bestätigt – schau kurz vorher noch einmal in die App.</string>
+    <string name="share_card_event_until">bis %1$s Uhr</string>
     <string name="share_brand">Geteilt mit Campus Ilmenau – %1$s</string>
     <string name="share_group_students">Studierende</string>
     <string name="share_group_staff">Bedienstete</string>
