@@ -33,6 +33,21 @@ class Navigator(val state: NavigationState) {
         if (stack.lastOrNull() != route) stack.add(route)
     }
 
+    /**
+     * Öffnet das Detail zu einer Liste. Steht das Detail neben der Liste ([split]) und zeigt der Stack schon ein Detail
+     * derselben Art, ersetzt [route] es: Ein Tipp auf einen anderen Eintrag der Liste wächst den Stack nicht, „Zurück“
+     * führt danach wieder zur Liste statt durch alle angesehenen Einträge. Ohne Nebeneinander ist es [navigate].
+     */
+    fun openDetail(route: NavKey, split: Boolean) {
+        val stack = state.currentStack
+        val top = stack.lastOrNull()
+        when {
+            top == route -> Unit
+            split && stack.size > 1 && top != null && top::class == route::class -> stack[stack.lastIndex] = route
+            else -> stack.add(route)
+        }
+    }
+
     /** Öffnet „Mehr“ über „Heute“, mit vorgewähltem [bereich]. Ein früheres „Mehr“ wird ersetzt. */
     fun openMehr(bereich: String?) {
         state.selectedTab = state.startTab

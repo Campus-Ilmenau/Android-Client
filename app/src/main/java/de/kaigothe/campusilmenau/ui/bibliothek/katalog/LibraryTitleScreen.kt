@@ -87,7 +87,10 @@ import de.kaigothe.campusilmenau.ui.components.PrimaryButton
 import de.kaigothe.campusilmenau.ui.components.SecondaryButton
 import de.kaigothe.campusilmenau.ui.navigation.LocalToastState
 import de.kaigothe.campusilmenau.ui.theme.CampusTheme
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.ui.platform.LocalContext
+import de.kaigothe.campusilmenau.ui.adaptive.LocalSplitView
 import de.kaigothe.campusilmenau.domain.model.share.LibraryMediaShare
 import de.kaigothe.campusilmenau.ui.share.ShareButton
 import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
@@ -178,7 +181,12 @@ fun LibraryTitleContent(
 ) {
     Column(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            BackBar(onBack = onBack, description = stringResource(R.string.bib_titel_zurueck), modifier = Modifier.weight(1f))
+            // Neben der Liste braucht der Titel keine Zurück-Taste.
+            if (LocalSplitView.current) {
+                Spacer(modifier = Modifier.weight(1f).height(Spacing.MinTouchTarget))
+            } else {
+                BackBar(onBack = onBack, description = stringResource(R.string.bib_titel_zurueck), modifier = Modifier.weight(1f))
+            }
             if (state.detail != null) {
                 ShareButton(onClick = onShare)
                 val bookmarked = state.isBookmarked

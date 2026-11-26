@@ -243,6 +243,8 @@
     <string name="events_detail_zurueck">Back to events</string>
     <string name="events_toast_gemerkt">Saved</string>
     <string name="events_toast_nicht_mehr_gemerkt">Removed from saved</string>
+    <string name="adaptiv_platzhalter_event">Select an event</string>
+    <string name="adaptiv_platzhalter_titel">Select a title</string>
     <string name="events_nicht_gefunden_titel">Event not found</string>
     <string name="events_nicht_gefunden_text">It may have been removed.</string>
     <string name="events_detail_fehler_titel">Could not be loaded</string>

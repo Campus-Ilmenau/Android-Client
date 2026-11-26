@@ -71,6 +71,7 @@ import de.kaigothe.campusilmenau.domain.model.events.EventDetailDisplay
 import de.kaigothe.campusilmenau.domain.model.events.EventStatus
 import de.kaigothe.campusilmenau.domain.model.events.EventTimes
 import androidx.compose.material.icons.outlined.Share
+import de.kaigothe.campusilmenau.ui.adaptive.LocalSplitView
 import de.kaigothe.campusilmenau.domain.model.share.EventShare
 import de.kaigothe.campusilmenau.ui.share.rememberShareStrings
 import de.kaigothe.campusilmenau.domain.model.share.ShareContent
@@ -143,7 +144,7 @@ fun EventDetailScreen(
         }
 
         else -> Column(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding()) {
-            BackBar(onBack = onBack, description = stringResource(R.string.events_detail_zurueck))
+            if (!LocalSplitView.current) BackBar(onBack = onBack, description = stringResource(R.string.events_detail_zurueck))
             when (current) {
                 EventDetailState.Loading -> Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     GoatLoader(size = 96.dp)
@@ -241,7 +242,10 @@ fun EventDetailContent(
             modifier = Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = 12.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            RoundButton(Icons.AutoMirrored.Outlined.ArrowBack, stringResource(R.string.events_detail_zurueck), onClick = onBack)
+            // Neben der Liste braucht das Detail keine Zurück-Taste.
+            if (!LocalSplitView.current) {
+                RoundButton(Icons.AutoMirrored.Outlined.ArrowBack, stringResource(R.string.events_detail_zurueck), onClick = onBack)
+            }
             Box(modifier = Modifier.weight(1f))
             if (share != null) {
                 ShareMenu(text = share, image = shareImage, anchor = { open ->

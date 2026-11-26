@@ -246,6 +246,8 @@
     <string name="events_detail_zurueck">Zurück zu den Veranstaltungen</string>
     <string name="events_toast_gemerkt">Gemerkt</string>
     <string name="events_toast_nicht_mehr_gemerkt">Nicht mehr gemerkt</string>
+    <string name="adaptiv_platzhalter_event">Wähle eine Veranstaltung</string>
+    <string name="adaptiv_platzhalter_titel">Wähle einen Titel</string>
     <string name="events_nicht_gefunden_titel">Veranstaltung nicht gefunden</string>
     <string name="events_nicht_gefunden_text">Sie wurde vielleicht entfernt.</string>
     <string name="events_detail_fehler_titel">Konnte nicht geladen werden</string>

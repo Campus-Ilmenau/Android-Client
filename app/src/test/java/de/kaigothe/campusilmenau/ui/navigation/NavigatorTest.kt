@@ -192,6 +192,55 @@ class NavigatorTest {
     }
 
     @Test
+    fun `Detail ohne Nebeneinander wird aufgelegt`() {
+        val navigator = navigator()
+        navigator.selectTab(AppTab.Events)
+        navigator.openDetail(EventDetailRoute("a"), split = false)
+        navigator.openDetail(EventDetailRoute("b"), split = false)
+        assertEquals(listOf<NavKey>(EventsRoute, EventDetailRoute("a"), EventDetailRoute("b")), navigator.stack(AppTab.Events))
+    }
+
+    @Test
+    fun `Detail neben der Liste ersetzt das offene Detail`() {
+        val navigator = navigator()
+        navigator.selectTab(AppTab.Events)
+        navigator.openDetail(EventDetailRoute("a"), split = true)
+        navigator.openDetail(EventDetailRoute("b"), split = true)
+        assertEquals(listOf<NavKey>(EventsRoute, EventDetailRoute("b")), navigator.stack(AppTab.Events))
+
+        // Zurück führt zur Liste, nicht durch alle angesehenen Einträge.
+        assertTrue(navigator.goBack())
+        assertEquals(listOf<NavKey>(EventsRoute), navigator.stack(AppTab.Events))
+    }
+
+    @Test
+    fun `dasselbe Detail wird nicht doppelt gelegt`() {
+        val navigator = navigator()
+        navigator.selectTab(AppTab.Events)
+        navigator.openDetail(EventDetailRoute("a"), split = true)
+        navigator.openDetail(EventDetailRoute("a"), split = true)
+        assertEquals(2, navigator.stack(AppTab.Events).size)
+    }
+
+    @Test
+    fun `Detail einer anderen Art neben der Liste wird aufgelegt statt ersetzt`() {
+        val navigator = navigator()
+        navigator.selectTab(AppTab.Events)
+        navigator.openDetail(EventsVergangeneRoute("All", false), split = true)
+        navigator.openDetail(EventDetailRoute("a"), split = true)
+        assertEquals(3, navigator.stack(AppTab.Events).size)
+    }
+
+    @Test
+    fun `Detail direkt auf der Wurzel wird nie ersetzt`() {
+        val navigator = navigator()
+        navigator.selectTab(AppTab.Events)
+        // Die Wurzel ist die Liste selbst; sie bleibt, auch wenn sie gleicher Art wäre.
+        navigator.openDetail(EventsRoute, split = true)
+        assertEquals(listOf<NavKey>(EventsRoute), navigator.stack(AppTab.Events))
+    }
+
+    @Test
     fun `erneutes Tippen auf den Tab meldet ein Ereignis`() {
         val navigator = navigator()
         navigator.onReselect(AppTab.Heute)

@@ -2,6 +2,13 @@ package de.kaigothe.campusilmenau.ui.navigation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.navigation3.ListDetailSceneStrategy
+import androidx.compose.material3.adaptive.navigation3.rememberListDetailSceneStrategy
+import androidx.compose.ui.res.stringResource
+import de.kaigothe.campusilmenau.ui.adaptive.DetailPlaceholder
+import de.kaigothe.campusilmenau.ui.adaptive.LocalSplitView
+import de.kaigothe.campusilmenau.ui.adaptive.WindowWidthClass
 import de.kaigothe.campusilmenau.ui.adaptive.currentWindowWidthClass
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
@@ -59,7 +66,7 @@ val LocalToastState = staticCompositionLocalOf<ToastState> {
  * seinen Zustand, ein Tab wird erst beim ersten Besuch aufgebaut. Die Tab-Leiste verschwindet, solange die
  * Tastatur sichtbar ist. Ziele von außen (Deeplinks) wählen den Tab, sobald [launchFinished] gilt.
  */
-@OptIn(ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun AppShell(
     modifier: Modifier = Modifier,
@@ -86,6 +93,16 @@ fun AppShell(
         viewModel.prepare(link)
         navigator.open(link)
     }
+
+    // Ab 840 dp steht ein Detail neben seiner Liste (Events, Katalog, Merkliste); darunter bleibt es eine eigene Seite.
+    val widthClass = currentWindowWidthClass()
+    val split = widthClass == WindowWidthClass.Expanded
+    val listDetailStrategy = rememberListDetailSceneStrategy<NavKey>()
+    val eventPlaceholder = stringResource(R.string.adaptiv_platzhalter_event)
+    val titlePlaceholder = stringResource(R.string.adaptiv_platzhalter_titel)
+    val eventList = ListDetailSceneStrategy.listPane(detailPlaceholder = { DetailPlaceholder(eventPlaceholder) })
+    val titleList = ListDetailSceneStrategy.listPane(detailPlaceholder = { DetailPlaceholder(titlePlaceholder) })
+    val detail = ListDetailSceneStrategy.detailPane()
 
     val entries = entryProvider<NavKey> {
         entry<HeuteRoute> {
@@ -117,21 +134,21 @@ fun AppShell(
                 onOpenTitle = { id -> navigator.navigate(KatalogTitelRoute(id)) },
             )
         }
-        entry<MerklisteRoute> {
+        entry<MerklisteRoute>(metadata = titleList) {
             MerklisteScreen(
                 onBack = { navigator.goBack() },
-                onOpenTitle = { id -> navigator.navigate(KatalogTitelRoute(id)) },
+                onOpenTitle = { id -> navigator.openDetail(KatalogTitelRoute(id), split) },
                 onOpenCatalog = { navigator.navigate(KatalogRoute()) },
             )
         }
-        entry<KatalogRoute> { route ->
+        entry<KatalogRoute>(metadata = titleList) { route ->
             LibraryCatalogScreen(
                 term = route.term,
                 onBack = { navigator.goBack() },
-                onOpenTitle = { media, searchId -> navigator.navigate(KatalogTitelRoute(media.id, searchId)) },
+                onOpenTitle = { media, searchId -> navigator.openDetail(KatalogTitelRoute(media.id, searchId), split) },
             )
         }
-        entry<KatalogTitelRoute> { route ->
+        entry<KatalogTitelRoute>(metadata = detail) { route ->
             LibraryTitleScreen(
                 id = route.id,
                 searchId = route.searchId,
@@ -139,9 +156,9 @@ fun AppShell(
                 onOpenMerkliste = { navigator.navigate(MerklisteRoute) },
             )
         }
-        entry<EventsRoute> {
+        entry<EventsRoute>(metadata = eventList) {
             EventsScreen(
-                onOpenEvent = { id -> navigator.navigate(EventDetailRoute(id)) },
+                onOpenEvent = { id -> navigator.openDetail(EventDetailRoute(id), split) },
                 onOpenPast = { selection ->
                     navigator.navigate(EventsVergangeneRoute(selection.kind.name, selection.hideCancelled))
                 },
@@ -157,7 +174,7 @@ fun AppShell(
                 onOpenEvent = { id -> navigator.navigate(EventDetailRoute(id)) },
             )
         }
-        entry<EventDetailRoute> { route -> EventDetailScreen(id = route.id, onBack = { navigator.goBack() }) }
+        entry<EventDetailRoute>(metadata = detail) { route -> EventDetailScreen(id = route.id, onBack = { navigator.goBack() }) }
         entry<MehrRoute> { route ->
             MehrScreen(
                 bereich = route.bereich,
@@ -173,12 +190,11 @@ fun AppShell(
     val imeVisible = WindowInsets.isImeVisible
     // Fenster ab 600 dp Breite: Navigation am Rand statt Tab-Leiste unten. Der Zustand (Tab, Back Stacks) liegt im
     // NavigationState und ist von der Breite unabhängig, ein Wechsel (Drehen, Falten, Fenstergröße) verliert nichts.
-    val widthClass = currentWindowWidthClass()
     val sideNavigation = widthClass.usesSideNavigation
     val mehrSelected = navigationState.selectedTab == navigationState.startTab &&
         navigationState.currentStack.lastOrNull() is MehrRoute
 
-    CompositionLocalProvider(LocalToastState provides toastState) {
+    CompositionLocalProvider(LocalToastState provides toastState, LocalSplitView provides split) {
         Row(modifier = modifier) {
             if (sideNavigation) {
                 CampusNavigationRail(
@@ -214,6 +230,7 @@ fun AppShell(
                 ) {
                     NavDisplay(
                         entries = navigationState.toDecoratedEntries(entries),
+                        sceneStrategies = listOf(listDetailStrategy),
                         onBack = { navigator.goBack() },
                     )
                     ToastHost(state = toastState, modifier = Modifier.align(Alignment.BottomCenter))
