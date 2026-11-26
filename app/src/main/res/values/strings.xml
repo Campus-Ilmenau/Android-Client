@@ -660,6 +660,8 @@
     <string name="mehr_gespeicherte_daten">Gespeicherte Daten</string>
     <string name="mehr_version">Campus Ilmenau · Version %1$s (%2$s)</string>
     <string name="mehr_abbrechen">Abbrechen</string>
+    <string name="mehr_datenschutz">Datenschutz</string>
+    <string name="mehr_impressum">Impressum</string>
     <string name="gd_titel">Gespeicherte Daten</string>
     <string name="gd_intro">Das legt die App auf diesem Gerät ab. Nichts davon wird an uns gesendet. Löschst du die App, ist alles weg.</string>
     <string name="gd_thoska">Thoska-Verlauf</string>

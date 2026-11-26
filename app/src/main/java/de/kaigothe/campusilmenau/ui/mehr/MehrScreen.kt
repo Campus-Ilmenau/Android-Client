@@ -16,6 +16,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
+import de.kaigothe.campusilmenau.domain.model.mehr.AppLinks
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -66,6 +68,7 @@ fun MehrScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     MehrContent(
         state = state,
         bereich = MehrBereich.ofLink(bereich),
@@ -80,6 +83,7 @@ fun MehrScreen(
         onOpenGespeicherteDaten = onOpenGespeicherteDaten,
         onAnmelden = onOpenLogin,
         onAbmelden = viewModel::logout,
+        onOpenUrl = { url -> runCatching { uriHandler.openUri(url) } },
         version = BuildConfig.VERSION_NAME,
         build = BuildConfig.VERSION_CODE.toString(),
         modifier = modifier,
@@ -102,6 +106,7 @@ fun MehrContent(
     onOpenGespeicherteDaten: () -> Unit,
     onAnmelden: () -> Unit,
     onAbmelden: () -> Unit,
+    onOpenUrl: (String) -> Unit,
     version: String,
     build: String,
     modifier: Modifier = Modifier,
@@ -201,6 +206,10 @@ fun MehrContent(
                     )
                     MehrTrenner()
                     MehrLinkZeile(titel = stringResource(R.string.mehr_gespeicherte_daten), onClick = onOpenGespeicherteDaten)
+                    MehrTrenner()
+                    MehrLinkZeile(titel = stringResource(R.string.mehr_datenschutz), onClick = { onOpenUrl(AppLinks.DATENSCHUTZ) }, extern = true)
+                    MehrTrenner()
+                    MehrLinkZeile(titel = stringResource(R.string.mehr_impressum), onClick = { onOpenUrl(AppLinks.IMPRESSUM) }, extern = true)
                 }
             }
             item(key = "version") {

@@ -15,7 +15,7 @@ Bereich „Mehr“ mit Einstellungen sowie Teilen von Gerichten, Events und Medi
 - [x] Bereich „Mensa“: Preisgruppe, Mensa auf Heute, Öffnungszeiten. (Der Einstieg in den Mensa-Filter bleibt im Mensa-Tab.)
 - [x] Darstellung (`AppDarstellung`): System/Hell/Dunkel über DataStore, wirkt sofort im Theme.
 - [ ] Alternative App-Icons (`AlternativeAppIcons`) über `activity-alias`; Hinweis auf kurzen Neustart. Themed Icon als „Tinted“-Ersatz.
-- [ ] Links (`AppLinks`): Impressum, Datenschutz. In iOS sind die Adressen noch leer, die Zeilen entfallen dann; erst eintragen, wenn sie feststehen.
+- [x] Links (`AppLinks`): Datenschutz (`https://campus-ilmenau.de/datenschutz/`) und Impressum (`https://campus-ilmenau.de/impressum/`) in „Allgemein“, öffnen im Browser. In der iOS-App sind die Adressen noch leer (`AppLinks.swift`).
 - [x] „Gespeicherte Daten“ (`GespeicherteDatenView`): Übersicht (Thoska, Merkliste, Veranstaltungen, Einstellungen, was nicht gespeichert wird) und **Alle gespeicherten Daten löschen** (Verlauf, Merkliste, Einstellungen, Sitzung und gespeichertes PAIA-Passwort).
 - [ ] Shortcut-Tipps (`SiriFragenView`, `SiriTipps`) als Android-Variante (siehe M10).
 

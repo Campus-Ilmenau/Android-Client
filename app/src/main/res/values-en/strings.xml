@@ -654,6 +654,8 @@
     <string name="mehr_gespeicherte_daten">Stored data</string>
     <string name="mehr_version">Campus Ilmenau · Version %1$s (%2$s)</string>
     <string name="mehr_abbrechen">Cancel</string>
+    <string name="mehr_datenschutz">Privacy policy</string>
+    <string name="mehr_impressum">Legal notice</string>
     <string name="gd_titel">Stored data</string>
     <string name="gd_intro">This is what the app keeps on this device. None of it is sent to us. If you delete the app, it is all gone.</string>
     <string name="gd_thoska">Thoska history</string>

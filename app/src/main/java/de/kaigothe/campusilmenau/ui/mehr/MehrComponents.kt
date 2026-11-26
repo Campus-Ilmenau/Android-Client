@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.UnfoldMore
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -152,7 +153,7 @@ fun <T> MehrAuswahlZeile(
 
 /** Zeile, die eine andere Ansicht öffnet (Pfeil rechts). */
 @Composable
-fun MehrLinkZeile(titel: String, onClick: () -> Unit, wert: String? = null) {
+fun MehrLinkZeile(titel: String, onClick: () -> Unit, wert: String? = null, extern: Boolean = false) {
     val colors = CampusTheme.colors
     Row(
         modifier = Modifier
@@ -166,7 +167,13 @@ fun MehrLinkZeile(titel: String, onClick: () -> Unit, wert: String? = null) {
     ) {
         Text(titel, style = MaterialTheme.typography.bodyLarge, color = colors.textPrimary, modifier = Modifier.weight(1f))
         if (wert != null) Text(wert, style = MaterialTheme.typography.bodyLarge, color = colors.textSecondary)
-        Icon(Icons.AutoMirrored.Outlined.KeyboardArrowRight, contentDescription = null, tint = colors.textTertiary, modifier = Modifier.size(20.dp))
+        // Externe Seiten öffnen im Browser: anderes Symbol als der Pfeil für Ansichten der App.
+        Icon(
+            if (extern) Icons.AutoMirrored.Outlined.OpenInNew else Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+            contentDescription = null,
+            tint = colors.textTertiary,
+            modifier = Modifier.size(20.dp),
+        )
     }
 }
 
