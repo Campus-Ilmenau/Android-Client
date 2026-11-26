@@ -58,6 +58,10 @@ class Navigator(val state: NavigationState) {
             is DeepLink.Gericht -> MensaGerichtRoute(link.id, link.day)
             DeepLink.MensaZeiten -> MensaZeitenRoute
             is DeepLink.Event -> EventDetailRoute(link.id)
+            DeepLink.KatalogSuche -> KatalogRoute()
+            is DeepLink.KatalogSuchen -> KatalogRoute(link.query)
+            is DeepLink.KatalogTitel -> KatalogTitelRoute(link.id)
+            DeepLink.Merkliste -> MerklisteRoute
             else -> null
         }
         // Die Liste der Veranstaltungen beginnt bei einem Link ohne Unterziel wieder vorn (ohne ein offenes Detail).

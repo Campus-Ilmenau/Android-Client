@@ -118,6 +118,24 @@ class NavigatorTest {
     }
 
     @Test
+    fun `Links der Bibliothek oeffnen Katalog, Titel und Merkliste auf der Wurzel des Tabs`() {
+        val navigator = navigator()
+
+        navigator.open(DeepLink.KatalogSuchen("x"))
+        assertEquals(listOf<NavKey>(BibliothekRoute, KatalogRoute("x")), navigator.stack(AppTab.Bibliothek))
+
+        // Ein weiterer Link ersetzt das frühere Ziel, statt darauf zu stapeln.
+        navigator.open(DeepLink.KatalogTitel("med_1"))
+        assertEquals(listOf<NavKey>(BibliothekRoute, KatalogTitelRoute("med_1")), navigator.stack(AppTab.Bibliothek))
+
+        navigator.open(DeepLink.Merkliste)
+        assertEquals(listOf<NavKey>(BibliothekRoute, MerklisteRoute), navigator.stack(AppTab.Bibliothek))
+
+        navigator.open(DeepLink.KatalogSuche)
+        assertEquals(listOf<NavKey>(BibliothekRoute, KatalogRoute()), navigator.stack(AppTab.Bibliothek))
+    }
+
+    @Test
     fun `ein Gericht liegt auf der Wurzel des Mensa-Tabs und ersetzt fruehere Ziele`() {
         val navigator = navigator()
 

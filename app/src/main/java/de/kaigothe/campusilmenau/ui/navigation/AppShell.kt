@@ -40,6 +40,8 @@ import de.kaigothe.campusilmenau.ui.mensa.MensaOpeningHoursScreen
 import de.kaigothe.campusilmenau.ui.mensa.MensaScreen
 import de.kaigothe.campusilmenau.ui.bibliothek.BibliothekScreen
 import de.kaigothe.campusilmenau.ui.bibliothek.katalog.LibraryCatalogScreen
+import de.kaigothe.campusilmenau.ui.mehr.GespeicherteDatenScreen
+import de.kaigothe.campusilmenau.ui.mehr.MehrScreen
 import de.kaigothe.campusilmenau.ui.bibliothek.merkliste.MerklisteScreen
 import de.kaigothe.campusilmenau.ui.bibliothek.katalog.LibraryTitleScreen
 import de.kaigothe.campusilmenau.ui.placeholder.FeaturePlaceholder
@@ -154,7 +156,16 @@ fun AppShell(
             )
         }
         entry<EventDetailRoute> { route -> EventDetailScreen(id = route.id, onBack = { navigator.goBack() }) }
-        entry<MehrRoute> { FeaturePlaceholder(title = R.string.mehr_titel) }
+        entry<MehrRoute> { route ->
+            MehrScreen(
+                bereich = route.bereich,
+                onBack = { navigator.goBack() },
+                onOpenMensaZeiten = { navigator.navigate(MensaZeitenRoute) },
+                onOpenGespeicherteDaten = { navigator.navigate(GespeicherteDatenRoute) },
+                onOpenLogin = { navigator.selectTab(AppTab.Bibliothek) },
+            )
+        }
+        entry<GespeicherteDatenRoute> { GespeicherteDatenScreen(onBack = { navigator.goBack() }) }
     }
 
     val imeVisible = WindowInsets.isImeVisible

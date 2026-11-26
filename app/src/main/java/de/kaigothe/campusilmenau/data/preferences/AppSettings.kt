@@ -97,6 +97,11 @@ class AppSettings @Inject constructor(private val dataStore: DataStore<Preferenc
         }
     }
 
+    /** Setzt alle Einstellungen zurück (Darstellung, Mensa, Filter, Favoriten, gemerkte Veranstaltungen, Hinweise). */
+    suspend fun clearAll() {
+        dataStore.edit { it.clear() }
+    }
+
     private fun decodeFilter(text: String?): MensaFilter =
         text?.let { runCatching { FilterJson.decodeFromString(MensaFilter.serializer(), it) }.getOrNull() }
             ?: MensaFilter()

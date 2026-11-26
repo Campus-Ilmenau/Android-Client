@@ -24,6 +24,9 @@ interface ThoskaRepository {
 
     /** Legt den Namen an oder ändert ihn. Ein leerer Name setzt die Karte zurück. */
     suspend fun rename(cardId: String, input: String)
+
+    /** Löscht den ganzen Verlauf und alle Kartennamen („Gespeicherte Daten löschen“). */
+    suspend fun deleteAll()
 }
 
 @Singleton
@@ -46,6 +49,11 @@ class RoomThoskaRepository @Inject constructor(private val dao: ThoskaDao) : Tho
                 scannedAtMillis = balance.scannedAt.toEpochMilli(),
             ),
         )
+    }
+
+    override suspend fun deleteAll() {
+        dao.deleteAllBalances()
+        dao.deleteAllNames()
     }
 
     override suspend fun rename(cardId: String, input: String) {

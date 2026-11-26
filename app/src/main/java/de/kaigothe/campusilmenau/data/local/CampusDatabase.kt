@@ -47,6 +47,12 @@ interface ThoskaDao {
 
     @Query("DELETE FROM thoska_card_name WHERE cardId = :cardId")
     suspend fun deleteName(cardId: String)
+
+    @Query("DELETE FROM thoska_balance")
+    suspend fun deleteAllBalances()
+
+    @Query("DELETE FROM thoska_card_name")
+    suspend fun deleteAllNames()
 }
 
 /** Die Datenbank der App: Thoska-Verlauf und Merkliste der Bibliothek. */

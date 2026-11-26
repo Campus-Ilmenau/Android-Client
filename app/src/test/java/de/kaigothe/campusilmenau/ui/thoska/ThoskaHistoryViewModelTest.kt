@@ -34,6 +34,8 @@ class ThoskaHistoryViewModelTest {
             stored.value = stored.value + balance
         }
 
+        override suspend fun deleteAll() = Unit
+
         override suspend fun rename(cardId: String, input: String) {
             val name = ThoskaCardNaming.normalized(input)
             nameMap.value = if (name == null) nameMap.value - cardId else nameMap.value + (cardId to name)

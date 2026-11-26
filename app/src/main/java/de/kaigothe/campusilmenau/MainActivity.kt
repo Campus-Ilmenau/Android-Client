@@ -1,5 +1,6 @@
 package de.kaigothe.campusilmenau
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import de.kaigothe.campusilmenau.domain.model.Darstellung
 import de.kaigothe.campusilmenau.ui.launch.LaunchOverlay
+import de.kaigothe.campusilmenau.ui.mehr.AppSprache
 import de.kaigothe.campusilmenau.ui.navigation.AppShell
 import de.kaigothe.campusilmenau.ui.navigation.DeepLink
 import de.kaigothe.campusilmenau.ui.navigation.DeepLinkRouter
@@ -33,6 +35,11 @@ class MainActivity : FragmentActivity() {
 
     @Inject
     lateinit var deepLinkRouter: DeepLinkRouter
+
+    /** Vor Android 13 legt die App die gewählte Sprache selbst über den Kontext (siehe [AppSprache]). */
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppSprache.wrap(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Der Splash des Systems zeigt den ersten Frame der Start-Animation. Er bleibt, bis die Einstellungen

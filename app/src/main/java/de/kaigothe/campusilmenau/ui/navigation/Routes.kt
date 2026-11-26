@@ -51,6 +51,10 @@ data class KatalogRoute(val term: String? = null) : NavKey
 @Serializable
 data class KatalogTitelRoute(val id: String, val searchId: String? = null) : NavKey
 
+/** „Gespeicherte Daten“ unter „Mehr“. */
+@Serializable
+data object GespeicherteDatenRoute : NavKey
+
 /** Die Merkliste der Bibliothek, erreichbar aus dem Bibliothek-Tab und aus dem Toast nach dem Merken. */
 @Serializable
 data object MerklisteRoute : NavKey
