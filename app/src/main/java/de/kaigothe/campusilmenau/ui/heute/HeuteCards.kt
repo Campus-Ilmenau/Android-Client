@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -36,6 +37,7 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
@@ -114,9 +116,16 @@ fun HeuteJetztKarteView(card: HeuteJetztKarte, onZiel: (HeuteZiel) -> Unit, modi
     }
 }
 
+/** Ab dieser Schriftskalierung gilt der Kartentext als „groß“. */
+private const val LargeFontScale = 1.3f
+
 @Composable
 private fun CardHeader(card: HeuteJetztKarte) {
     val colors = CampusTheme.colors
+    // Bei großer Schrift würde die schmale Spalte Wörter mitten im Wort umbrechen: Dann darf der Text breiter werden.
+    val large = LocalDensity.current.fontScale > LargeFontScale
+    val kickerWidth = if (large) 0.9f else 0.70f
+    val textWidth = if (large) 0.85f else 0.58f
     val content: @Composable () -> Unit = {
         Column(
             modifier = Modifier
@@ -134,21 +143,21 @@ private fun CardHeader(card: HeuteJetztKarte) {
                         fontSize = 13.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.6.sp,
                     ),
                     color = colors.onBlue.copy(alpha = 0.85f),
-                    modifier = Modifier.fillMaxWidth(0.70f),
+                    modifier = Modifier.fillMaxWidth(kickerWidth),
                 )
             }
             Text(
                 text = card.title.asString(),
                 style = MaterialTheme.typography.displaySmall.copy(fontSize = 22.sp, lineHeight = 28.sp),
                 color = colors.onBlue,
-                modifier = Modifier.fillMaxWidth(0.58f).padding(top = 2.dp),
+                modifier = Modifier.fillMaxWidth(textWidth).padding(top = 2.dp),
             )
             card.subtitle?.asString()?.takeIf { it.isNotEmpty() }?.let {
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
                     color = colors.onBlue.copy(alpha = 0.85f),
-                    modifier = Modifier.fillMaxWidth(0.58f),
+                    modifier = Modifier.fillMaxWidth(textWidth),
                 )
             }
         }
@@ -287,7 +296,9 @@ private fun AppointmentRow(appointment: HeuteTermin, onZiel: (HeuteZiel) -> Unit
             text = appointment.time,
             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
             color = colors.textPrimary,
-            modifier = Modifier.width(52.dp),
+            // Mindestens 52 dp, damit die Zeiten bündig stehen, aber bei großer Schrift nie mitten in der Uhrzeit umbrechen.
+            softWrap = false,
+            modifier = Modifier.widthIn(min = 52.dp),
         )
         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.Top) {
             Box(
