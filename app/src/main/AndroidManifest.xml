@@ -47,6 +47,33 @@
             </intent-filter>
         </activity>
 
+        <!-- Widgets (Glance): Mensa heute und Heute Abend. -->
+        <receiver
+            android:name=".ui.widget.MensaWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_mensa_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/mensa_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".ui.widget.AbendWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_abend_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/abend_widget_info" />
+        </receiver>
+
         <!-- Bilder zum Teilen: nur der Ordner share/ im Zwischenspeicher, nicht exportiert, Zugriff per Leseerlaubnis auf die Adresse. -->
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -248,6 +248,16 @@
     <string name="events_toast_nicht_mehr_gemerkt">Nicht mehr gemerkt</string>
     <string name="kuerzel_strg">Strg</string>
 
+    <!-- Widgets -->
+    <string name="widget_mensa_name">Mensa heute</string>
+    <string name="widget_mensa_beschreibung">Was es gerade in deiner Mensa gibt.</string>
+    <string name="widget_abend_name">Heute Abend</string>
+    <string name="widget_abend_beschreibung">Was heute Abend los ist.</string>
+    <string name="widget_abend_kicker">Veranstaltungen</string>
+    <string name="widget_abend_titel">Heute Abend</string>
+    <string name="widget_abend_leer">Heute Abend ist nichts geplant.</string>
+    <string name="widget_keine_daten">Kein Speiseplan verfügbar. Tippe, um die App zu öffnen.</string>
+
     <!-- App-Shortcuts (langes Drücken des App-Icons) -->
     <string name="shortcut_mensa_kurz">Mensa heute</string>
     <string name="shortcut_mensa_lang">Was gibt’s heute in der Mensa?</string>

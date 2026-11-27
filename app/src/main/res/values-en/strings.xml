@@ -245,6 +245,16 @@
     <string name="events_toast_nicht_mehr_gemerkt">Removed from saved</string>
     <string name="kuerzel_strg">Ctrl</string>
 
+    <!-- Widgets -->
+    <string name="widget_mensa_name">Canteen today</string>
+    <string name="widget_mensa_beschreibung">What your canteen is serving right now.</string>
+    <string name="widget_abend_name">Tonight</string>
+    <string name="widget_abend_beschreibung">What is on tonight.</string>
+    <string name="widget_abend_kicker">Events</string>
+    <string name="widget_abend_titel">Tonight</string>
+    <string name="widget_abend_leer">Nothing planned for tonight.</string>
+    <string name="widget_keine_daten">No menu available. Tap to open the app.</string>
+
     <!-- App shortcuts (long-press on the app icon) -->
     <string name="shortcut_mensa_kurz">Canteen today</string>
     <string name="shortcut_mensa_lang">What’s on in the canteen today?</string>

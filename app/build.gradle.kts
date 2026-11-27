@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.adaptive)
     implementation(libs.androidx.adaptive.navigation3)
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
 
     // Dependency Injection
