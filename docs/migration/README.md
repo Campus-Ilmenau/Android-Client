@@ -33,7 +33,7 @@ Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als An
 | [M6](milestones/M06-thoska-nfc.md) | Thoska (NFC) | **umgesetzt**, Abnahme mit echter Karte offen |
 | [M7](milestones/M07-bibliothek.md) | Bibliothek | **umgesetzt** (7a–7e), Abnahme auf Gerät und portierte iOS-Tests offen |
 | [M8](milestones/M08-mehr-teilen.md) | Mehr, Teilen, Einstellungen | offen |
-| [M9](milestones/M09-adaptive-layouts.md) | Adaptive Layouts (Tablet, Faltgeräte) | offen |
+| [M9](milestones/M09-adaptive-layouts.md) | Adaptive Layouts (Tablet, Faltgeräte) | umgesetzt (9a–9c), Abnahme auf Faltgerät/Desktop-Emulator offen |
 | [M10](milestones/M10-widgets-shortcuts.md) | Widgets und Shortcuts | offen |
 | [M11](milestones/M11-qualitaet-release.md) | Qualität und Release | offen |
 
