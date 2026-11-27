@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Signierung: nie ins Repository (siehe app/build.gradle.kts, CAMPUS_KEYSTORE_*)
+*.jks
+*.keystore
+keystore.properties

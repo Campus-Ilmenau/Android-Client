@@ -23,6 +23,20 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Signierung des Release-Builds. Die Werte stehen nie im Repository: Sie kommen aus `~/.gradle/gradle.properties` oder aus
+    // Umgebungsvariablen (CI). Ohne sie entsteht ein unsignierter Release-Build, der sich prüfen, aber nicht veröffentlichen lässt.
+    val keystorePath = providers.gradleProperty("CAMPUS_KEYSTORE_FILE").orElse(providers.environmentVariable("CAMPUS_KEYSTORE_FILE"))
+    signingConfigs {
+        if (keystorePath.isPresent) {
+            create("release") {
+                storeFile = file(keystorePath.get())
+                storePassword = providers.gradleProperty("CAMPUS_KEYSTORE_PASSWORD").orElse(providers.environmentVariable("CAMPUS_KEYSTORE_PASSWORD")).get()
+                keyAlias = providers.gradleProperty("CAMPUS_KEY_ALIAS").orElse(providers.environmentVariable("CAMPUS_KEY_ALIAS")).get()
+                keyPassword = providers.gradleProperty("CAMPUS_KEY_PASSWORD").orElse(providers.environmentVariable("CAMPUS_KEY_PASSWORD")).get()
+            }
+        }
+    }
+
     buildTypes {
         // Basis-URL der Campus-Ilmenau-API. Nur sie wechselt, die Pfade (/v1/...) bleiben gleich.
         // Debug spricht den Dev-Stand (Branch develop), Release die Produktion (wie APIUmgebung.swift).
@@ -31,6 +45,7 @@ android {
         }
         release {
             buildConfigField("String", "API_BASE_URL", "\"https://api.campus-ilmenau.de/\"")
+            signingConfigs.findByName("release")?.let { signingConfig = it }
             optimization {
                 enable = true
                 packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")

@@ -34,8 +34,8 @@ Dieser Ordner dokumentiert die Umsetzung der iOS-App „Campus Ilmenau“ als An
 | [M7](milestones/M07-bibliothek.md) | Bibliothek | **umgesetzt** (7a–7e), Abnahme auf Gerät und portierte iOS-Tests offen |
 | [M8](milestones/M08-mehr-teilen.md) | Mehr, Teilen, Einstellungen | offen |
 | [M9](milestones/M09-adaptive-layouts.md) | Adaptive Layouts (Tablet, Faltgeräte) | umgesetzt (9a–9c), Abnahme auf Faltgerät/Desktop-Emulator offen |
-| [M10](milestones/M10-widgets-shortcuts.md) | Widgets und Shortcuts | offen |
-| [M11](milestones/M11-qualitaet-release.md) | Qualität und Release | offen |
+| [M10](milestones/M10-widgets-shortcuts.md) | Widgets und Shortcuts | Shortcuts und Widgets umgesetzt (10a, 10b), AppFunctions/Assistenten offen |
+| [M11](milestones/M11-qualitaet-release.md) | Qualität und Release | Sicherheit, CI, Release-Build, Doku umgesetzt; Gerätetests, TalkBack, Crashlytics, Store-Eintrag offen |
 
 Spätere Erweiterung: **Wear OS** (eigenes Modul, siehe [02-entscheidungen.md](02-entscheidungen.md)).
 

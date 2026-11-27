@@ -286,7 +286,9 @@ private fun ScannerCamera(torchOn: Boolean, onTorchAvailable: (Boolean) -> Unit,
     LaunchedEffect(camera, torchOn) { camera?.cameraControl?.enableTorch(torchOn) }
     DisposableEffect(Unit) {
         onDispose {
-            runCatching { ProcessCameraProvider.getInstance(context).get().unbindAll() }
+            // Der Provider ist meist schon da; `get()` erst im Listener, damit der Hauptthread nie auf ihn wartet.
+            val future = ProcessCameraProvider.getInstance(context)
+            future.addListener({ runCatching { future.get().unbindAll() } }, ContextCompat.getMainExecutor(context))
             scanner.close()
             executor.shutdown()
         }

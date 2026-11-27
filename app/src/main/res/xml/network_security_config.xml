@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Nur HTTPS. Die App spricht mit der Campus-Ilmenau-API (api.campus-ilmenau.de, im Debug dev-api.campus-ilmenau.de) und dem
+    PAIA-Server der UB (paia.gbv.de), dazu laden Bilder (Plakate, Cover) von Servern der Quellen. Klartext (http) ist überall aus.
+    Es gibt keine eigenen Zertifikate und kein Pinning: Das System-Truststore genügt.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>
