@@ -1,6 +1,25 @@
 package de.kaigothe.campusilmenau.ui.navigation
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.offset
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.TooltipAnchorPosition
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.unit.IntOffset
+import de.kaigothe.campusilmenau.ui.components.rememberReduceMotion
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -82,20 +101,27 @@ fun CampusNavigationRail(
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             if (expanded) SidebarHeader()
+            val ctrl = stringResource(R.string.kuerzel_strg)
             tabs.forEach { tab ->
                 val isSelected = tab == selected && !mehrSelected
+                val title = stringResource(tab.title)
+                // Tooltip bei Maus und langem Drücken, mit dem Tastenkürzel (Strg + Zahl, siehe AppShortcuts).
+                val tooltip = AppShortcuts.numberFor(tab, tabs)?.let { "$title ($ctrl+$it)" } ?: title
                 RailItem(
                     icon = tab.icon,
-                    label = stringResource(tab.title),
+                    label = title,
+                    tooltip = tooltip,
                     selected = isSelected,
                     expanded = expanded,
                     onClick = { if (tab == selected && !mehrSelected) onReselect(tab) else onSelect(tab) },
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
+            val mehr = stringResource(R.string.mehr_titel)
             RailItem(
                 icon = Icons.Outlined.AccountCircle,
-                label = stringResource(R.string.mehr_titel),
+                label = mehr,
+                tooltip = "$mehr ($ctrl+,)",
                 selected = mehrSelected,
                 expanded = expanded,
                 onClick = onOpenMehr,
@@ -109,12 +135,32 @@ fun CampusNavigationRail(
 @Composable
 private fun SidebarHeader() {
     val colors = CampusTheme.colors
+    // Die Ziege läuft beim Erscheinen von links ein (iPad: `ZiegeEinlauf`); der Schriftzug steht von Anfang an. Mit
+    // reduzierter Bewegung steht sie sofort da.
+    val reduceMotion = rememberReduceMotion()
+    var arrived by remember { mutableStateOf(reduceMotion) }
+    LaunchedEffect(Unit) { arrived = true }
+    val offset by animateDpAsState(
+        targetValue = if (arrived) 0.dp else (-40).dp,
+        animationSpec = tween(durationMillis = 900, easing = FastOutSlowInEasing),
+        label = "ziegeEinlauf",
+    )
+    val alpha by animateFloatAsState(
+        targetValue = if (arrived) 1f else 0f,
+        animationSpec = tween(durationMillis = 400),
+        label = "ziegeAlpha",
+    )
     Row(
         modifier = Modifier.fillMaxWidth().padding(start = 8.dp, top = 8.dp, bottom = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(painterResource(R.drawable.ic_symbol_goat), contentDescription = null, tint = colors.brandOrange, modifier = Modifier.size(22.dp))
+        Icon(
+            painterResource(R.drawable.ic_symbol_goat),
+            contentDescription = null,
+            tint = colors.brandOrange,
+            modifier = Modifier.size(22.dp).offset { IntOffset(offset.roundToPx(), 0) }.alpha(alpha),
+        )
         Text(
             text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.titleMedium.copy(fontFamily = PlusJakartaSans, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp),
@@ -125,8 +171,25 @@ private fun SidebarHeader() {
     }
 }
 
+/** Hinweis bei Maus-Hover und langem Drücken. */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun RailItem(icon: ImageVector, label: String, selected: Boolean, expanded: Boolean, onClick: () -> Unit) {
+private fun WithTooltip(text: String, content: @Composable () -> Unit) {
+    TooltipBox(
+        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Right),
+        tooltip = { PlainTooltip { Text(text) } },
+        state = rememberTooltipState(),
+        content = content,
+    )
+}
+
+@Composable
+private fun RailItem(icon: ImageVector, label: String, tooltip: String, selected: Boolean, expanded: Boolean, onClick: () -> Unit) {
+    WithTooltip(tooltip) { RailItemContent(icon, label, selected, expanded, onClick) }
+}
+
+@Composable
+private fun RailItemContent(icon: ImageVector, label: String, selected: Boolean, expanded: Boolean, onClick: () -> Unit) {
     val colors = CampusTheme.colors
     val tint = if (selected) colors.accent else colors.textTertiary
     val shape = RoundedCornerShape(14.dp)

@@ -17,7 +17,14 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import de.kaigothe.campusilmenau.domain.model.library.merkliste.MerklisteSelection
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -110,6 +117,7 @@ fun MerklisteScreen(
     onOpenTitle: (id: String) -> Unit,
     onOpenCatalog: () -> Unit,
     modifier: Modifier = Modifier,
+    selectedId: String? = null,
     viewModel: MerklisteViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -143,7 +151,7 @@ fun MerklisteScreen(
             onOpenUrl = { url -> if (url.startsWith("http://", true) || url.startsWith("https://", true)) runCatching { uriHandler.openUri(url) } },
         )
     }
-    MerklisteContent(state = state, actions = actions, coverFor = viewModel::cover, onBack = onBack, modifier = modifier)
+    MerklisteContent(state = state, actions = actions, coverFor = viewModel::cover, onBack = onBack, modifier = modifier, selectedId = selectedId)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -154,6 +162,7 @@ fun MerklisteContent(
     coverFor: suspend (GemerkterTitel) -> Bitmap?,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    selectedId: String? = null,
 ) {
     val colors = CampusTheme.colors
     Column(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding()) {
@@ -173,7 +182,7 @@ fun MerklisteContent(
             if (state.liste.isEmpty) {
                 EmptyState(onSearch = actions.onSearch)
             } else {
-                MerklisteList(state, actions, coverFor)
+                MerklisteList(state, actions, coverFor, selectedId)
             }
         }
     }
@@ -193,15 +202,30 @@ fun MerklisteContent(
 }
 
 @Composable
-private fun MerklisteList(state: MerklisteUiState, actions: MerklisteActions, coverFor: suspend (GemerkterTitel) -> Bitmap?) {
+private fun MerklisteList(state: MerklisteUiState, actions: MerklisteActions, coverFor: suspend (GemerkterTitel) -> Bitmap?, selectedId: String?) {
     val colors = CampusTheme.colors
     val liste = state.liste
+    // Pfeiltasten ↑/↓ wechseln den gewählten Titel (Liste neben dem Titel, Tastatur am Tablet oder Chromebook).
+    val order = remember(liste) { liste.offen + liste.gefunden }
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .focusable()
+            .onPreviewKeyEvent { event ->
+                if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
+                val step = when (event.key) {
+                    Key.DirectionDown -> 1
+                    Key.DirectionUp -> -1
+                    else -> return@onPreviewKeyEvent false
+                }
+                val next = MerklisteSelection.move(order.map { it.id }, selectedId, step)
+                order.firstOrNull { it.id == next }?.let(actions.onOpen)
+                next != null
+            },
         contentPadding = PaddingValues(start = Spacing.ScreenEdge, end = Spacing.ScreenEdge, bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(Spacing.CardGap),
     ) {
-        items(liste.offen, key = { it.id }) { titel -> Zeile(titel, state, actions, coverFor) }
+        items(liste.offen, key = { it.id }) { titel -> Zeile(titel, state, actions, coverFor, titel.id == selectedId) }
         if (liste.gefunden.isNotEmpty()) {
             item(key = "gefunden-kopf") {
                 Text(
@@ -211,7 +235,7 @@ private fun MerklisteList(state: MerklisteUiState, actions: MerklisteActions, co
                     modifier = Modifier.padding(top = 10.dp, start = 2.dp).semantics { heading() },
                 )
             }
-            items(liste.gefunden, key = { it.id }) { titel -> Zeile(titel, state, actions, coverFor) }
+            items(liste.gefunden, key = { it.id }) { titel -> Zeile(titel, state, actions, coverFor, titel.id == selectedId) }
         }
         item(key = "fussnote") {
             Text(
@@ -233,7 +257,7 @@ private fun MerklisteList(state: MerklisteUiState, actions: MerklisteActions, co
  */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-private fun Zeile(titel: GemerkterTitel, state: MerklisteUiState, actions: MerklisteActions, coverFor: suspend (GemerkterTitel) -> Bitmap?) {
+private fun Zeile(titel: GemerkterTitel, state: MerklisteUiState, actions: MerklisteActions, coverFor: suspend (GemerkterTitel) -> Bitmap?, selected: Boolean) {
     val colors = CampusTheme.colors
     val swipe = rememberSwipeToDismissBoxState()
     val foundLabel = stringResource(if (titel.istGefunden) R.string.bib_merkliste_nicht_mehr_gefunden else R.string.bib_merkliste_als_gefunden)
@@ -276,7 +300,7 @@ private fun Zeile(titel: GemerkterTitel, state: MerklisteUiState, actions: Merkl
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(colors.surface)
+                    .background(if (selected) colors.accentSoft else colors.surface)
                     .combinedClickable(role = Role.Button, onClick = { actions.onOpen(titel) }, onLongClick = { menuOpen = true })
                     .padding(horizontal = 16.dp, vertical = 12.dp)
                     .semantics(mergeDescendants = true) {

@@ -3,6 +3,8 @@ package de.kaigothe.campusilmenau.ui.bibliothek
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import de.kaigothe.campusilmenau.ui.adaptive.AdaptiveColumns
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -195,10 +197,12 @@ fun BibliothekContent(
     val paia = state.paia
     val lists = remember(paia.items) { LoanLists(paia.items) }
 
+    BoxWithConstraints(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+    // Zwei Spalten: Ausleihen und Vormerkungen nebeneinander statt des Umschalters; drei: dazu das Konto (iPad: `BibliothekPad`).
+    val columns = AdaptiveColumns.count(availableDp = maxWidth.value.toInt(), minColumnDp = ColumnMinDp, maxColumns = 3, gapDp = ColumnGapDp)
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
             .statusBarsPadding()
             .verticalScroll(rememberScrollState())
             .padding(horizontal = Spacing.ScreenEdge)
@@ -254,18 +258,8 @@ fun BibliothekContent(
             return@Column
         }
 
-        SegmentedControl(
-            options = listOf(
-                SegmentOption(BibliothekTab.Loans, stringResource(R.string.bib_segment_mit_zahl, stringResource(R.string.bib_segment_ausgeliehen), lists.loans.size)),
-                SegmentOption(BibliothekTab.Holds, stringResource(R.string.bib_segment_mit_zahl, stringResource(R.string.bib_segment_vormerkungen), lists.holds.size)),
-            ),
-            selected = state.tab,
-            onSelect = onSelectTab,
-            modifier = Modifier.fillMaxWidth(),
-        )
-
-        when (state.tab) {
-            BibliothekTab.Loans -> if (lists.loans.isEmpty()) {
+        val loansList: @Composable () -> Unit = {
+            if (lists.loans.isEmpty()) {
                 MessageCard(title = stringResource(R.string.bib_leer_ausleihen_titel), text = stringResource(R.string.bib_leer_ausleihen_text))
             } else {
                 lists.loans.forEach { item ->
@@ -277,7 +271,9 @@ fun BibliothekContent(
                     )
                 }
             }
-            BibliothekTab.Holds -> if (lists.holds.isEmpty()) {
+        }
+        val holdsList: @Composable () -> Unit = {
+            if (lists.holds.isEmpty()) {
                 MessageCard(title = stringResource(R.string.bib_leer_vormerkungen_titel), text = stringResource(R.string.bib_leer_vormerkungen_text))
             } else {
                 lists.holds.forEach { item ->
@@ -285,24 +281,77 @@ fun BibliothekContent(
                 }
             }
         }
-
-        val footer = when {
-            paia.remembersCredentials && paia.lastUsername != null -> stringResource(R.string.bib_fuss_gespeichert_nutzer, paia.lastUsername)
-            paia.remembersCredentials -> stringResource(R.string.bib_fuss_gespeichert)
-            paia.lastUsername != null -> stringResource(R.string.bib_fuss_nutzer, paia.lastUsername)
-            else -> stringResource(R.string.bib_fuss_ohne_nutzer)
+        val account: @Composable () -> Unit = {
+            val footer = when {
+                paia.remembersCredentials && paia.lastUsername != null -> stringResource(R.string.bib_fuss_gespeichert_nutzer, paia.lastUsername)
+                paia.remembersCredentials -> stringResource(R.string.bib_fuss_gespeichert)
+                paia.lastUsername != null -> stringResource(R.string.bib_fuss_nutzer, paia.lastUsername)
+                else -> stringResource(R.string.bib_fuss_ohne_nutzer)
+            }
+            Text(text = footer, style = MaterialTheme.typography.bodySmall, color = colors.textTertiary, modifier = Modifier.padding(top = 6.dp))
+            SecondaryButton(
+                text = stringResource(R.string.ausweis_zeigen),
+                onClick = onShowAusweis,
+                icon = Icons.Outlined.Badge,
+                isLoading = state.ausweisWirdGeprueft,
+                enabled = !state.ausweisWirdGeprueft,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            SoftDestructiveButton(text = stringResource(R.string.bib_abmelden), onClick = onLogout, modifier = Modifier.fillMaxWidth())
         }
-        Text(text = footer, style = MaterialTheme.typography.bodySmall, color = colors.textTertiary, modifier = Modifier.padding(top = 6.dp))
-        SecondaryButton(
-            text = stringResource(R.string.ausweis_zeigen),
-            onClick = onShowAusweis,
-            icon = Icons.Outlined.Badge,
-            isLoading = state.ausweisWirdGeprueft,
-            enabled = !state.ausweisWirdGeprueft,
+
+        if (columns >= 2) {
+            val loansTitle = stringResource(R.string.bib_segment_mit_zahl, stringResource(R.string.bib_segment_ausgeliehen), lists.loans.size)
+            val holdsTitle = stringResource(R.string.bib_segment_mit_zahl, stringResource(R.string.bib_segment_vormerkungen), lists.holds.size)
+            Row(horizontalArrangement = Arrangement.spacedBy(ColumnGapDp.dp), verticalAlignment = Alignment.Top) {
+                Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    SpaltenKopf(loansTitle)
+                    loansList()
+                }
+                Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    SpaltenKopf(holdsTitle)
+                    holdsList()
+                }
+                if (columns >= 3) {
+                    Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(14.dp)) { account() }
+                }
+            }
+            if (columns == 2) account()
+            return@Column
+        }
+
+        SegmentedControl(
+            options = listOf(
+                SegmentOption(BibliothekTab.Loans, stringResource(R.string.bib_segment_mit_zahl, stringResource(R.string.bib_segment_ausgeliehen), lists.loans.size)),
+                SegmentOption(BibliothekTab.Holds, stringResource(R.string.bib_segment_mit_zahl, stringResource(R.string.bib_segment_vormerkungen), lists.holds.size)),
+            ),
+            selected = state.tab,
+            onSelect = onSelectTab,
             modifier = Modifier.fillMaxWidth(),
         )
-        SoftDestructiveButton(text = stringResource(R.string.bib_abmelden), onClick = onLogout, modifier = Modifier.fillMaxWidth())
+
+        when (state.tab) {
+            BibliothekTab.Loans -> loansList()
+            BibliothekTab.Holds -> holdsList()
+        }
+        account()
     }
+    }
+}
+
+/** Jede Spalte braucht mindestens so viel Breite (dp), der Abstand dazwischen ist [ColumnGapDp]. */
+private const val ColumnMinDp = 340
+private const val ColumnGapDp = 16
+
+/** Überschrift einer Spalte („Ausgeliehen (3)“). */
+@Composable
+private fun SpaltenKopf(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+        color = CampusTheme.colors.textPrimary,
+        modifier = Modifier.padding(horizontal = 2.dp).semantics { heading() },
+    )
 }
 
 @Composable

@@ -29,6 +29,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.verticalScroll
+import de.kaigothe.campusilmenau.ui.adaptive.AdaptiveColumns
 import androidx.compose.material.icons.outlined.Share
 import de.kaigothe.campusilmenau.domain.model.share.MensaPlanShare
 import de.kaigothe.campusilmenau.domain.model.share.ShareContent
@@ -158,16 +163,31 @@ fun MensaContent(
         planShare?.let { plan -> ShareImageSpec(plan.imageFileName, ShareCardStyle.Light) { SharePlanImage(plan, shareStrings) } }
     }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .statusBarsPadding(),
-    ) {
-        Header(onOpenHours = onOpenHours, share = planShare, shareImage = planImage)
+    BoxWithConstraints(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+    // Breit genug: alle Mensen als Spalten nebeneinander statt Namensleiste und Wischen (iPad: `MensaPadScreen`). Bei
+    // großer Schrift höchstens zwei Spalten, damit die Namen und Preise nicht umbrechen.
+    val maxColumns = if (LocalDensity.current.fontScale >= LargeFontScale) 2 else MensaVenue.entries.size
+    val columns = AdaptiveColumns.count(availableDp = maxWidth.value.toInt(), minColumnDp = ColumnMinDp, maxColumns = maxColumns, gapDp = ColumnGapDp)
+    val wide = columns >= 2
+    Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
+        Header(onOpenHours = onOpenHours, share = if (wide) null else planShare, shareImage = planImage)
 
         // Erst wenn gewählte Mensa und Filter gelesen sind, damit nichts springt.
-        if (state.ready) {
+        if (state.ready && wide) {
+            DayStrip(state = state, today = now.toLocalDate(), onSelect = onSelectDay)
+            FilterBar(filter = state.filter, onSetFilter = onSetFilter, onOpenFilter = { showFilter = true })
+            MensaColumns(
+                state = state,
+                now = now,
+                loading = loading,
+                columns = columns,
+                onSelectMealtime = onSelectMealtime,
+                onRetry = onRetry,
+                onResetFilter = onResetFilter,
+                onOpenMeal = onOpenMeal,
+                modifier = Modifier.weight(1f),
+            )
+        } else if (state.ready) {
             val pagerState = rememberPagerState(initialPage = state.venue.ordinal) { MensaVenue.entries.size }
 
             // Wahl in der Namensleiste (oder von außen) bewegt den Pager, Wischen wählt die Mensa nach dem Einrasten.
@@ -199,6 +219,7 @@ fun MensaContent(
                 )
             }
         }
+    }
     }
 
     if (showFilter) {
@@ -546,6 +567,163 @@ internal fun FilterCountBadge(count: Int, modifier: Modifier = Modifier) {
             .padding(horizontal = 5.dp),
         textAlign = androidx.compose.ui.text.style.TextAlign.Center,
     )
+}
+
+// MARK: - Alle Mensen als Spalten
+
+/** Jede Spalte braucht mindestens so viel Breite (dp), der Abstand dazwischen ist [ColumnGapDp]. */
+private const val ColumnMinDp = 320
+private const val ColumnGapDp = 16
+
+/** Ab dieser Schriftgröße gibt es höchstens zwei Spalten. */
+private const val LargeFontScale = 1.3f
+
+/**
+ * Alle Mensen nebeneinander, bei vier Mensen und zwei Spalten in zwei Zeilen. Der Kopf mit Filtern und Tagesleiste steht
+ * darüber fest, nur die Spalten scrollen.
+ */
+@Composable
+private fun MensaColumns(
+    state: MensaUiState,
+    now: LocalDateTime,
+    loading: LoadingUi,
+    columns: Int,
+    onSelectMealtime: (MensaMealtime) -> Unit,
+    onRetry: () -> Unit,
+    onResetFilter: () -> Unit,
+    onOpenMeal: (MensaMeal) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(start = Spacing.ScreenEdge, end = Spacing.ScreenEdge, bottom = Spacing.Xl),
+        verticalArrangement = Arrangement.spacedBy(28.dp),
+    ) {
+        MensaVenue.entries.chunked(columns).forEach { row ->
+            Row(horizontalArrangement = Arrangement.spacedBy(ColumnGapDp.dp), verticalAlignment = Alignment.Top) {
+                row.forEach { venue ->
+                    MensaVenueColumn(
+                        venue = venue,
+                        state = state,
+                        now = now,
+                        loading = loading,
+                        onSelectMealtime = onSelectMealtime,
+                        onRetry = onRetry,
+                        onResetFilter = onResetFilter,
+                        onOpenMeal = onOpenMeal,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+                // Eine unvollständige letzte Zeile behält die Spaltenbreite.
+                repeat(columns - row.size) { Spacer(modifier = Modifier.weight(1f)) }
+            }
+        }
+        Text(
+            text = stringResource(R.string.mensa_preishinweis, state.priceGroup.title()),
+            style = MaterialTheme.typography.bodySmall,
+            color = CampusTheme.colors.textTertiary,
+            modifier = Modifier.padding(horizontal = 2.dp),
+        )
+    }
+}
+
+/** Eine Mensa als Spalte: Kopf (Name, Status, Teilen), bei der Cafeteria Mittag/Abendessen, dann die Gerichte. */
+@Composable
+private fun MensaVenueColumn(
+    venue: MensaVenue,
+    state: MensaUiState,
+    now: LocalDateTime,
+    loading: LoadingUi,
+    onSelectMealtime: (MensaMealtime) -> Unit,
+    onRetry: () -> Unit,
+    onResetFilter: () -> Unit,
+    onOpenMeal: (MensaMeal) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val colors = CampusTheme.colors
+    val meals = state.mealsFor(venue)
+    val isToday = state.selectedDay == now.toLocalDate()
+    val shareStrings = rememberShareStrings()
+    val share = remember(state, venue, shareStrings) {
+        if (state.loadState != MensaLoadState.Loaded) return@remember null
+        val mealtime = if (venue.hasMealtimes) state.mealtime else MensaMealtime.Lunch
+        val hours = MensaPlanShare.hours(mealtime, state.selectedDay, state.canteens.firstOrNull { venue.matches(it.name) }?.openingHours.orEmpty())
+        MensaPlanShare(venue, state.selectedDay, mealtime, state.meals, state.priceGroup, hours, shareStrings).takeIf { it.meals.isNotEmpty() }
+    }
+    val image = remember(share, shareStrings) {
+        share?.let { plan -> ShareImageSpec(plan.imageFileName, ShareCardStyle.Light) { SharePlanImage(plan, shareStrings) } }
+    }
+
+    Column(modifier = modifier) {
+        Row(verticalAlignment = Alignment.Top) {
+            Box(modifier = Modifier.weight(1f)) { PageHeader(venue = venue, state = state, now = now) }
+            if (share != null) {
+                ShareMenu(text = share, image = image, anchor = { open ->
+                    Box(
+                        modifier = Modifier.size(Spacing.MinTouchTarget).clickable(role = Role.Button, onClick = open),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Share,
+                            contentDescription = stringResource(R.string.share_button),
+                            tint = colors.textPrimary,
+                            modifier = Modifier.size(22.dp),
+                        )
+                    }
+                })
+            }
+        }
+        if (venue.hasMealtimes) {
+            MealtimeControl(selected = state.mealtime, onSelect = onSelectMealtime, modifier = Modifier.padding(bottom = 12.dp))
+        }
+        if (loading.isActive) {
+            Box(modifier = Modifier.fillMaxWidth().height(240.dp)) {
+                GoatLoadingBlock(message = stringResource(R.string.mensa_laedt), isVisible = loading.isVisible, isSlow = loading.isSlow)
+            }
+            return@Column
+        }
+        when (val load = state.loadState) {
+            MensaLoadState.Loading -> Unit
+
+            is MensaLoadState.Failed -> MessageCard(
+                title = stringResource(R.string.mensa_fehler_titel),
+                text = load.error.mensaMessage(),
+                buttonText = stringResource(R.string.erneut_versuchen),
+                onButtonClick = onRetry,
+            )
+
+            MensaLoadState.Loaded -> when {
+                meals.isNotEmpty() -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    meals.forEach { meal ->
+                        MensaMealCard(meal = meal, priceGroup = state.priceGroup, onClick = { onOpenMeal(meal) })
+                    }
+                }
+
+                // Der Filter blendet in dieser Spalte alles aus; die anderen Spalten bleiben gefüllt.
+                state.mealsFor(venue, filtered = false).isNotEmpty() -> MessageCard(
+                    title = stringResource(R.string.mensa_filter_leer_titel),
+                    text = stringResource(
+                        if (isToday) R.string.mensa_filter_leer_heute else R.string.mensa_filter_leer_tag,
+                        state.filter.activeDescription(),
+                    ),
+                    buttonText = stringResource(R.string.filter_zuruecksetzen),
+                    onButtonClick = onResetFilter,
+                )
+
+                else -> CampusCard {
+                    Text(
+                        text = stringResource(if (isToday) R.string.mensa_leer_heute else R.string.mensa_leer_tag),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = colors.textSecondary,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 14.dp),
+                    )
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Seite einer Mensa

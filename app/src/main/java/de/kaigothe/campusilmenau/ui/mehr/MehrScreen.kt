@@ -1,6 +1,29 @@
 package de.kaigothe.campusilmenau.ui.mehr
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.Restaurant
+import androidx.compose.material.icons.outlined.Tune
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
+import de.kaigothe.campusilmenau.ui.adaptive.AdaptiveColumns
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -128,6 +151,7 @@ fun MehrContent(
     // Ein Bereich aus dem Link wird nach oben gescrollt. Die Reihenfolge: Titel, Darstellung, Mensa, Konto, Allgemein.
     LaunchedEffect(bereich) {
         val index = when (bereich) {
+            // Nebeneinander steht nur ein Bereich in der Liste, der Link wählt ihn (siehe unten).
             null -> return@LaunchedEffect
             MehrBereich.Darstellung -> 1
             MehrBereich.Mensa -> 2
@@ -137,15 +161,28 @@ fun MehrContent(
         list.animateScrollToItem(index)
     }
 
-    Column(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding()) {
+    BoxWithConstraints(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+    // Breit genug: links die Bereiche, rechts der gewählte (iPad: `MehrPad`); sonst alles untereinander.
+    val wide = AdaptiveColumns.count(availableDp = maxWidth.value.toInt(), minColumnDp = PaneMinDp, maxColumns = 2, gapDp = 0) >= 2
+    var paneName by rememberSaveable { mutableStateOf(MehrPane.of(bereich).name) }
+    val pane = MehrPane.valueOf(paneName)
+    LaunchedEffect(bereich) { if (bereich != null) paneName = MehrPane.of(bereich).name }
+    fun shows(candidate: MehrPane) = !wide || pane == candidate
+
+    Column(modifier = Modifier.fillMaxSize().statusBarsPadding()) {
         BackBar(onBack = onBack)
+        Row(modifier = Modifier.weight(1f)) {
+        if (wide) {
+            MehrPaneList(selected = pane, onSelect = { paneName = it.name }, modifier = Modifier.width(PaneListWidthDp.dp))
+        }
         LazyColumn(
             state = list,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.weight(1f).fillMaxHeight(),
             contentPadding = androidx.compose.foundation.layout.PaddingValues(start = Spacing.ScreenEdge, end = Spacing.ScreenEdge, bottom = 28.dp),
             verticalArrangement = Arrangement.spacedBy(22.dp),
         ) {
-            item(key = "titel") {
+            // Nebeneinander steht der Titel schon über der Liste der Bereiche.
+            if (!wide) item(key = "titel") {
                 Text(
                     text = stringResource(R.string.mehr_titel),
                     style = MaterialTheme.typography.displayMedium,
@@ -153,7 +190,7 @@ fun MehrContent(
                     modifier = Modifier.padding(start = 6.dp).semantics { heading() },
                 )
             }
-            item(key = "darstellung") {
+            if (shows(MehrPane.Darstellung)) item(key = "darstellung") {
                 MehrAbschnitt(stringResource(R.string.mehr_dar_titel)) {
                     SegmentedControl(
                         options = Darstellung.entries.map { SegmentOption(it, stringResource(it.titel())) },
@@ -163,7 +200,7 @@ fun MehrContent(
                     )
                 }
             }
-            item(key = "mensa") {
+            if (shows(MehrPane.Mensa)) item(key = "mensa") {
                 MehrAbschnitt(stringResource(R.string.mehr_mensa_titel)) {
                     MehrAuswahlZeile(
                         titel = stringResource(R.string.mehr_mensa_start),
@@ -186,7 +223,7 @@ fun MehrContent(
                     MehrLinkZeile(titel = stringResource(R.string.mensa_zeiten_oeffnen), onClick = onOpenMensaZeiten)
                 }
             }
-            item(key = "konto") {
+            if (shows(MehrPane.Konto)) item(key = "konto") {
                 MehrAbschnitt(stringResource(R.string.mehr_konto_titel)) {
                     Column(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         if (state.paia.isAuthenticated) {
@@ -204,7 +241,7 @@ fun MehrContent(
                     }
                 }
             }
-            item(key = "allgemein") {
+            if (shows(MehrPane.Allgemein)) item(key = "allgemein") {
                 MehrAbschnitt(stringResource(R.string.mehr_allgemein)) {
                     val automatisch = stringResource(R.string.mehr_sprache_auto, erscheintAls.anzeige())
                     MehrAuswahlZeile(
@@ -239,6 +276,70 @@ fun MehrContent(
                     color = colors.textTertiary,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        }
+        }
+    }
+    }
+}
+
+/** Die Bereiche, die nebeneinander links in der Liste stehen. Der Link `bereich=` wählt einen (Sprache und Über gehören zu „Allgemein“). */
+private enum class MehrPane(val titel: Int, val icon: ImageVector) {
+    Darstellung(R.string.mehr_dar_titel, Icons.Outlined.Palette),
+    Mensa(R.string.mehr_mensa_titel, Icons.Outlined.Restaurant),
+    Konto(R.string.mehr_konto_titel, Icons.Outlined.AccountCircle),
+    Allgemein(R.string.mehr_allgemein, Icons.Outlined.Tune),
+    ;
+
+    companion object {
+        fun of(bereich: MehrBereich?): MehrPane = when (bereich) {
+            MehrBereich.Darstellung -> Darstellung
+            MehrBereich.Mensa -> Mensa
+            MehrBereich.Konto -> Konto
+            MehrBereich.Sprache, MehrBereich.Ueber -> Allgemein
+            null -> Darstellung
+        }
+    }
+}
+
+/** Ab dieser Breite (dp) stehen Liste und Bereich nebeneinander; die Liste ist [PaneListWidthDp] breit. */
+private const val PaneMinDp = 720
+private const val PaneListWidthDp = 280
+
+@Composable
+private fun MehrPaneList(selected: MehrPane, onSelect: (MehrPane) -> Unit, modifier: Modifier = Modifier) {
+    val colors = CampusTheme.colors
+    Column(
+        modifier = modifier.fillMaxHeight().padding(start = Spacing.ScreenEdge, end = 8.dp, top = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        Text(
+            text = stringResource(R.string.mehr_titel),
+            style = MaterialTheme.typography.displayMedium,
+            color = colors.textPrimary,
+            modifier = Modifier.padding(start = 6.dp, bottom = 12.dp).semantics { heading() },
+        )
+        MehrPane.entries.forEach { pane ->
+            val isSelected = pane == selected
+            val tint = if (isSelected) colors.accent else colors.textTertiary
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = Spacing.MinTouchTarget)
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(if (isSelected) colors.accentSoft else colors.background)
+                    .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(pane) })
+                    .padding(horizontal = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(14.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(pane.icon, contentDescription = null, tint = tint, modifier = Modifier.size(24.dp))
+                Text(
+                    text = stringResource(pane.titel),
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium),
+                    color = if (isSelected) colors.accent else colors.textPrimary,
+                    maxLines = 1,
                 )
             }
         }

@@ -1,7 +1,17 @@
 package de.kaigothe.campusilmenau.ui.navigation
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.focusable
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.input.key.KeyEvent
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.isCtrlPressed
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.input.key.Key
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.navigation3.ListDetailSceneStrategy
 import androidx.compose.material3.adaptive.navigation3.rememberListDetailSceneStrategy
@@ -61,6 +71,46 @@ val LocalToastState = staticCompositionLocalOf<ToastState> {
     error("Kein ToastState vorhanden: Die Ansicht läuft nicht in der AppShell.")
 }
 
+/** Tastenkürzel der Shell (siehe [AppShortcuts]). Gibt `true` zurück, wenn die Taste verbraucht wurde. */
+private fun handleShortcut(event: KeyEvent, tabs: List<AppTab>, navigator: Navigator, open: (DeepLink) -> Unit): Boolean {
+    if (event.type != KeyEventType.KeyDown) return false
+    if (event.isCtrlPressed) {
+        val digit = when (event.key) {
+            Key.One -> 1
+            Key.Two -> 2
+            Key.Three -> 3
+            Key.Four -> 4
+            Key.Five -> 5
+            Key.Six -> 6
+            Key.Seven -> 7
+            Key.Eight -> 8
+            Key.Nine -> 9
+            else -> null
+        }
+        if (digit != null) {
+            val action = AppShortcuts.forDigit(digit, tabs) as? ShortcutAction.SelectTab ?: return false
+            navigator.selectTab(action.tab)
+            return true
+        }
+        return when (event.key) {
+            Key.Comma -> {
+                navigator.openMehr(bereich = null)
+                true
+            }
+            Key.F -> {
+                open(DeepLink.KatalogSuche)
+                true
+            }
+            else -> false
+        }
+    }
+    if (event.key == Key.Escape && navigator.state.currentStack.size > 1) {
+        navigator.goBack()
+        return true
+    }
+    return false
+}
+
 /**
  * Die Hülle der App: gewählter Tab mit Tab-Leiste darunter. Jeder Tab hat einen eigenen Back Stack und behält
  * seinen Zustand, ein Tab wird erst beim ersten Besuch aufgebaut. Die Tab-Leiste verschwindet, solange die
@@ -97,6 +147,8 @@ fun AppShell(
     // Ab 840 dp steht ein Detail neben seiner Liste (Events, Katalog, Merkliste); darunter bleibt es eine eigene Seite.
     val widthClass = currentWindowWidthClass()
     val split = widthClass == WindowWidthClass.Expanded
+    // Der Titel, der neben der Merkliste offen ist (hebt seine Zeile hervor, Ausgangspunkt der Pfeiltasten).
+    val selectedTitleId = if (split) (navigationState.currentStack.lastOrNull() as? KatalogTitelRoute)?.id else null
     val listDetailStrategy = rememberListDetailSceneStrategy<NavKey>()
     val eventPlaceholder = stringResource(R.string.adaptiv_platzhalter_event)
     val titlePlaceholder = stringResource(R.string.adaptiv_platzhalter_titel)
@@ -136,6 +188,7 @@ fun AppShell(
         }
         entry<MerklisteRoute>(metadata = titleList) {
             MerklisteScreen(
+                selectedId = selectedTitleId,
                 onBack = { navigator.goBack() },
                 onOpenTitle = { id -> navigator.openDetail(KatalogTitelRoute(id), split) },
                 onOpenCatalog = { navigator.navigate(KatalogRoute()) },
@@ -194,8 +247,17 @@ fun AppShell(
     val mehrSelected = navigationState.selectedTab == navigationState.startTab &&
         navigationState.currentStack.lastOrNull() is MehrRoute
 
+    // Damit Tastenkürzel von Anfang an ankommen, hält die Hülle den Fokus, bis ein Feld ihn nimmt.
+    val shellFocus = remember { FocusRequester() }
+    LaunchedEffect(Unit) { runCatching { shellFocus.requestFocus() } }
+
     CompositionLocalProvider(LocalToastState provides toastState, LocalSplitView provides split) {
-        Row(modifier = modifier) {
+        Row(
+            modifier = modifier
+                .focusRequester(shellFocus)
+                .focusable()
+                .onKeyEvent { event -> handleShortcut(event, navigationState.tabs, navigator, ::open) },
+        ) {
             if (sideNavigation) {
                 CampusNavigationRail(
                     tabs = navigationState.tabs,

@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import de.kaigothe.campusilmenau.ui.adaptive.AdaptiveColumns
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -65,6 +67,9 @@ import de.kaigothe.campusilmenau.domain.model.mensa.OpeningHour
 import de.kaigothe.campusilmenau.ui.mensa.MensaPreviewData
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+
+/** Jede der zwei Spalten braucht mindestens so viel Breite (dp), sonst steht alles untereinander. */
+private const val ColumnMinDp = 340
 
 /**
  * Die Startseite „Heute“: Kopf, Hinweise, Jetzt-Karte, dann „Als Nächstes“ und „Heute Abend“ (ab 15:00 getauscht).
@@ -143,31 +148,21 @@ fun HeuteContentView(
         )
     }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
-            .statusBarsPadding()
-            .padding(top = 8.dp, bottom = Spacing.Xl),
-        verticalArrangement = Arrangement.spacedBy(Spacing.SectionGap),
-    ) {
-        Header(state = state, onOpenMehr = onOpenMehr, modifier = Modifier.padding(horizontal = Spacing.ScreenEdge))
-
-        val notices = content.activeNotices
-        if (notices.isNotEmpty()) {
+    val notices: @Composable () -> Unit = {
+        val active = content.activeNotices
+        if (active.isNotEmpty()) {
             Column(
                 modifier = Modifier.padding(horizontal = Spacing.ScreenEdge),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 SectionTitle(stringResource(R.string.heute_hinweise))
-                notices.forEach { notice ->
+                active.forEach { notice ->
                     HeuteHinweisKarte(notice = notice, onDismiss = { onDismissNotice(notice.id) })
                 }
             }
         }
-
-        // Jetzt
+    }
+    val now: @Composable () -> Unit = {
         Column(
             modifier = Modifier.padding(horizontal = Spacing.ScreenEdge),
             verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -182,14 +177,45 @@ fun HeuteContentView(
                 HeuteJetztKarteView(card = card ?: content.errorCard, onZiel = onZiel)
             }
         }
-
-        // Ab 15:00 (nicht nachts) steht „Heute Abend“ vor „Als Nächstes“.
+    }
+    // Ab 15:00 (nicht nachts) steht „Heute Abend“ vor „Als Nächstes“.
+    val later: @Composable () -> Unit = {
         if (content.eventsFirst) {
             evening()
             upcoming()
         } else {
             upcoming()
             evening()
+        }
+    }
+
+    BoxWithConstraints(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+        // Breit genug für zwei Spalten: links Hinweise und „Jetzt“, rechts, was danach kommt (iPad: `HeutePad`).
+        val columns = AdaptiveColumns.count(availableDp = maxWidth.value.toInt(), minColumnDp = ColumnMinDp, maxColumns = 2)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .statusBarsPadding()
+                .padding(top = 8.dp, bottom = Spacing.Xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.SectionGap),
+        ) {
+            Header(state = state, onOpenMehr = onOpenMehr, modifier = Modifier.padding(horizontal = Spacing.ScreenEdge))
+            if (columns >= 2) {
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.SectionGap)) {
+                    Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Spacing.SectionGap)) {
+                        notices()
+                        now()
+                    }
+                    Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Spacing.SectionGap)) {
+                        later()
+                    }
+                }
+            } else {
+                notices()
+                now()
+                later()
+            }
         }
     }
 
