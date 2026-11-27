@@ -9,7 +9,7 @@ Die App ist stabil, getestet, barrierefrei und bereit für Google Play.
 ## Aufgaben
 
 ### Tests
-- [ ] Verbliebene iOS-Tests portieren (Liste in M0), Kernlogik zuerst. Offen für die Bibliothek: `BibliothekTests`, `LibraryCatalogTests`, `LibrarySearchModelTests`, `LibraryTitleTests`, `BibMerklisteTests`, `BibliotheksausweisTests`, `BenutzernummerScannerTests`.
+- [x] Bibliotheks-Tests aus iOS: Die Logik war schon portiert (`LoanPresentationTest` = `BibliothekTests`, `Code39Test`/`AusweisDatenTest` = `BibliotheksausweisTests`, `BenutzernummerFormatTest` = `BenutzernummerScannerTests`, `LibraryTitlePresentationTest`, `MerklisteRepositoryTest`, `LibrarySearchQueryTest`, `LibrarySearchViewModelTest`, `LibraryCatalogRepositoryTest`, `PaiaRepositoryTest`). Neu in M11: `LibraryTitleViewModelTest` (10, Laden, Fehler, Aktualisieren, Merken = Zustandsteil von `LibraryTitleTests`), `MerklisteViewModelTest` (12, Status in einer Anfrage, Fehler = „Unbekannt“, Exemplar, Widerrufen, Meldungen = Zustandsteil von `BibMerklisteTests`), `BibliothekViewModelTest` (19, Start, Ausweis öffnen mit Prüfung, Anmelden, Abmelden). Nicht portiert, weil es auf Android kein Gegenstück gibt: Nutzergruppe-Tabelle des Ausweises (siehe 04-nicht-portierbar.md) und Face-ID-/LAError-Texte (ersetzt durch den `BiometricPrompt`-Test in `AusweisDatenTest`).
 - [ ] Compose-UI-Tests für Hauptflüsse: Mensa-Filter, Login, Katalogsuche, Event merken. (Brauchen ein Gerät; `androidTest` hat nur die Vorlage.)
 - [ ] Stabilitäts-Triage: Abstürze zuerst, dann Feature-Parität, dann kritische UI-Fehler. Bisher keine offenen Abstürze; der Release-Build läuft auf dem Emulator durch Heute, Mensa, Bibliothek, Events und Katalogsuche.
 
