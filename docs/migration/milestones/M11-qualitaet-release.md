@@ -22,7 +22,7 @@ Die App ist stabil, getestet, barrierefrei und bereit für Google Play.
 - [ ] Baseline Profile und Startzeit-Messung (braucht ein Macrobenchmark-Modul und ein Gerät).
 - [x] R8/Optimierung: Release mit `optimization { enable = true }` baut und läuft (29 MB, ML Kit eingerechnet). Keine eigenen Keep-Regeln nötig: Room, Hilt, kotlinx.serialization und Glance bringen ihre Regeln mit. Geprüft mit einer mit dem Debug-Schlüssel signierten Kopie auf dem Emulator (Heute, Mensa, Bibliothek, Events, Katalogsuche mit Covern).
 - [x] ANR-Audit: kein `runBlocking`, kein `allowMainThreadQueries`, kein `Thread.sleep`; Netz und Room laufen in Coroutines. Gefunden und behoben: `ProcessCameraProvider...get()` im `onDispose` des Scanners wartet jetzt im Listener.
-- [ ] Crash-Reporting einbinden (Crashlytics): braucht ein Firebase-Projekt (`google-services.json`); Entscheidung steht aus. Kommt es, ist das Formular der Datensicherheit zu ergänzen.
+- [x] Crash-Reporting: entschieden, **kein** Crashlytics (und kein anderes SDK). Die App bleibt ohne Analyse- und Absturz-SDKs, das Datensicherheits-Formular bleibt damit ohne „Absturzprotokolle“. Abstürze zeigt die Play Console (Android Vitals) ohne eigenen Code.
 
 ### Sicherheit und Policy
 - [x] Manifest geprüft: `INTERNET`, `NFC`, `CAMERA` (nur mit Runtime-Anfrage), `exported` nur wo nötig (Deeplinks, Launcher, Widgets), `FileProvider` nicht exportiert, `data_extraction_rules` und `backup_rules` nehmen Datenbank und Zugangsdaten aus. Tabelle in [docs/play/datenschutz-und-policy.md](../../play/datenschutz-und-policy.md).
