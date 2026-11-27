@@ -1,6 +1,6 @@
 # M7 – Bibliothek
 
-**Status:** offen · **Abhängig von:** M2, Klärung PAIA-Speicherung (M0) · **Gate:** 3 (`compileDebugKotlin`, dann `assembleDebug`)
+**Status:** umgesetzt (7a–7e), Abnahme auf Gerät offen · **Abhängig von:** M2, Klärung PAIA-Speicherung (M0) · **Gate:** 3 (`compileDebugKotlin`, dann `assembleDebug`)
 
 ## Ziel
 
@@ -8,14 +8,15 @@ Bibliothekskonto, Katalogsuche, Merkliste und Ausweis. Größter Block (ca. 9.80
 
 ## 7a – PAIA-Konto
 
-- [ ] PAIA-Client (`ServicesPAIAService`): Login, Token, Ausleihen, Vormerkungen, Mitteilungen.
-- [ ] Modelle `PAIALoanItem`, `PAIANotification`, `PAIAHoldCard`.
-- [ ] Sitzung wie iOS nur im Speicher (Token, Patron-ID, Ablauf aus `expires_in`, 401/403 → Sitzung abgelaufen). Siehe [api/paia.md](../api/paia.md).
-- [ ] **Neu gegenüber iOS:** optional Passwort speichern (Schalter „Angemeldet bleiben“, Auto-Login beim Start/nach Ablauf), verschlüsselt über Android Keystore, nicht im Backup. Das Token wird nie gespeichert.
-- [ ] Verlängern (`renew`), Mitteilungen (404 = leer).
-- [ ] Abmelden löscht Token und Passwort (roter, kritischer Button).
-- [ ] Screens: Abgemeldet (`PAIASignedOutView`), Ausleihen (`BibliothekScreen`, `PAIALoanItemRow`, Timeline), Mitteilungen, Detailblatt (`BibliothekDetailBlatt`).
-- [ ] Badges „Gleich zu“/„Fällig“, Aufbereitung (`BibliothekPresentation`).
+- [x] PAIA-Client (`PaiaApi`, `PaiaRepository`): Login, Token, Ausleihen, Vormerkungen, Mitteilungen.
+- [x] Modelle `PaiaLoanItem` (Ausleihe und Vormerkung), `PaiaNotification`; Vormerkungen werden als `HoldCard` dargestellt.
+- [x] Sitzung wie iOS nur im Speicher (Token, Patron-ID, Ablauf aus `expires_in`, 401/403 → Sitzung abgelaufen). Siehe [api/paia.md](../api/paia.md).
+- [x] **Neu gegenüber iOS:** optional Passwort speichern (Schalter „Angemeldet bleiben“, Auto-Login beim Start/nach Ablauf), verschlüsselt über Android Keystore (`KeystoreCredentialStore`), nicht im Backup. Das Token wird nie gespeichert.
+- [x] Verlängern (`renew`), Mitteilungen (404 = leer).
+- [x] Abmelden löscht Token und Passwort.
+- [x] Screens: Abgemeldet, Ausleihen (`BibliothekScreen`, `LoanCard`, `LoanTimeline`), Mitteilungen (`NotificationsSheet`). Das Detailblatt ersetzt die Titelansicht des Katalogs (7c), erreichbar über `catalogPpn`.
+- [x] Badges „Gleich zu“/„Fällig“ als Chips mit Dringlichkeit, Aufbereitung in `LoanInfo`.
+- Tests: `PaiaRepositoryTest`, `BibliothekViewModelTest`.
 
 ## 7b – Login-Sheet und Scan
 

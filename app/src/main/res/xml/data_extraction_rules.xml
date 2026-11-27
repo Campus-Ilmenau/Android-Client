@@ -18,5 +18,11 @@
         <exclude
             domain="sharedpref"
             path="paia_credentials.xml" />
-        </cloud-backup>
+    </cloud-backup>
+    <device-transfer>
+        <!-- Der Keystore-Schlüssel zieht nicht mit um, die Datei wäre auf dem neuen Gerät nicht lesbar. -->
+        <exclude
+            domain="sharedpref"
+            path="paia_credentials.xml" />
+    </device-transfer>
 </data-extraction-rules>
