@@ -247,6 +247,20 @@
     <string name="events_toast_gemerkt">Gemerkt</string>
     <string name="events_toast_nicht_mehr_gemerkt">Nicht mehr gemerkt</string>
     <string name="kuerzel_strg">Strg</string>
+
+    <!-- App-Shortcuts (langes Drücken des App-Icons) -->
+    <string name="shortcut_mensa_kurz">Mensa heute</string>
+    <string name="shortcut_mensa_lang">Was gibt’s heute in der Mensa?</string>
+    <string name="shortcut_abend_kurz">Heute Abend</string>
+    <string name="shortcut_abend_lang">Was ist heute Abend los?</string>
+    <string name="shortcut_katalog_kurz">Katalog</string>
+    <string name="shortcut_katalog_lang">Im Katalog suchen</string>
+    <string name="shortcut_merkliste_kurz">Merkliste</string>
+    <string name="shortcut_merkliste_lang">Meine Merkliste</string>
+    <string name="shortcut_zeiten_kurz">Öffnungszeiten</string>
+    <string name="shortcut_zeiten_lang">Öffnungszeiten der Mensen</string>
+    <string name="shortcut_thoska_kurz">Thoska</string>
+    <string name="shortcut_thoska_lang">Thoska auslesen</string>
     <string name="adaptiv_platzhalter_event">Wähle eine Veranstaltung</string>
     <string name="adaptiv_platzhalter_titel">Wähle einen Titel</string>
     <string name="events_nicht_gefunden_titel">Veranstaltung nicht gefunden</string>

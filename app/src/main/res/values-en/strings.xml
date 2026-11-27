@@ -244,6 +244,20 @@
     <string name="events_toast_gemerkt">Saved</string>
     <string name="events_toast_nicht_mehr_gemerkt">Removed from saved</string>
     <string name="kuerzel_strg">Ctrl</string>
+
+    <!-- App shortcuts (long-press on the app icon) -->
+    <string name="shortcut_mensa_kurz">Canteen today</string>
+    <string name="shortcut_mensa_lang">What’s on in the canteen today?</string>
+    <string name="shortcut_abend_kurz">Tonight</string>
+    <string name="shortcut_abend_lang">What’s on tonight?</string>
+    <string name="shortcut_katalog_kurz">Catalog</string>
+    <string name="shortcut_katalog_lang">Search the catalog</string>
+    <string name="shortcut_merkliste_kurz">Reading list</string>
+    <string name="shortcut_merkliste_lang">My reading list</string>
+    <string name="shortcut_zeiten_kurz">Opening hours</string>
+    <string name="shortcut_zeiten_lang">Canteen opening hours</string>
+    <string name="shortcut_thoska_kurz">Thoska</string>
+    <string name="shortcut_thoska_lang">Read Thoska</string>
     <string name="adaptiv_platzhalter_event">Select an event</string>
     <string name="adaptiv_platzhalter_titel">Select a title</string>
     <string name="events_nicht_gefunden_titel">Event not found</string>

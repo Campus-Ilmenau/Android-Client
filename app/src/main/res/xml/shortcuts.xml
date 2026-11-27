@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Statische App-Shortcuts (langes Drücken des App-Icons, Kurzbefehle des Launchers). Die Reihenfolge ist die Rangfolge:
+    Launcher zeigen meist vier. Jeder öffnet einen Link der App (DeepLink.kt); die Adressen prüft ShortcutsXmlTest.
+    „Thoska auslesen“ steht nicht hier, weil es NFC braucht: Es kommt als dynamischer Shortcut (CampusShortcuts.kt).
+-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="mensa_heute"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_restaurant"
+        android:shortcutShortLabel="@string/shortcut_mensa_kurz"
+        android:shortcutLongLabel="@string/shortcut_mensa_lang">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="campusilmenau://mensa"
+            android:targetClass="de.kaigothe.campusilmenau.MainActivity"
+            android:targetPackage="de.kaigothe.campusilmenau" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="heute_abend"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_tonight"
+        android:shortcutShortLabel="@string/shortcut_abend_kurz"
+        android:shortcutLongLabel="@string/shortcut_abend_lang">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="campusilmenau://events?filter=heute-abend"
+            android:targetClass="de.kaigothe.campusilmenau.MainActivity"
+            android:targetPackage="de.kaigothe.campusilmenau" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="katalog_suche"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_search"
+        android:shortcutShortLabel="@string/shortcut_katalog_kurz"
+        android:shortcutLongLabel="@string/shortcut_katalog_lang">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="campusilmenau://katalog/suche"
+            android:targetClass="de.kaigothe.campusilmenau.MainActivity"
+            android:targetPackage="de.kaigothe.campusilmenau" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="merkliste"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_bookmark"
+        android:shortcutShortLabel="@string/shortcut_merkliste_kurz"
+        android:shortcutLongLabel="@string/shortcut_merkliste_lang">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="campusilmenau://bibliothek/merkliste"
+            android:targetClass="de.kaigothe.campusilmenau.MainActivity"
+            android:targetPackage="de.kaigothe.campusilmenau" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="mensa_zeiten"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_schedule"
+        android:shortcutShortLabel="@string/shortcut_zeiten_kurz"
+        android:shortcutLongLabel="@string/shortcut_zeiten_lang">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="campusilmenau://mensa/zeiten"
+            android:targetClass="de.kaigothe.campusilmenau.MainActivity"
+            android:targetPackage="de.kaigothe.campusilmenau" />
+    </shortcut>
+</shortcuts>

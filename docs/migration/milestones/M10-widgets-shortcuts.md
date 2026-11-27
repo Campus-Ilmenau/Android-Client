@@ -18,7 +18,7 @@ Homescreen-Widgets und Sprach-/Shortcut-Zugang. Siri-Ersatz „wenn möglich“ 
 - [ ] Tests: `MensaWidgetTests`, `AbendWidgetTests`, `WidgetSpeicherTests`.
 
 ### Shortcuts / Sprachzugang
-- [ ] Statische und dynamische App Shortcuts: Mensa heute, Öffnungszeiten, Abendessen, Heute Abend, Katalogsuche, Merkliste.
+- [x] App Shortcuts (10a): fünf statische in `res/xml/shortcuts.xml` (Mensa heute, Heute Abend, Katalog, Merkliste, Öffnungszeiten) an beiden Launcher-Aliasen, dazu ein dynamischer für „Thoska auslesen“ nur mit NFC (`CampusShortcuts.publish`, beim Start der Activity). Texte de/en, Symbole weiß auf Nachtblau wie die Kachel der iOS-Kurzbefehle. „Abendessen“ (Cafeteria) ist keiner: Der Link kennt die Tageszeit nicht. `ShortcutsXmlTest` prüft, dass jede Adresse ein bekanntes Ziel öffnet und alle Texte in beiden Sprachen stehen. Auf dem Emulator beim System angemeldet (`dumpsys shortcut`).
 - [ ] AppFunctions prüfen: welche Funktionen sich für Assistenten freigeben lassen (`SiriMensa`, `SiriAbend`, `SiriKatalog`, `SiriMerkliste`, `SiriOffen`).
 - [ ] Antwortkarten/-texte (`SiriKarten`, `SiriMeldung`) als Antworttexte portieren, soweit die Plattform das erlaubt.
 - [ ] Ergebnis und Grenzen in [04-nicht-portierbar.md](../04-nicht-portierbar.md) nachtragen.

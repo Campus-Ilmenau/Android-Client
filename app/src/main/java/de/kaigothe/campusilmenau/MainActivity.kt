@@ -24,6 +24,7 @@ import de.kaigothe.campusilmenau.ui.mehr.AppSprache
 import de.kaigothe.campusilmenau.ui.navigation.AppShell
 import de.kaigothe.campusilmenau.ui.navigation.DeepLink
 import de.kaigothe.campusilmenau.ui.navigation.DeepLinkRouter
+import de.kaigothe.campusilmenau.ui.shortcuts.CampusShortcuts
 import de.kaigothe.campusilmenau.ui.theme.CampusIlmenauTheme
 import javax.inject.Inject
 
@@ -50,6 +51,7 @@ class MainActivity : FragmentActivity() {
         splashScreen.setOnExitAnimationListener { it.remove() }
 
         super.onCreate(savedInstanceState)
+        CampusShortcuts.publish(this)
         // Nach einem Konfigurationswechsel kommt derselbe Intent erneut: Er darf kein zweites Mal öffnen.
         if (savedInstanceState == null) handleDeepLink(intent)
 
